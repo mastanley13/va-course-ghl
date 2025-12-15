@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { CheckCircle2, AlertTriangle, Info, Copy, ClipboardCheck, Terminal } from 'lucide-react';
+import { CheckCircle2, Info, Copy, ClipboardCheck, Terminal, Image, Play, Headphones } from 'lucide-react';
 import clsx from 'clsx';
-import { motion, AnimatePresence } from 'framer-motion';
 
 // --- Helper Components ---
 
@@ -88,6 +87,43 @@ const CustomLink = ({ href, children }) => {
     )
 }
 
+const MediaChrome = ({ icon: Icon, label, children }) => (
+    <figure className="group my-6 overflow-hidden rounded-2xl border border-slate-800/60 bg-slate-900/60 shadow-lg">
+        <div className="flex items-center gap-2 px-4 py-3 border-b border-slate-800/80 bg-slate-900/80 text-slate-300 text-sm uppercase tracking-wide">
+            <Icon size={14} className="text-primary" />
+            <span>{label}</span>
+        </div>
+        {children}
+    </figure>
+);
+
+const ImageRenderer = ({ alt, src }) => (
+    <MediaChrome icon={Image} label={alt || 'Image'}>
+        <div className="relative overflow-hidden">
+            <img src={src} alt={alt} className="w-full max-h-[480px] object-cover" loading="lazy" />
+        </div>
+        {alt && <figcaption className="px-4 py-3 text-xs text-slate-400 bg-slate-950/60">{alt}</figcaption>}
+    </MediaChrome>
+);
+
+const VideoRenderer = ({ src }) => (
+    <MediaChrome icon={Play} label="Video">
+        <video controls className="w-full bg-black max-h-[520px]">
+            <source src={src} />
+        </video>
+    </MediaChrome>
+);
+
+const AudioRenderer = ({ src }) => (
+    <MediaChrome icon={Headphones} label="Audio">
+        <div className="p-4">
+            <audio controls className="w-full">
+                <source src={src} />
+            </audio>
+        </div>
+    </MediaChrome>
+);
+
 const Blockquote = ({ children }) => {
     // Logic to detect alert types from content (naive implementation, can be enhanced)
     // E.g. if content starts with [IMPORTANT], [WARNING], etc.
@@ -148,6 +184,9 @@ export const MarkdownComponents = {
     h1: Heading1,
     h2: Heading2,
     h3: Heading3,
+    img: ImageRenderer,
+    video: VideoRenderer,
+    audio: AudioRenderer,
     // Custom logic for checklists is harder with standard react-markdown w/o specific plugins,
     // but we can style standard lists nicely:
     ul: ({ children }) => <ul className="space-y-2 my-4">{children}</ul>,
