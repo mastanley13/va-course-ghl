@@ -80,3 +80,32 @@ A passing VA can:
   - screenshot of payment link settings
   - test checkout screenshot (use test mode if available)
 Rubric: Pass if link works and configuration matches spec.
+
+## Relatable metaphor — “Cashier + Safe”
+Payments is both the cashier collecting money and the safe keeping records. If the drawer doesn’t balance, everything else in the business feels off.
+
+## Scenario walkthroughs with decision points
+- **Launch day for a new offer**
+  - Decision: invoice or payment link? → Use payment link for self-serve; invoice for B2B with PO requirements.
+  - Decision: refunds or voids? → Use refund only after confirming settlement and communication with accounting.
+- **Failed payments spike**
+  - Decision: technical or financial issue? → Check transaction error codes; if “insufficient funds,” set retry logic; if “processor not connected,” re-auth integration.
+  - Decision: where to log follow-up? → Add note/tag in Opportunities and start a recovery workflow.
+
+## UI callouts + screenshot placeholders
+- [Screenshot: Products list with price/description callouts]
+- [Screenshot: Payment link builder highlighting required fields and branding]
+- [Screenshot: Transaction detail with status, error codes, and customer info]
+
+## Stop and try (self-check)
+1. What’s the difference between a payment link and an invoice? <details><summary>Answer</summary>Payment links are self-serve checkouts; invoices are issued documents often used for B2B approvals.</details>
+2. Where do you confirm processor connectivity? <details><summary>Answer</summary>Settings → Payments integrations (Stripe, etc.).</details>
+3. How do you prevent revenue/report mismatches with Opportunities? <details><summary>Answer</summary>Record payments in Payments and update opportunity stages/values accordingly.</details>
+4. What action follows a failed payment? <details><summary>Answer</summary>Check error code, contact the customer, and enroll in a recovery or retry sequence.</details>
+5. When should you issue a refund vs a credit? <details><summary>Answer</summary>Refund when reversing a charge; credit when applying balance to future service with accounting approval.</details>
+
+## Practice labs + evidence rubric
+- **Lab: Payment flow QA**
+  - Deliverable: Product + payment link + successful sandbox transaction.
+  - Evidence: Screenshots of product setup, link page, and transaction record showing success; note any error handling tested.
+  - Rubric: Pass if the payment posts correctly, the receipt/notifications are demonstrated, and opportunity/pipeline updates are noted.

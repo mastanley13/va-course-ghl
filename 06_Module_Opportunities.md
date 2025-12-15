@@ -81,3 +81,32 @@ Evidence:
 - screenshots of both pipelines with stage names visible
 - screenshot of an opportunity card showing value + assigned owner
 Rubric: Pass if pipelines exist and stages match spec.
+
+## Relatable metaphor — “Factory Assembly Line”
+Opportunities are the assembly line for deals. Each stage is a workstation; if parts pile up at one station, the whole line slows.
+
+## Scenario walkthroughs with decision points
+- **Lead qualifies mid-call**
+  - Decision: create opportunity immediately or later? → Create immediately, assign owner, and set stage to reflect verbal intent.
+  - Decision: missing budget info? → Add a follow-up task and tag `status:needs-info` before moving stages.
+- **Pipeline clog**
+  - Decision: many cards stuck in “Proposal Sent”? → Trigger follow-up workflow or schedule callbacks; consider moving stale cards to Lost with reasons.
+  - Decision: lost reasons not captured? → Add required field or dropdown before stage change is allowed.
+
+## UI callouts + screenshot placeholders
+- [Screenshot: Pipeline board with stage definitions annotated]
+- [Screenshot: Opportunity detail showing custom fields, tasks, and activity]
+- [Screenshot: Stage change modal capturing lost reason]
+
+## Stop and try (self-check)
+1. What data must be captured before moving to “Qualified”? <details><summary>Answer</summary>Contact owner, budget/need notes, and next action.</details>
+2. How do you avoid stale opportunities? <details><summary>Answer</summary>Use tasks/reminders and enforce lost reasons for aging cards.</details>
+3. Which module links most directly to pipeline value? <details><summary>Answer</summary>Payments/Transactions for actual collected revenue.</details>
+4. Why align pipeline names to naming conventions? <details><summary>Answer</summary>For consistent reporting and automation triggers.</details>
+5. What should happen after marking Lost? <details><summary>Answer</summary>Apply a lost reason, tag for reactivation sequence, and update reporting.</details>
+
+## Practice labs + evidence rubric
+- **Lab: Unclog a pipeline**
+  - Deliverable: Clean pipeline with stage WIP limits and updated lost reasons.
+  - Evidence: Before/after screenshots of the board, plus one opportunity record showing tasks and notes.
+  - Rubric: Pass if stages are defined, cards are redistributed or closed appropriately, and evidence shows notes/tasks per SOP.

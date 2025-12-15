@@ -58,3 +58,31 @@ A passing VA can:
 - Include at least: leads created, appointments booked, won deals, payments collected (if available)
 - Schedule a report (weekly)
 Evidence: screenshots of dashboard widgets and report schedule settings
+
+## Relatable metaphor — “Flight Instruments”
+Reporting is the cockpit instrument panel. It tells you altitude, speed, and heading so you can correct course before turbulence becomes a crisis.
+
+## Scenario walkthroughs with decision points
+- **Revenue dip detected**
+  - Decision: attribution or actual? → Compare Payments vs Opportunities; if mismatch, inspect source/UTM and timezone settings.
+  - Decision: which module next? → Drill into Opportunities stages for drop-off points.
+- **Channel performance review**
+  - Decision: which filters to apply? → Filter by campaign/source tags and date ranges aligned to spend periods.
+  - Decision: share or export? → Share dashboard links internally; export CSV only when needed for finance.
+
+## UI callouts + screenshot placeholders
+- [Screenshot: Dashboard widget configuration panel]
+- [Screenshot: Saved report filters highlighting date and source fields]
+- [Screenshot: Drill-down table with column highlights]
+
+## Stop and try (self-check)
+1. What do you check if appointments drop but traffic is steady? <details><summary>Answer</summary>Calendar availability/reminders and form submission-to-booking conversion.</details>
+2. How do you avoid skewed revenue reports? <details><summary>Answer</summary>Separate opportunity value from collected payments and align timezones.</details>
+3. When should you export data? <details><summary>Answer</summary>Only when necessary for finance/audits; prefer in-platform sharing otherwise.</details>
+4. Which tags help with source-level reporting? <details><summary>Answer</summary>`src:` and `utm_` fields on contacts/opportunities.</details>
+
+## Practice labs + evidence rubric
+- **Lab: Signal-trace report**
+  - Deliverable: Dashboard with three widgets (appointments, pipeline value, payments) plus a saved report filtered by source and date.
+  - Evidence: Screenshots of widget settings, saved report filters, and a drill-down record view.
+  - Rubric: Pass if metrics align (no timezone errors), filters are documented, and drill-down matches the top-level numbers.

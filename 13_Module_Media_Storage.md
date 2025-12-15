@@ -60,3 +60,30 @@ A passing VA can:
 - Upload 5 assets and rename consistently
 - Delete 1 asset and restore it
 - Provide screenshots: folder tree, trash, restored file
+
+## Relatable metaphor — “Warehouse Shelving”
+Media Storage is the warehouse shelving system. If every box is labeled and shelved, pickers (workflows/pages) can grab assets fast; if not, orders get delayed.
+
+## Scenario walkthroughs with decision points
+- **New campaign assets arriving**
+  - Decision: where to place? → Use department folders (ACQ/RET) and subfolders by offer; apply naming convention immediately.
+  - Decision: versioning? → Append `v1`, `v2` in filenames and archive old versions in an `Archive` folder.
+- **Missing asset link on a live page**
+  - Decision: broken link or permissions? → Test the asset URL; if 404, re-upload and update references; if permission issue, adjust sharing or re-link via built-in library.
+
+## UI callouts + screenshot placeholders
+- [Screenshot: Folder tree showing standardized structure]
+- [Screenshot: File detail pane with copy link button highlighted]
+- [Screenshot: Versioned file names demonstrating naming convention]
+
+## Stop and try (self-check)
+1. Why avoid spaces in filenames? <details><summary>Answer</summary>Prevents URL encoding issues and makes links predictable.</details>
+2. Which folder naming keeps assets discoverable? <details><summary>Answer</summary>`[DEPT]/[Offer]/[Type]` such as `ACQ/Advertiser Offer/Hero Images`.</details>
+3. How do you confirm a link works on a page? <details><summary>Answer</summary>Open the link in an incognito tab and refresh the page using it.</details>
+4. When should you archive vs delete? <details><summary>Answer</summary>Archive old versions to retain history unless there is a compliance reason to delete.</details>
+
+## Practice labs + evidence rubric
+- **Lab: Asset kit build**
+  - Deliverable: Organized asset pack for the advertiser offer (hero image, logo, PDF, video if available).
+  - Evidence: Screenshots of folder structure, file details with copy links, and at least one page or workflow referencing the asset.
+  - Rubric: Pass if assets follow naming conventions, links function, and references are documented.

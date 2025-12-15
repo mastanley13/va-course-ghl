@@ -55,3 +55,31 @@ Create:
 - Course: `Partner Onboarding - Advertisers`
 - 2 categories, 3 lessons placeholders
 Evidence: screenshots of course structure and an offer setup screen.
+
+## Relatable metaphor — “Private Clubhouse”
+Memberships and Communities are the clubhouse: members get keys, see curated rooms, and follow house rules to keep the vibe strong.
+
+## Scenario walkthroughs with decision points
+- **Onboarding new members**
+  - Decision: auto-enroll or manual? → Auto-enroll after payment; manual for scholarship/partner access.
+  - Decision: welcome via email or SMS? → Use email for links and policy, SMS only if consented for reminders.
+- **Moderating community posts**
+  - Decision: delete or coach? → Hide harmful content, but coach members on formatting and tagging to keep engagement organized.
+  - Decision: who can post announcements? → Limit to moderators/admins to avoid noise.
+
+## UI callouts + screenshot placeholders
+- [Screenshot: Course builder with module/lesson hierarchy annotated]
+- [Screenshot: Offer access settings showing product attachment]
+- [Screenshot: Community feed with moderation controls highlighted]
+
+## Stop and try (self-check)
+1. When do you grant access to a course? <details><summary>Answer</summary>After payment/qualification, via offer access settings.</details>
+2. How do you reduce churn inside the community? <details><summary>Answer</summary>Post weekly prompts, pin guidelines, and respond quickly to new member posts.</details>
+3. Which channel is best for delivering login links? <details><summary>Answer</summary>Email, so members can click and save credentials.</details>
+4. What tag could you add to community-only members? <details><summary>Answer</summary>`seg:community-only` to separate from paying students.</details>
+
+## Practice labs + evidence rubric
+- **Lab: Member onboarding path**
+  - Deliverable: Course + offer + welcome automation that shares login and community link.
+  - Evidence: Screenshots of course structure, offer access, community post, and a test member login preview.
+  - Rubric: Pass if access works, welcome path is documented, and community permissions reflect the intended roles.

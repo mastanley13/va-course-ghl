@@ -80,3 +80,31 @@ Every inbound conversation must end with ONE of:
   2) a conversation thread with an internal comment
   3) a snippet/template edit screen (if available)
 Rubric: Pass if the VA demonstrates filter use, internal notes, and correct outcome mapping.
+
+## Relatable metaphor — “Hotel Front Desk”
+Conversations is the hotel front desk: every guest question, complaint, or booking request lands here first. The goal is to route each guest to the right service quickly without losing their luggage (context).
+
+## Scenario walkthroughs with decision points
+- **Spike of unread messages after a campaign**
+  - Decision: bulk reply with a template? → Only after tagging and segmenting; personalize key lines for top-value leads.
+  - Decision: Which channel to prioritize? → Start with inbound calls/voicemails, then SMS, then email.
+- **AI agent escalation**
+  - Decision: AI stuck in a loop? → Add an internal comment, stop the workflow, and reassign to a human.
+  - Decision: Lead requests pricing? → Send the approved snippet and log the outcome in Opportunities.
+
+## UI callouts + screenshot placeholders
+- [Screenshot: Four-panel Conversations UI with filters highlighted]
+- [Screenshot: Internal comment entry with “@assignment” callout]
+- [Screenshot: Template/snippet edit drawer showing personalization tokens]
+
+## Stop and try (self-check)
+1. Which filter removes closed threads from your triage view? <details><summary>Answer</summary>Status or “Open only” filter.</details>
+2. What should you add after escalating to a human? <details><summary>Answer</summary>An internal comment with context and an assignment change.</details>
+3. When should you avoid bulk-sending a template? <details><summary>Answer</summary>When contacts are in different stages or have open tickets that need personalized answers.</details>
+4. Which module do you update after confirming an appointment by SMS? <details><summary>Answer</summary>Calendars for the booking and Opportunities for the stage change.</details>
+
+## Practice labs + evidence rubric
+- **Lab: Triage drill**
+  - Deliverable: Clear five mixed-channel messages to defined outcomes using filters, tags, and assignments.
+  - Evidence: Screenshots of filters used, one conversation with an internal note, and the final outcome tags/stages applied.
+  - Rubric: Pass if every thread has a documented outcome, internal notes are present for escalations, and channel-appropriate replies are shown.

@@ -69,3 +69,32 @@ HighLevel requires a HighLevel Booking Calendar as the foundation for scheduling
   - screenshot of availability settings
   - screenshot of reminder configuration
 Rubric: Pass if calendar exists, settings match instructions, and link works.
+
+## Relatable metaphor — “Restaurant Reservation Book”
+Calendars are the reservation book and seating chart for the business. If the book is sloppy, guests double-book or wait forever; if it’s clean, service runs smooth and the kitchen (teams) stay in sync.
+
+## Scenario walkthroughs with decision points
+- **New service launch**
+  - Decision: one or multiple calendars? → Use separate calendars for different offer types or teams to avoid availability collisions.
+  - Decision: who owns bookings? → Assign calendar ownership and pipeline stage mapping before sharing links.
+- **Troubleshooting no-shows**
+  - Decision: Are reminders firing? → Check notification settings; if off, enable and test.
+  - Decision: Timezones wrong? → Verify account timezone, then calendar-specific overrides.
+
+## UI callouts + screenshot placeholders
+- [Screenshot: Calendar availability grid with buffer/minimum notice highlighted]
+- [Screenshot: Pipeline mapping settings showing stage selection]
+- [Screenshot: Booking confirmation page with timezone indicator]
+
+## Stop and try (self-check)
+1. When would you split calendars by team? <details><summary>Answer</summary>When sales vs service need separate availability and routing.</details>
+2. What protects against back-to-back burnout? <details><summary>Answer</summary>Buffers configured between appointments.</details>
+3. How do you ensure a booking updates sales tracking? <details><summary>Answer</summary>Map the calendar to an Opportunities pipeline/stage.</details>
+4. Which setting prevents last-minute abuse? <details><summary>Answer</summary>Minimum notice time before scheduling.</details>
+5. What’s the first place to check if times look off by a day? <details><summary>Answer</summary>Sub-account timezone and then the calendar-specific timezone override.</details>
+
+## Practice labs + evidence rubric
+- **Lab: Build + test a calendar**
+  - Deliverable: New calendar configured with buffers, min notice, and pipeline mapping.
+  - Evidence: Screenshot of settings, plus a test booking record and resulting pipeline stage update.
+  - Rubric: Pass if booking honors buffer/min notice, lands in the correct pipeline stage, and reminders are demonstrated or documented.
