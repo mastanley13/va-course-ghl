@@ -5,9 +5,11 @@ import { ShieldCheck, Users } from 'lucide-react';
 import clsx from 'clsx';
 
 const AuthPage = () => {
-    const { login, availableProfiles, DEFAULT_INVITE_CODE, ADMIN_INVITE_CODE } = useAuth();
+    const { login, switchProfile, validatePasscode, availableProfiles, DEFAULT_INVITE_CODE, ADMIN_INVITE_CODE } = useAuth();
     const [formState, setFormState] = useState({ email: '', name: '', passcode: '', inviteCode: DEFAULT_INVITE_CODE });
     const [error, setError] = useState('');
+    const [selectedProfile, setSelectedProfile] = useState(null);
+    const [passcodeInput, setPasscodeInput] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = (event) => {
@@ -21,10 +23,32 @@ const AuthPage = () => {
         }
     };
 
-    const handleProfileSelect = (email) => {
+    const handleProfileSelect = (profile) => {
+        setError('');
+        if (profile.hasPasscode) {
+            setSelectedProfile(profile);
+            setPasscodeInput('');
+            return;
+        }
+
         try {
-            login({ email, name: email, passcode: '', inviteCode: DEFAULT_INVITE_CODE });
+            switchProfile(profile.email);
             navigate('/');
+        } catch (err) {
+            setError(err.message);
+        }
+    };
+
+    const handlePasscodeSubmit = (event) => {
+        event.preventDefault();
+        if (!selectedProfile) return;
+
+        try {
+            validatePasscode(selectedProfile.email, passcodeInput);
+            switchProfile(selectedProfile.email);
+            navigate('/');
+            setSelectedProfile(null);
+            setPasscodeInput('');
         } catch (err) {
             setError(err.message);
         }
@@ -127,7 +151,7 @@ const AuthPage = () => {
                             {availableProfiles.map((profile) => (
                                 <button
                                     key={profile.email}
-                                    onClick={() => handleProfileSelect(profile.email)}
+                                    onClick={() => handleProfileSelect(profile)}
                                     className={clsx(
                                         'w-full text-left rounded-lg border px-3 py-2 transition-colors',
                                         profile.role === 'admin'
@@ -140,13 +164,66 @@ const AuthPage = () => {
                                             <p className="text-sm font-semibold">{profile.name}</p>
                                             <p className="text-xs text-slate-400">{profile.email}</p>
                                         </div>
-                                        <span className="text-[10px] uppercase tracking-widest text-slate-500">{profile.role}</span>
+                                        <div className="text-right">
+                                            <span className="block text-[10px] uppercase tracking-widest text-slate-500">{profile.role}</span>
+                                            {profile.hasPasscode && (
+                                                <span className="text-[10px] text-primary">Passcode protected</span>
+                                            )}
+                                        </div>
                                     </div>
                                 </button>
                             ))}
                         </div>
                     )}
                 </div>
+
+                {selectedProfile && (
+                    <div className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+                        <div className="w-full max-w-md bg-surface border border-slate-800 rounded-2xl p-6 shadow-2xl shadow-primary/10 space-y-4">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <p className="text-xs uppercase tracking-widest text-primary font-semibold">Passcode Required</p>
+                                    <h3 className="text-lg font-semibold text-white">Unlock {selectedProfile.name}'s profile</h3>
+                                </div>
+                                <button
+                                    type="button"
+                                    onClick={() => setSelectedProfile(null)}
+                                    className="text-slate-400 hover:text-white"
+                                >
+                                    Close
+                                </button>
+                            </div>
+                            <form onSubmit={handlePasscodeSubmit} className="space-y-3">
+                                <label className="space-y-2 text-sm text-slate-300">
+                                    <span>Enter passcode</span>
+                                    <input
+                                        type="password"
+                                        value={passcodeInput}
+                                        autoFocus
+                                        onChange={(e) => setPasscodeInput(e.target.value)}
+                                        className="w-full rounded-lg border border-slate-700 bg-slate-900/60 px-3 py-2 text-white focus:border-primary focus:outline-none"
+                                        placeholder="Required to switch"
+                                    />
+                                </label>
+                                <div className="flex items-center justify-end gap-3">
+                                    <button
+                                        type="button"
+                                        onClick={() => setSelectedProfile(null)}
+                                        className="px-4 py-2 rounded-lg border border-slate-700 text-sm text-slate-300 hover:border-slate-500"
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button
+                                        type="submit"
+                                        className="px-4 py-2 rounded-lg bg-gradient-to-r from-primary to-accent text-sm font-semibold text-white shadow-lg shadow-primary/20"
+                                    >
+                                        Unlock & Continue
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );

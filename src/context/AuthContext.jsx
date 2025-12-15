@@ -70,6 +70,19 @@ export const AuthProvider = ({ children }) => {
         setAuthState((prev) => ({ ...prev, currentUserEmail: email }));
     };
 
+    const validatePasscode = (email, passcode) => {
+        const normalizedEmail = email.trim().toLowerCase();
+        const user = authState.users[normalizedEmail];
+
+        if (!user) {
+            throw new Error('Profile not found.');
+        }
+
+        if (user.passcode && user.passcode !== (passcode?.trim() || '')) {
+            throw new Error('Passcode does not match existing profile.');
+        }
+    };
+
     const logout = () => setAuthState((prev) => ({ ...prev, currentUserEmail: null }));
 
     const availableProfiles = useMemo(
@@ -80,13 +93,23 @@ export const AuthProvider = ({ children }) => {
                     email: user.email,
                     name: user.name,
                     role: user.role,
+                    hasPasscode: Boolean(user.passcode),
                 })),
         [authState.users]
     );
 
     const value = useMemo(
-        () => ({ currentUser, login, logout, switchProfile, availableProfiles, DEFAULT_INVITE_CODE, ADMIN_INVITE_CODE }),
-        [currentUser, availableProfiles]
+        () => ({
+            currentUser,
+            login,
+            logout,
+            switchProfile,
+            validatePasscode,
+            availableProfiles,
+            DEFAULT_INVITE_CODE,
+            ADMIN_INVITE_CODE,
+        }),
+        [currentUser, availableProfiles, authState.users, validatePasscode]
     );
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
