@@ -1,5 +1,7 @@
 # Module 14 — Reputation (Reviews + Widgets)
 
+🔗 **Appendix:** [Plain Language + Glossary (A–Z with screenshots)](Appendix_Plain_Language_Glossary.md) — includes navigation verbs quick-reference (EN/ES/PH).
+
 ## Why it matters
 Reputation turns trust into conversions. For production builds, VAs must:
 - send review requests correctly (without spam)

@@ -1,5 +1,7 @@
 # Module 03 — Conversations (Sub-Account)
 
+🔗 **Appendix:** [Plain Language + Glossary (A–Z with screenshots)](Appendix_Plain_Language_Glossary.md) — includes navigation verbs quick-reference (EN/ES/PH).
+
 ## Why it matters
 Conversations is the operational heart: SMS, email, chat, social DMs—where leads are triaged, qualified, and moved into appointments and deals.
 
@@ -15,13 +17,21 @@ A passing VA can:
 
 ## Vocabulary
 - **Inbox**: list of conversations across channels
+  - *What this means:* The inbox shows every thread from SMS, email, chat, and social so you can triage in one place.
 - **Thread**: message history with a contact
+  - *What this means:* A thread is the chronological conversation log, including files and system notes.
 - **Assignment**: which user owns the conversation
+  - *What this means:* Assigning a thread clarifies who is responsible to respond and close it out.
 - **Tags**: conversation or contact tags used for filtering/routing
+  - *What this means:* Tags label conversations for search, routing, or automation triggers.
 - **Internal comment**: team-only note (not visible to customer)
+  - *What this means:* Use internal comments to brief teammates without sending anything externally.
 - **Snippets / templates**: reusable text blocks
+  - *What this means:* Snippets speed responses while keeping tone consistent; edit them lightly to stay human.
 - **Stop on response**: automation setting that pauses sequences when a contact replies
+  - *What this means:* This guardrail prevents workflows from over-messaging once a person engages.
 - **Handoff**: AI → human escalation
+  - *What this means:* Move the conversation to a human owner when AI confidence drops or the contact requests it.
 
 ## Course sections and pages
 ### Section A — Orientation

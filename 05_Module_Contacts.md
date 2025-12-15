@@ -1,5 +1,7 @@
 # Module 05 — Contacts (Smart Lists, Bulk Actions, Imports)
 
+🔗 **Appendix:** [Plain Language + Glossary (A–Z with screenshots)](Appendix_Plain_Language_Glossary.md) — includes navigation verbs quick-reference (EN/ES/PH).
+
 ## Why it matters
 Contacts are the database. If contact data is messy, every workflow, report, and AI personalization gets worse.
 
@@ -15,12 +17,19 @@ Bulk importing contacts without proper consent can damage deliverability and inc
 
 ## Vocabulary
 - **Contact record**: the CRM profile for a person/business
+  - *What this means:* It holds all identifiers, history, and activity for one lead or account.
 - **Smart List**: dynamic list that updates automatically based on filters
+  - *What this means:* Save filters once so the list refreshes itself as data changes.
 - **Custom fields**: structured fields for additional data
+  - *What this means:* Use custom fields when you need data that can be merged into messages or reports.
 - **Tags**: labels for segmentation and automation triggers
+  - *What this means:* Tags categorize contacts so workflows and filters can act on them quickly.
 - **Bulk actions**: batch operations (tag, delete, export)
+  - *What this means:* Bulk actions let you change many records at once—double-check filters before running them.
 - **Dedupe**: preventing duplicate contacts (email/phone matching)
+  - *What this means:* Match on email/phone to stop sending two copies of every message.
 - **Consent**: permission flags for outreach (especially SMS)
+  - *What this means:* Only message contacts who have opted in, or you risk spam complaints and compliance issues.
 
 ## Course sections and pages
 ### Section A — Orientation

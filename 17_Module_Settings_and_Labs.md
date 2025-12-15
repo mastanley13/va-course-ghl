@@ -1,5 +1,7 @@
 # Module 17 — Settings + Labs (Sub-Account Foundation)
 
+🔗 **Appendix:** [Plain Language + Glossary (A–Z with screenshots)](Appendix_Plain_Language_Glossary.md) — includes navigation verbs quick-reference (EN/ES/PH).
+
 ## Why it matters
 Settings determines whether everything works: timezone, staff permissions, branded links, custom values/fields, phone behavior, and Labs feature availability.
 

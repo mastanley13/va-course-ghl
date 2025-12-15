@@ -1,5 +1,7 @@
 # Module 04 — Calendars (Sub-Account)
 
+🔗 **Appendix:** [Plain Language + Glossary (A–Z with screenshots)](Appendix_Plain_Language_Glossary.md) — includes navigation verbs quick-reference (EN/ES/PH).
+
 ## Why it matters
 Calendars connect marketing to revenue: leads book appointments, confirmations go out, no-shows are reduced, and ops schedules (vendor pickup/delivery) are coordinated.
 
@@ -15,11 +17,17 @@ HighLevel requires a HighLevel Booking Calendar as the foundation for scheduling
 
 ## Vocabulary
 - **Calendar type**: personal booking vs other types
+  - *What this means:* Choose the correct calendar template so availability and booking links behave as expected.
 - **Availability**: allowed booking windows
+  - *What this means:* Set the exact hours people can book so appointments never land outside working times.
 - **Buffer**: padding before/after appointments
+  - *What this means:* Buffers add breathing room to avoid back-to-back meetings and rushed handoffs.
 - **Conflict calendar**: blocks times based on another calendar
+  - *What this means:* Connect conflict calendars to stop double-booking when a user has events elsewhere.
 - **Reminders**: SMS/email reminders tied to appointment events
+  - *What this means:* Reminders nudge attendees so they show up or reschedule instead of no-showing.
 - **Embed code**: place calendar on a website/funnel page
+  - *What this means:* Copy the embed to drop the booking widget directly into a page visitors can use.
 
 ## Course sections and pages
 ### Section A — Orientation

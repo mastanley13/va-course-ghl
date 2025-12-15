@@ -1,5 +1,7 @@
 # Capstone Build Spec — Golf Facility Advertising Partner Acquisition + Fulfillment System (Dec 2025)
 
+🔗 **Appendix:** [Plain Language + Glossary (A–Z with screenshots)](Appendix_Plain_Language_Glossary.md) — includes navigation verbs quick-reference (EN/ES/PH).
+
 ## 1) Scenario
 You are building a GoHighLevel sub-account for a golf facility (“Golf Place”) that sells **advertising placements** (e.g., signage, scorecards, tee-box signs) to local businesses:
 - mortgage brokers

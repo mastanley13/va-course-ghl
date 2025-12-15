@@ -1,5 +1,7 @@
 # Module 06 — Opportunities (Pipelines)
 
+🔗 **Appendix:** [Plain Language + Glossary (A–Z with screenshots)](Appendix_Plain_Language_Glossary.md) — includes navigation verbs quick-reference (EN/ES/PH).
+
 ## Why it matters
 Opportunities convert conversation into a trackable sales process: stages, owners, values, and “won/lost” outcomes that power reporting and follow-up automations.
 
@@ -12,10 +14,15 @@ A passing VA can:
 
 ## Vocabulary
 - **Pipeline**: a board representing a process (sales or fulfillment)
+  - *What this means:* Pipelines give you columns to move deals through so everyone sees current status at a glance.
 - **Stage**: column in a pipeline (must be action-based)
+  - *What this means:* Stage names should describe the action completed, guiding when to move a card forward.
 - **Opportunity**: a deal object tied to a contact
+  - *What this means:* Each opportunity links to one contact record and tracks potential revenue for that deal.
 - **Card value**: expected revenue (not necessarily cash collected)
+  - *What this means:* This is the forecasted amount; you still need Payments to confirm real money collected.
 - **Won/Lost**: closing outcomes
+  - *What this means:* Marking Won or Lost closes the loop so reports stay accurate and follow-ups stop or change.
 
 ## Course sections and pages
 ### Section A — Orientation

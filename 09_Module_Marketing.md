@@ -1,5 +1,7 @@
 # Module 09 — Marketing (Email, Campaigns, Templates, Trigger Links, Ad Manager entry)
 
+🔗 **Appendix:** [Plain Language + Glossary (A–Z with screenshots)](Appendix_Plain_Language_Glossary.md) — includes navigation verbs quick-reference (EN/ES/PH).
+
 ## Why it matters
 Marketing is how you produce outbound sequences and assets that are measurable and consistent. For capstone: email templates, campaign-style outreach, trigger links to landing pages/PDF, and (optionally) Ad Manager integration.
 
@@ -12,10 +14,15 @@ A passing VA can:
 
 ## Vocabulary
 - **Email template**: reusable email content
+  - *What this means:* Draft the message once and reuse it across campaigns or workflows with merge fields.
 - **Campaign**: scheduled/batched marketing sends (use-case dependent)
+  - *What this means:* Use campaigns for planned blasts instead of event-driven automation.
 - **Trigger link**: tracked link that can trigger workflow actions when clicked
+  - *What this means:* Swap ordinary URLs for trigger links so clicks show on the contact timeline and fire automations.
 - **Ad Manager**: ad management workspace (if used)
+  - *What this means:* This area centralizes ad accounts and reporting when connected.
 - **UTM parameters**: tracking tags added to URLs for attribution
+  - *What this means:* Add UTMs to see which channel or campaign produced the click or conversion.
 
 ## Course sections and pages
 ### Section A — Orientation

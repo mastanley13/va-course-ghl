@@ -1,5 +1,7 @@
 # Module 13 — Media Storage (Assets)
 
+🔗 **Appendix:** [Plain Language + Glossary (A–Z with screenshots)](Appendix_Plain_Language_Glossary.md) — includes navigation verbs quick-reference (EN/ES/PH).
+
 ## Why it matters
 Media Storage is the asset source for Sites, Email, Social, and Products. Clean asset management prevents broken branding and duplicated clutter.
 
