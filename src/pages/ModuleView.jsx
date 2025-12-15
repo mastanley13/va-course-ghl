@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useParams, useNavigate } from 'react-router-dom';
-import { courseModules } from '../data/courseData';
+import { courseModules, ORIENTATION_MODULE_ID } from '../data/courseData';
 import { MarkdownComponents } from '../components/Course/Markdown/Renderers';
 import CourseHeader from '../components/Layout/CourseHeader';
 import TableOfContents from '../components/Course/TableOfContents';
@@ -43,6 +43,14 @@ const ModuleView = () => {
     const moduleProgress = getModuleProgress(moduleId);
     const modulePercent = getModuleProgressPercent(moduleId);
     const canComplete = moduleProgress.quizPassed;
+    const orientationProgress = getModuleProgress(ORIENTATION_MODULE_ID);
+    const orientationCleared =
+        orientationProgress.quizScore === 100 && orientationProgress.quizPassed;
+    const blockedByOrientation =
+        module &&
+        module.id !== ORIENTATION_MODULE_ID &&
+        (module.type === 'module' || module.type === 'capstone') &&
+        !orientationCleared;
 
     useEffect(() => {
         if (!module) return;
@@ -77,9 +85,13 @@ const ModuleView = () => {
             <div className="flex h-full items-center justify-center text-center">
                 <div className="max-w-md space-y-4 rounded-xl border border-slate-800 bg-surface p-8 shadow-lg">
                     <p className="text-sm uppercase tracking-wide text-primary font-semibold">Locked</p>
-                    <h2 className="text-2xl font-bold text-white">Complete the previous module</h2>
+                    <h2 className="text-2xl font-bold text-white">
+                        {blockedByOrientation ? 'Finish Orientation First' : 'Complete the previous module'}
+                    </h2>
                     <p className="text-slate-400">
-                        Finish the unlocked module(s) before this one to continue the certification path.
+                        {blockedByOrientation
+                            ? 'Pass the Orientation Sprint quiz with 100% to unlock all core modules.'
+                            : 'Finish the unlocked module(s) before this one to continue the certification path.'}
                     </p>
                     {availableModule && (
                         <button
