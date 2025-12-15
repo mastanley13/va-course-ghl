@@ -1,0 +1,104 @@
+# Module 10 — Automation (Workflows)
+
+## Why it matters
+Workflows are the system’s engine. The capstone is fundamentally a set of workflows that:
+- runs daily recurring list operations (Scheduler Trigger)
+- executes multi-channel outreach sequences
+- routes by intent
+- stops on response and respects quiet hours
+- triggers payment, fulfillment, and vendor notifications
+
+## Learning outcomes
+A passing VA can:
+- Build workflows from scratch with correct triggers and actions.
+- Use Wait steps and timing controls safely.
+- Use Stop-on-response and correct call/voicemail settings.
+- Use Scheduler Trigger to run contactless recurring jobs (daily, weekly, cron).
+- Use webhooks (outbound/inbound conceptually) for integrations.
+- Use AI actions (GPT, AI Decision Maker) responsibly (cost + reliability).
+
+## Vocabulary
+- **Trigger**: event that starts workflow (contact event, webhook, scheduler, etc.)
+- **Action**: step in workflow (send SMS, add tag, webhook, create task, voicemail)
+- **Wait**: delays next steps; can be time-based or condition-based
+- **Stop on response**: pauses/stops messaging when contact replies
+- **Scheduler Trigger**: contactless scheduled workflow trigger (hourly/daily/cron)
+- **Webhook (Outbound)**: send data from GHL to external system
+- **Webhook (Inbound)**: external system triggers a workflow in GHL
+- **Voicemail (drop)**: send pre-recorded voicemail message
+- **AI Decision Maker / GPT action**: AI-powered workflow actions (often premium)
+
+## Course sections and pages
+### Section A — Orientation
+- Page 1: Workflow reliability principles (determinism, testing, stop conditions)
+- Page 2: Triggers vs actions vs filters
+
+### Section B — Timing + compliance
+- Page 3: Wait action (how it works and why)
+- Page 4: Workflow settings (quiet hours, sender, stop on response)
+
+### Section C — Scheduler Trigger (capstone-critical)
+- Page 5: Why scheduler matters (daily jobs without contacts)
+- Page 6: Scheduling options (daily/weekly/monthly/cron; skip weekends; stop-on date)
+- Page 7: “Contactless” caveat (contact-only actions skip)
+
+### Section D — Communication actions
+- Page 8: SMS/email/call/voicemail basics
+- Page 9: Voicemail drop action and file requirements
+
+### Section E — Integrations
+- Page 10: Outbound webhook concept + testing
+- Page 11: Using workflows to notify vendors (email/SMS/webhook)
+
+### Section F — AI in workflows
+- Page 12: GPT action use cases (summaries, personalization, classification)
+- Page 13: AI Decision Maker for routing (cost + guardrails)
+
+### Section G — Quiz
+- Page 14: Quiz (15 questions)
+
+### Section H — Lab
+- Page 15: Build 2 workflows (Daily Scheduler + Outbound Sequence)
+
+## Production SOP — Workflow build rules
+- Name every workflow clearly (department/purpose/trigger/version).
+- Add a “test mode” toggle (tag-based) so you can run safely.
+- Always include:
+  - stop conditions
+  - quiet hours
+  - max touches per day
+- Log key events:
+  - tag or note on contact timeline at each milestone
+- Build with recoverability:
+  - if webhook fails, create task + alert team
+
+## Quiz (sample bank)
+1) Scheduler Trigger is: **contactless scheduled workflow start** ✅  
+2) Cron schedules cannot run: **more than once per hour** ✅  
+3) Stop on response prevents: **over-messaging after a reply** ✅  
+4) Wait actions are used to: **control timing between steps** ✅  
+5) Outbound webhook sends data: **from HighLevel to external system** ✅  
+6) Inbound webhook is: **external → starts workflow in HighLevel** ✅  
+7) Voicemail action sends: **pre-recorded voicemail file to contact** ✅  
+8) Quiet hours are configured in: **workflow settings** ✅  
+9) A “test tag” is used to: **prevent sending to real prospects during testing** ✅  
+10) AI actions should be used: **intentionally and measured (cost/reliability)** ✅  
+11) Contactless workflows should focus on: **contactless actions (tasks, webhooks, sheets)** ✅  
+12) Workflows should always be: **tested end-to-end** ✅  
+13) A re-engagement sequence should stop when: **lead commits or opts out** ✅  
+14) If a step fails, you should: **alert + create task + allow recovery** ✅  
+15) Workflow naming should include: **purpose + trigger + version** ✅
+
+## Lab assignment (evidence required)
+Workflow A: `OPS - Daily Prospect Build - Scheduler - v1`
+- Trigger: Scheduler daily (weekday only)
+- Action: outbound webhook OR create task “Build today’s list” (if no integration)
+
+Workflow B: `ACQ - Outbound Prospecting - New Contact Tag - v1`
+- Trigger: contact tagged `stage:new`
+- Actions: email → wait → SMS (only if consent) → voicemail drop → stop on response
+
+Evidence:
+- screenshots of both workflow canvases
+- screenshot of settings tab showing quiet hours + stop-on-response
+Rubric: Pass if workflows match spec and include stop conditions.
