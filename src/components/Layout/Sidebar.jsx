@@ -4,6 +4,8 @@ import clsx from 'clsx';
 import CourseNavigation from '../Course/CourseNavigation';
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
+
     return (
         <aside
             className={clsx(
@@ -21,7 +23,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             </div>
 
             <CourseNavigation onItemClick={() => isMobile && toggleSidebar()} />
-            {/* Note: isMobile logic omitted for brevity in MVP, but functionality stands */}
         </aside>
     );
 };

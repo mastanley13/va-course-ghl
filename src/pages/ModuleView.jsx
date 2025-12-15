@@ -8,9 +8,12 @@ import CourseHeader from '../components/Layout/CourseHeader';
 import TableOfContents from '../components/Course/TableOfContents';
 import Sidebar from '../components/Layout/Sidebar';
 import CourseNavigation from '../components/Course/CourseNavigation';
-import { ChevronLeft, ChevronRight, CheckCircle2, Menu } from 'lucide-react';
+import { ChevronLeft, ChevronRight, CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
+import { useProgress } from '../context/ProgressContext';
+import ModuleQuiz from '../components/Course/ModuleQuiz';
+import ModuleLab from '../components/Course/ModuleLab';
 
 // Update Markdown headings to have IDs for anchor links
 const MarkdownComponentsWithIds = {
@@ -31,11 +34,15 @@ const ModuleView = () => {
     const [content, setContent] = useState('');
     const [loading, setLoading] = useState(true);
     const [sidebarOpen, setSidebarOpen] = useState(true); // Default open on desktop
+    const { isModuleUnlocked, getModuleProgress, getModuleProgressPercent, markCompleted } = useProgress();
 
     const moduleIndex = courseModules.findIndex(m => m.id === moduleId);
     const module = courseModules[moduleIndex];
     const nextModule = courseModules[moduleIndex + 1];
     const prevModule = courseModules[moduleIndex - 1];
+    const moduleProgress = getModuleProgress(moduleId);
+    const modulePercent = getModuleProgressPercent(moduleId);
+    const canComplete = moduleProgress.quizPassed;
 
     useEffect(() => {
         if (!module) return;
@@ -58,6 +65,34 @@ const ModuleView = () => {
     }, [module]);
 
     if (!module) return <div className="text-center p-20 text-muted">Module not found</div>;
+
+    const unlocked = isModuleUnlocked(moduleId);
+
+    if (!unlocked && module.type !== 'resource' && module.type !== 'intro') {
+        const availableModule = courseModules
+            .slice(0, moduleIndex)
+            .reverse()
+            .find((m) => isModuleUnlocked(m.id));
+        return (
+            <div className="flex h-full items-center justify-center text-center">
+                <div className="max-w-md space-y-4 rounded-xl border border-slate-800 bg-surface p-8 shadow-lg">
+                    <p className="text-sm uppercase tracking-wide text-primary font-semibold">Locked</p>
+                    <h2 className="text-2xl font-bold text-white">Complete the previous module</h2>
+                    <p className="text-slate-400">
+                        Finish the unlocked module(s) before this one to continue the certification path.
+                    </p>
+                    {availableModule && (
+                        <button
+                            onClick={() => navigate(`/module/${availableModule.id}`)}
+                            className="rounded-lg bg-gradient-to-r from-primary to-accent px-4 py-2 text-sm font-semibold text-white shadow-primary/30"
+                        >
+                            Go to {availableModule.title}
+                        </button>
+                    )}
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="flex h-screen bg-background overflow-hidden selection:bg-primary/30 selection:text-white">
@@ -85,6 +120,7 @@ const ModuleView = () => {
                     moduleIndex={moduleIndex}
                     totalModules={courseModules.length}
                     onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
+                    moduleProgress={modulePercent}
                 />
 
                 <main className="flex-1 overflow-y-auto scroll-smooth custom-scrollbar relative">
@@ -116,6 +152,13 @@ const ModuleView = () => {
                                 )}
                             </motion.div>
 
+                            {!loading && (
+                                <>
+                                    <ModuleQuiz moduleId={moduleId} moduleTitle={module.title} />
+                                    <ModuleLab moduleId={moduleId} moduleTitle={module.title} />
+                                </>
+                            )}
+
                             {/* Footer Navigation */}
                             <div className="mt-20 pt-10 border-t border-slate-700/50 flex justify-between items-center gap-6">
                                 <button
@@ -132,20 +175,37 @@ const ModuleView = () => {
 
                                 {nextModule ? (
                                     <button
-                                        onClick={() => navigate(`/module/${nextModule.id}`)}
+                                        onClick={() => {
+                                            if (!canComplete) return;
+                                            markCompleted(moduleId);
+                                            navigate(`/module/${nextModule.id}`);
+                                        }}
                                         className={clsx(
                                             "px-6 py-3 rounded-lg flex items-center gap-2 font-medium transition-all hover:scale-105",
-                                            nextModule.isLocked
+                                            !canComplete
                                                 ? "bg-slate-800 text-slate-500 cursor-not-allowed"
                                                 : "bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-primary/25"
                                         )}
-                                        disabled={nextModule.isLocked}
+                                        disabled={!canComplete}
                                     >
                                         <span>Note Completed & Continue</span>
                                         <ChevronRight size={18} />
                                     </button>
                                 ) : (
-                                    <button className="px-6 py-3 bg-emerald-600 text-white rounded-lg shadow-emerald-500/20 hover:scale-105 transition-transform flex items-center gap-2">
+                                    <button
+                                        disabled={!canComplete}
+                                        onClick={() => {
+                                            if (!canComplete) return;
+                                            markCompleted(moduleId);
+                                            navigate('/');
+                                        }}
+                                        className={clsx(
+                                            "px-6 py-3 rounded-lg transition-transform flex items-center gap-2",
+                                            !canComplete
+                                                ? "bg-slate-800 text-slate-500 cursor-not-allowed"
+                                                : "bg-emerald-600 text-white shadow-emerald-500/20 hover:scale-105"
+                                        )}
+                                    >
                                         <CheckCircle2 size={18} />
                                         <span>Finish Course</span>
                                     </button>
