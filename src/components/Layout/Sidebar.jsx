@@ -20,8 +20,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                 </button>
             </div>
 
-            <CourseNavigation onItemClick={() => isMobile && toggleSidebar()} />
-            {/* Note: isMobile logic omitted for brevity in MVP, but functionality stands */}
+            <CourseNavigation onItemClick={toggleSidebar} />
         </aside>
     );
 };

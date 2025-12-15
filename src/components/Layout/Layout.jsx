@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 import Sidebar from './Sidebar';
-import { Menu } from 'lucide-react';
+import { Menu, Shield } from 'lucide-react';
+import ProfileMenu from '../Auth/ProfileMenu';
+import { useAuth } from '../../context/AuthContext';
 
 const Layout = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const { currentUser } = useAuth();
 
     return (
         <div className="flex h-screen bg-background text-text overflow-hidden">
@@ -26,7 +29,19 @@ const Layout = () => {
                         <div className="absolute top-[40%] -right-[10%] w-[40%] h-[40%] rounded-full bg-accent/5 blur-[120px]" />
                     </div>
 
-                    <div className="max-w-5xl mx-auto">
+                    <div className="max-w-5xl mx-auto space-y-6">
+                        <div className="flex items-center justify-between gap-3 flex-wrap">
+                            <ProfileMenu />
+                            {currentUser?.isAdmin && (
+                                <Link
+                                    to="/admin"
+                                    className="inline-flex items-center gap-2 px-3 py-2 text-sm rounded-lg border border-primary/40 text-primary hover:bg-primary/10"
+                                >
+                                    <Shield size={16} />
+                                    Admin dashboard
+                                </Link>
+                            )}
+                        </div>
                         <Outlet />
                     </div>
                 </main>
