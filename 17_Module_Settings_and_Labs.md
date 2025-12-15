@@ -20,39 +20,131 @@ A passing VA can:
 
 ## Course sections and pages
 ### Section A — Orientation
-- Page 1: Settings as the “foundation layer”
-- Page 2: The 5 most common settings mistakes that break builds
+<details><summary>What</summary>
+Settings act as the foundation layer; if timezone, permissions, or branding are off, everything downstream breaks.
+</details>
+
+<details><summary>Where</summary>
+Review the Settings overview pages, starting with the course welcome that calls out the five most common mistakes to avoid.
+</details>
+
+<details><summary>How</summary>
+Walk through the introductory pages that explain how settings connect to automations, calendars, and reporting, noting any current gaps in your sub-account.
+</details>
+
+<details><summary>Troubleshoot</summary>
+If something seems off later, return here to confirm timezone, sender identity, and permission baselines before changing workflows.
+</details>
+
+> **You should see…** A clear list of foundational settings and the top mistakes highlighted for quick reference.
 
 ### Section B — Business profile + branding
-- Page 3: Business profile essentials (timezone, language, phone)
-- Page 4: Branded domain concept (for links and tracking)
+<details><summary>What</summary>
+Business Profile controls timezone, language, and phone defaults, while branded domains keep links clean and trusted.
+</details>
+
+<details><summary>Where</summary>
+Navigate to Settings → Business Profile for timezone/identity, then open the branded domain or tracking link configuration page.
+</details>
+
+<details><summary>How</summary>
+Update timezone, language, and main phone first, then confirm the branded domain or link is pointed correctly before using it in pages or emails.
+</details>
+
+<details><summary>Troubleshoot</summary>
+If links look generic or emails show the wrong locale, re-check the Business Profile defaults and branded domain DNS/SSL status.
+</details>
+
+> **You should see…** Business Profile showing the correct timezone/identity and a branded domain status that is connected/secure.
 
 ### Section C — Data model settings
-- Page 5: Custom values (why + how to use)
-- Page 6: Custom fields (contacts + opportunities)
-- Page 7: Deduplication and data hygiene basics
+<details><summary>What</summary>
+Custom values and fields structure your reusable data; deduplication keeps records clean for automations.
+</details>
+
+<details><summary>Where</summary>
+Go to Settings → Custom Values to build variables, then Settings → Custom Fields for contacts and opportunities, and finish with the Data Management tools for dedupe rules.
+</details>
+
+<details><summary>How</summary>
+Create the baseline values (business name, main phone/email, booking/website links), add intake-aligned custom fields, and set a deduplication rule before importing data.
+</details>
+
+<details><summary>Troubleshoot</summary>
+If automations show blanks or duplicates, verify the value keys match your templates and run the dedupe rules on recent imports.
+</details>
+
+> **You should see…** Custom Values and Custom Fields populated with the baseline entries, plus dedupe rules enabled for new records.
 
 ### Section D — Access control
-- Page 8: My Staff roles/permissions and copy permissions (team onboarding)
+<details><summary>What</summary>
+Roles and permissions guard access so staff only see what they need for onboarding and support.
+</details>
+
+<details><summary>Where</summary>
+Open Settings → My Staff to create users and assign roles, then review the permission matrix or copy permissions flow.
+</details>
+
+<details><summary>How</summary>
+Add staff with least-privilege roles, duplicating permissions from a known-good profile when possible, and document who owns sensitive modules.
+</details>
+
+<details><summary>Troubleshoot</summary>
+If a user cannot see a module, compare their role to the reference profile; if they see too much, tighten access and retest their login.
+</details>
+
+> **You should see…** Staff accounts scoped to the right modules with permission sets matching your onboarding template.
 
 ### Section E — Labs
-- Page 9: Enabling Labs features and documenting changes
+<details><summary>What</summary>
+Labs toggles enable in-development features that can change the UI or module availability.
+</details>
+
+<details><summary>Where</summary>
+Navigate to Settings → Labs to review available toggles and their descriptions before enabling them.
+</details>
+
+<details><summary>How</summary>
+Turn on required Labs features deliberately, noting the date, owner, and purpose, and capture evidence for the build log.
+</details>
+
+<details><summary>Troubleshoot</summary>
+If a feature is missing or unstable, confirm the Lab is enabled, refresh the app, and be ready to disable it if it introduces regressions.
+</details>
+
+> **You should see…** Labs toggles set as intended with notes on what was enabled and why.
 
 ### Section F — Quiz
-- Page 10: Quiz (12 questions)
+<details><summary>What</summary>
+The quiz validates understanding of settings, data hygiene, permissions, and Labs impacts.
+</details>
+
+<details><summary>Where</summary>
+Access the quiz page for this module after completing Sections A–E to check mastery.
+</details>
+
+<details><summary>How</summary>
+Answer the 12 questions using your notes from the walkthroughs and confirm any missed items before proceeding.
+</details>
+
+<details><summary>Troubleshoot</summary>
+If you miss multiple questions in one area, revisit that section’s callouts and retake the quiz to confirm retention.
+</details>
+
+> **You should see…** A completion notice for the 12-question quiz and clarity on any topics to review before the lab.
 
 ### Section G — Lab
 - Page 11: Setup “new sub-account baseline”
 
 ## Production SOP — New sub-account baseline
-1) Business Profile complete and correct
-2) Timezone correct (prevents reporting/calendar confusion)
-3) Custom values created for:
-   - business name, main phone, main email, booking link, website link
-4) Custom fields created for capstone:
-   - `biz_type`, `biz_industry`, `ad_interest_level`, `consent_sms`, `lead_source`
-5) Staff user added with restricted permissions
-6) Labs toggles enabled as required (documented)
+1. [ ] Business Profile complete and correct — confirm identity, address, and sender details before anything else. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+2. [ ] Timezone set correctly to prevent calendar and reporting confusion for every user. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+3. [ ] Custom values created for business name, main phone/email, booking link, and website link so templates stay reusable. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+4. [ ] Custom fields created for the capstone (`biz_type`, `biz_industry`, `ad_interest_level`, `consent_sms`, `lead_source`) before importing or building forms. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+5. [ ] Staff user added with restricted permissions aligned to least privilege and onboarding standards. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+6. [ ] Labs toggles enabled as required and documented with date/owner for future audits. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+
+> **You should see…** Each checklist item marked off with screenshots confirming the baseline is ready for builds.
 
 ## Quiz (sample bank)
 1) Business Profile controls: **timezone/language/core identity** ✅  
@@ -69,13 +161,13 @@ A passing VA can:
 12) The baseline should be done: **before building workflows/pages** ✅
 
 ## Lab assignment (evidence required)
-- Complete baseline SOP in a test sub-account
-- Provide screenshots of:
-  - Business Profile (timezone visible)
-  - Custom Values list
-  - Custom Fields list
-  - Staff permissions screen
-  - Labs toggles screen
+1. [ ] Complete the baseline SOP in a test sub-account, mirroring production-ready settings. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+2. [ ] Capture Business Profile and timezone proof to verify reporting will align. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+3. [ ] Capture Custom Values and Custom Fields lists to demonstrate reusable data scaffolding. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+4. [ ] Capture Staff permissions and Labs toggles screens to validate access control and feature availability. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+
+> **You should see…** A complete set of screenshots mapped to each checklist item, showing the test sub-account matches the baseline standard.
+
 Rubric: Pass if baseline matches checklist exactly.
 
 ## Relatable metaphor — “Engine Room and Circuit Breakers”
@@ -101,7 +193,9 @@ Settings + Labs are the engine room. You flip breakers to power features and tun
 4. What should be captured after toggling a Lab on? <details><summary>Answer</summary>Screenshot, date/time, who enabled it, and a rollback note.</details>
 
 ## Practice labs + evidence rubric
-- **Lab: Settings stabilization**
-  - Deliverable: Completed settings checklist with proof of each critical area and Labs toggles.
-  - Evidence: Screenshots of timezone, domains/senders, phone/SMS, integrations, and Labs page; note any deviations.
-  - Rubric: Pass if all critical settings are configured per standard, Labs toggles are recorded, and evidence is time-stamped.
+1. [ ] Lab: Settings stabilization — work through the checklist to confirm each critical area is configured and documented. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+2. [ ] Deliverable: Submit the completed settings checklist with proof for each area, including Labs toggles and who enabled them. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+3. [ ] Evidence: Capture screenshots for timezone, domains/senders, phone/SMS, integrations, and the Labs page, noting any deviations. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+4. [ ] Rubric confirmation: Ensure all critical settings meet the standard, Labs toggles are recorded, and evidence is time-stamped. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+
+> **You should see…** A fully documented lab package with screenshots and timestamps that align to the stabilization rubric.
