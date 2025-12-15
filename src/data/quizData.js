@@ -1,4 +1,59 @@
 export const quizBank = {
+    'orientation-sprint': {
+        passingScore: 100,
+        questions: [
+            {
+                id: 'os1',
+                question: 'What is the purpose of the Navigation Map micro-lesson?',
+                options: [
+                    'To map the fastest route to any GoHighLevel setting or tool',
+                    'To list every possible automation trigger',
+                    'To teach how to write JavaScript inside custom values',
+                    'To replace the course curriculum map entirely',
+                ],
+                correctIndex: 0,
+            },
+            {
+                id: 'os2',
+                question: 'When collecting evidence, what rule prevents rework later?',
+                options: [
+                    'Capture annotated screenshots that prove the exact setting you changed',
+                    'Only describe changes verbally in a standup',
+                    'Wait until the end of the sprint to gather any proof',
+                    'Rely on team members to remember the steps for you',
+                ],
+                correctIndex: 0,
+            },
+            {
+                id: 'os3',
+                question: 'Which default keeps automations safe during handoffs?',
+                options: [
+                    'Start everything paused with explicit launch criteria',
+                    'Activate all workflows immediately after import',
+                    'Delete legacy branches without review',
+                    'Skip notifying owners about schedule changes',
+                ],
+                correctIndex: 0,
+            },
+            {
+                id: 'os4',
+                question: 'How many items must you answer correctly to unlock the core modules?',
+                options: ['All 5 quiz items', '4 of 5 quiz items', '3 of 5 quiz items', 'No quiz is required'],
+                correctIndex: 0,
+            },
+            {
+                id: 'os5',
+                question: 'Where can you download the printable runbook with the first 10 screenshots to capture?',
+                options: [
+                    'From the Orientation Sprint page resources section',
+                    'Only by requesting it from an admin',
+                    'It is emailed after finishing the capstone',
+                    'It is hidden inside the marketing module',
+                ],
+                correctIndex: 0,
+            },
+        ],
+    },
     default: {
         passingScore: 80,
         questions: [

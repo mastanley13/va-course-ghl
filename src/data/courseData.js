@@ -1,9 +1,17 @@
+export const ORIENTATION_MODULE_ID = 'orientation-sprint';
+
 export const courseModules = [
     {
         id: 'overview',
         title: 'Course Overview & Curriculum Map',
         filename: '01_Course_Overview_and_Curriculum_Map.md',
         type: 'intro',
+    },
+    {
+        id: ORIENTATION_MODULE_ID,
+        title: 'Orientation Sprint',
+        filename: 'Orientation_Sprint.md',
+        type: 'orientation',
     },
     {
         id: 'module-1',

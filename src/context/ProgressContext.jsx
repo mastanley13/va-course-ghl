@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import { courseModules } from '../data/courseData';
+import { courseModules, ORIENTATION_MODULE_ID } from '../data/courseData';
 import { useAuth } from './AuthContext';
 
 const STORAGE_KEY = 'ghl-va-course-progress-v2';
@@ -51,11 +51,11 @@ export const ProgressProvider = ({ children }) => {
         return { ...state, users: { ...state.users, [email]: userState } };
     };
 
-const getModuleProgress = (moduleId, userEmail = currentUser?.email) => {
-    if (!userEmail) return defaultModuleState;
-    const userState = progress.users[userEmail] ?? createDefaultUserState();
-    return userState.modules[moduleId] ?? defaultModuleState;
-};
+    const getModuleProgress = (moduleId, userEmail = currentUser?.email) => {
+        if (!userEmail) return defaultModuleState;
+        const userState = progress.users[userEmail] ?? createDefaultUserState();
+        return userState.modules[moduleId] ?? defaultModuleState;
+    };
 
     const updateModule = (moduleId, updates) => {
         if (!currentUser?.email) return;
@@ -92,7 +92,15 @@ const getModuleProgress = (moduleId, userEmail = currentUser?.email) => {
         const module = courseModules[moduleIndex];
         if (!module) return false;
 
+        if (module.id === ORIENTATION_MODULE_ID) return true;
         if (module.type === 'resource' || module.type === 'intro') return true;
+
+        const orientationProgress = getModuleProgress(ORIENTATION_MODULE_ID);
+        const orientationCleared = orientationProgress.quizScore === 100 && orientationProgress.quizPassed;
+
+        if (module.type === 'module' || module.type === 'capstone') {
+            if (!orientationCleared) return false;
+        }
 
         const blockingModule = [...courseModules.slice(0, moduleIndex)].reverse().find((m) => m.type !== 'resource');
         if (!blockingModule) return true;
@@ -100,14 +108,14 @@ const getModuleProgress = (moduleId, userEmail = currentUser?.email) => {
         return getModuleProgress(blockingModule.id).completed;
     };
 
-const getModuleProgressPercent = (moduleId, userEmail = currentUser?.email) => {
-    const moduleProgress = getModuleProgress(moduleId, userEmail);
-    let percent = 0;
-    if (moduleProgress.quizPassed) percent += 60;
-    if (moduleProgress.labSubmitted) percent += 20;
-    if (moduleProgress.completed) percent += 20;
-    return Math.min(percent, 100);
-};
+    const getModuleProgressPercent = (moduleId, userEmail = currentUser?.email) => {
+        const moduleProgress = getModuleProgress(moduleId, userEmail);
+        let percent = 0;
+        if (moduleProgress.quizPassed) percent += 60;
+        if (moduleProgress.labSubmitted) percent += 20;
+        if (moduleProgress.completed) percent += 20;
+        return Math.min(percent, 100);
+    };
 
     const trackableModules = courseModules.filter((module) => module.type !== 'resource');
 

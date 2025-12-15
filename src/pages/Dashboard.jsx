@@ -1,5 +1,5 @@
 import React from 'react';
-import { courseModules } from '../data/courseData';
+import { courseModules, ORIENTATION_MODULE_ID } from '../data/courseData';
 import { Link, useNavigate } from 'react-router-dom';
 import { BookOpen, CheckCircle, Lock, PlayCircle, Trophy } from 'lucide-react';
 import clsx from 'clsx';
@@ -138,7 +138,9 @@ const Dashboard = () => {
                                 <p className="text-sm text-slate-400 line-clamp-2">
                                     {module.id === 'overview'
                                         ? 'Start here to understand the certification path.'
-                                        : 'Learn the core concepts and implementation steps.'}
+                                        : module.id === ORIENTATION_MODULE_ID
+                                            ? 'Complete this sprint and pass the 5-question quiz with 100% to unlock Modules 1-16.'
+                                            : 'Learn the core concepts and implementation steps.'}
                                 </p>
 
                                 {!isLocked && (
