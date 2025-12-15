@@ -90,3 +90,10 @@ Key settings
 2. Add/update markdown content in `public/docs` and the manifest in `src/data/courseData.js`.
 3. Run `npm run lint` and `npm run build` before opening a PR.
 4. Include screenshots for UI changes where applicable.
+
+## Automated screenshot and clip capture
+- Use `npm run capture` to generate annotated screenshots and short clips for every module.
+- The script lives in `scripts/captureScreenshots.mjs` and targets `COURSE_BASE_URL` (defaults to `http://localhost:8000`). Set `COURSE_BASE_URL=http://localhost:5173` when pointing at the Vite dev server.
+- Default credentials are seeded automatically (`qa.automation@example.com` / `pass-1234` / invite `VA-COHORT-2025`), and all modules are unlocked so navigation cannot stall.
+- Outputs are written to `captures/screenshots/<module-id>/` (orange outlines with numbered callouts) and `captures/flows/*.webm` for 10–15s clips of complex flows such as Automation Workflows and AI Agents.
+- Install Playwright’s browser binary once per environment if needed: `npx playwright install chromium --with-deps`.
