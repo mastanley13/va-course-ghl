@@ -52,6 +52,30 @@ A single-page learner experience for the GoHighLevel VA training and certificati
 - **Capstone**: Always graded and requires 100% rubric completion, with one revision allowed. Submissions should include links, attachments, and notes that prove the build meets the golf advertising automation spec.
 - **Linear progression**: Next content unlocks only after completion criteria (perfect quiz + required evidence) are met, aligning with the 100% accuracy and proof-first principles.
 
+## Deployment
+
+### Vercel
+
+The repository includes `vercel.json` for one-command deployments to Vercel's static hosting.
+
+1. Install dependencies (once per environment):
+   ```bash
+   npm install
+   ```
+2. Build the optimized production bundle:
+   ```bash
+   npm run build
+   ```
+3. Deploy with the Vercel CLI (uses the repo defaults):
+   ```bash
+   vercel --prod
+   ```
+
+Key settings
+- Build command: `npm run build`
+- Output directory: `dist`
+- SPA routing: all client-side routes rewrite to `index.html` so deep links work after refresh.
+
 ## Hosting notes for small cohorts
 - The app is a static React/Vite bundle that fetches markdown content from `/docs`, making it suitable for low-complexity hosting (static site hosts, object storage + CDN, or a lightweight Node/Vite preview server).
 - Non-functional requirements target small-scale delivery (≈10–15 concurrent trainees), so simple hosting with CDN caching is sufficient for cohorts around 100 enrolled users without heavy backend scaling.
