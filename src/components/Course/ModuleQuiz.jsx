@@ -4,7 +4,7 @@ import { useProgress } from '../../context/ProgressContext';
 import { CheckCircle2, Circle } from 'lucide-react';
 import clsx from 'clsx';
 
-const ModuleQuiz = ({ moduleId, moduleTitle }) => {
+const ModuleQuiz = ({ moduleId, moduleTitle, disabled = false, disabledReason = '' }) => {
     const { markQuizResult, getModuleProgress } = useProgress();
     const moduleProgress = getModuleProgress(moduleId);
     const [selectedAnswers, setSelectedAnswers] = useState({});
@@ -18,11 +18,13 @@ const ModuleQuiz = ({ moduleId, moduleTitle }) => {
     }, [moduleId]);
 
     const handleOptionClick = (questionId, optionIndex) => {
+        if (disabled) return;
         setSelectedAnswers((prev) => ({ ...prev, [questionId]: optionIndex }));
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        if (disabled) return;
         const correctCount = quiz.questions.reduce((total, question) => {
             const answer = selectedAnswers[question.id];
             return answer === question.correctIndex ? total + 1 : total;
@@ -50,6 +52,12 @@ const ModuleQuiz = ({ moduleId, moduleTitle }) => {
                 )}
             </div>
 
+            {disabled && (
+                <div className="rounded-lg border border-amber-500/50 bg-amber-500/10 p-3 text-sm text-amber-50/90">
+                    {disabledReason || 'Complete the required steps above to unlock this quiz.'}
+                </div>
+            )}
+
             <form onSubmit={handleSubmit} className="space-y-6">
                 {quiz.questions.map((question) => (
                     <div key={question.id} className="space-y-3">
@@ -73,9 +81,11 @@ const ModuleQuiz = ({ moduleId, moduleTitle }) => {
                                         className={clsx(
                                             'flex items-center gap-3 rounded-lg border px-3 py-2 text-left text-sm transition-all',
                                             statusClass,
-                                            isSelected && !showCorrect && 'border-primary/80 bg-primary/5'
+                                            isSelected && !showCorrect && 'border-primary/80 bg-primary/5',
+                                            disabled && 'cursor-not-allowed opacity-70'
                                         )}
                                         onClick={() => handleOptionClick(question.id, optionIndex)}
+                                        disabled={disabled}
                                     >
                                         <Circle
                                             size={16}
@@ -101,6 +111,7 @@ const ModuleQuiz = ({ moduleId, moduleTitle }) => {
                     <button
                         type="submit"
                         className="rounded-lg bg-gradient-to-r from-primary to-accent px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-primary/20 transition-transform hover:scale-105"
+                        disabled={disabled}
                     >
                         Submit Quiz
                     </button>

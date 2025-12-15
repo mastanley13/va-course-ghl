@@ -10,6 +10,7 @@ const defaultModuleState = {
     quizPassed: false,
     labSubmitted: false,
     labSubmission: '',
+    mediaProgress: {},
 };
 
 const createDefaultUserState = () => ({ modules: {} });
@@ -63,7 +64,8 @@ export const ProgressProvider = ({ children }) => {
             const nextState = ensureUserState(prev, currentUser.email);
             const userState = nextState.users[currentUser.email] ?? createDefaultUserState();
             const prevModuleState = userState.modules[moduleId] ?? defaultModuleState;
-            const updatedModule = { ...prevModuleState, ...updates, lastUpdated: new Date().toISOString() };
+            const updatePayload = typeof updates === 'function' ? updates(prevModuleState) : updates;
+            const updatedModule = { ...prevModuleState, ...updatePayload, lastUpdated: new Date().toISOString() };
             const updatedUser = { ...userState, modules: { ...userState.modules, [moduleId]: updatedModule } };
             return { ...nextState, users: { ...nextState.users, [currentUser.email]: updatedUser } };
         });
@@ -85,6 +87,16 @@ export const ProgressProvider = ({ children }) => {
 
     const markCompleted = (moduleId) => {
         updateModule(moduleId, { completed: true });
+    };
+
+    const markMediaCompleted = (moduleId, mediaId) => {
+        if (!mediaId) return;
+        updateModule(moduleId, (prevModuleState) => ({
+            mediaProgress: {
+                ...(prevModuleState.mediaProgress || {}),
+                [mediaId]: { completed: true, completedAt: new Date().toISOString() },
+            },
+        }));
     };
 
     const isModuleUnlocked = (moduleId) => {
@@ -175,6 +187,7 @@ export const ProgressProvider = ({ children }) => {
             markQuizResult,
             submitLab,
             markCompleted,
+            markMediaCompleted,
             getModuleProgress,
             isModuleUnlocked,
             getModuleProgressPercent,

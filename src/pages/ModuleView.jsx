@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -34,7 +34,7 @@ const ModuleView = () => {
     const [content, setContent] = useState('');
     const [loading, setLoading] = useState(true);
     const [sidebarOpen, setSidebarOpen] = useState(true); // Default open on desktop
-    const { isModuleUnlocked, getModuleProgress, getModuleProgressPercent, markCompleted } = useProgress();
+    const { isModuleUnlocked, getModuleProgress, getModuleProgressPercent, markCompleted, markMediaCompleted } = useProgress();
 
     const moduleIndex = courseModules.findIndex(m => m.id === moduleId);
     const module = courseModules[moduleIndex];
@@ -52,13 +52,79 @@ const ModuleView = () => {
         (module.type === 'module' || module.type === 'capstone') &&
         !orientationCleared;
 
+    const mediaRequirements = {
+        overview: [
+            { id: 'overview-walkthrough-video', label: 'Curriculum map walkthrough video' },
+            { id: 'overview-systems-audio', label: 'Orientation audio briefing' },
+        ],
+        [ORIENTATION_MODULE_ID]: [
+            { id: 'orientation-navigation-video', label: 'Navigation map demo video' },
+            { id: 'orientation-evidence-image', label: 'Evidence rules annotated image' },
+            { id: 'orientation-safety-audio', label: 'Safety defaults audio rundown' },
+        ],
+    };
+
+    const requiredMedia = mediaRequirements[moduleId] ?? [];
+    const moduleMediaProgress = moduleProgress.mediaProgress ?? {};
+    const requiredMediaCompleted = requiredMedia.every((item) => moduleMediaProgress[item.id]?.completed);
+
+    const handleMediaComplete = useCallback(
+        (mediaId) => {
+            if (!moduleId) return;
+            markMediaCompleted(moduleId, mediaId);
+        },
+        [markMediaCompleted, moduleId]
+    );
+
+    const MarkdownMediaComponents = useMemo(() => {
+        const createTrackedMedia = (Tag) => ({ node, children, ...props }) => {
+            const mediaId = props['data-media-id'];
+            const isRequired = props['data-required'] === 'true';
+            const handleEnded = () => {
+                if (isRequired) {
+                    handleMediaComplete(mediaId);
+                }
+            };
+
+            return (
+                <div className="my-6 overflow-hidden rounded-xl border border-slate-800/70 bg-surface/50 shadow-lg">
+                    <Tag
+                        {...props}
+                        className="w-full bg-black"
+                        controls
+                        onEnded={handleEnded}
+                        onPause={(event) => event.stopPropagation?.()}
+                    >
+                        {children}
+                    </Tag>
+                </div>
+            );
+        };
+
+        return {
+            ...MarkdownComponentsWithIds,
+            video: createTrackedMedia('video'),
+            audio: createTrackedMedia('audio'),
+            img: ({ node, ...props }) => {
+                const mediaId = props['data-media-id'];
+                const isRequired = props['data-required'] === 'true';
+                const handleLoad = () => {
+                    if (isRequired) {
+                        handleMediaComplete(mediaId);
+                    }
+                };
+                return <img {...props} onLoad={handleLoad} className="rounded-lg border border-slate-800/60 shadow-md" />;
+            },
+        };
+    }, [handleMediaComplete]);
+
     useEffect(() => {
         if (!module) return;
         const fetchContent = async () => {
             setLoading(true);
             window.scrollTo(0, 0);
             try {
-                const response = await fetch(`/docs/${module.filename}`);
+                const response = await fetch(`/docs/${module.filename}`, { cache: 'no-cache' });
                 if (!response.ok) throw new Error('Failed to load content');
                 const text = await response.text();
                 setContent(text);
@@ -155,10 +221,7 @@ const ModuleView = () => {
                                         </div>
                                     </div>
                                 ) : (
-                                    <ReactMarkdown
-                                        remarkPlugins={[remarkGfm]}
-                                        components={MarkdownComponentsWithIds}
-                                    >
+                                    <ReactMarkdown remarkPlugins={[remarkGfm]} components={MarkdownMediaComponents}>
                                         {content}
                                     </ReactMarkdown>
                                 )}
@@ -166,7 +229,37 @@ const ModuleView = () => {
 
                             {!loading && (
                                 <>
-                                    <ModuleQuiz moduleId={moduleId} moduleTitle={module.title} />
+                                    {requiredMedia.length > 0 && (
+                                        <div className="mt-10 rounded-xl border border-amber-500/40 bg-amber-500/10 p-4 text-amber-100 shadow-lg shadow-amber-800/20">
+                                            <p className="text-xs uppercase tracking-wide font-semibold mb-2">Required to continue</p>
+                                            <p className="text-sm mb-3 text-amber-50/90">
+                                                View or listen to each required resource below. The quiz unlocks once everything is marked done.
+                                            </p>
+                                            <ul className="space-y-2 text-sm text-amber-50/80">
+                                                {requiredMedia.map((item) => (
+                                                    <li key={item.id} className="flex items-center gap-3">
+                                                        <span
+                                                            className={clsx(
+                                                                'inline-flex h-5 w-5 items-center justify-center rounded-full border',
+                                                                moduleMediaProgress[item.id]?.completed
+                                                                    ? 'border-emerald-400 bg-emerald-500/20 text-emerald-200'
+                                                                    : 'border-amber-400 text-amber-200'
+                                                            )}
+                                                        >
+                                                            {moduleMediaProgress[item.id]?.completed ? '✓' : '!'}
+                                                        </span>
+                                                        <span>{item.label}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                    <ModuleQuiz
+                                        moduleId={moduleId}
+                                        moduleTitle={module.title}
+                                        disabled={requiredMedia.length > 0 && !requiredMediaCompleted}
+                                        disabledReason="Complete the required media above to unlock this quiz."
+                                    />
                                     <ModuleLab moduleId={moduleId} moduleTitle={module.title} />
                                 </>
                             )}

@@ -8,6 +8,25 @@ Train and certify Technical VAs to build and operate **production-grade GoHighLe
 - payment + fulfillment workflows
 - measurable reporting
 
+> **Required to continue**
+> Watch the orientation curriculum walkthrough and listen to the systems overview before attempting the quiz. Completion prompts will appear once each media block is finished.
+
+<figure>
+<video controls data-media-id="overview-walkthrough-video" data-required="true" aria-label="Video walkthrough of the curriculum map" poster="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Golde33443.jpg/800px-Golde33443.jpg">
+  <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+<figcaption>Curriculum map walkthrough — required to continue. Let the video finish to unlock the quiz.</figcaption>
+</figure>
+
+<figure>
+<audio controls data-media-id="overview-systems-audio" data-required="true" aria-label="Audio briefing covering orientation systems">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
+<figcaption>Systems overview audio — required to continue. Listen through the full briefing.</figcaption>
+</figure>
+
 ## Phases
 ### Phase 0 — Orientation (no quiz)
 - How the course works (100% rule, evidence requirements)
