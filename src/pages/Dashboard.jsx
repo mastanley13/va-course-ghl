@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { BookOpen, CheckCircle, Lock, PlayCircle, Trophy } from 'lucide-react';
 import clsx from 'clsx';
 import { useProgress } from '../context/ProgressContext';
+import { useAuth } from '../context/AuthContext';
 
 const Dashboard = () => {
     const navigate = useNavigate();
@@ -15,6 +16,7 @@ const Dashboard = () => {
         isModuleUnlocked,
         getModuleProgress,
     } = useProgress();
+    const { currentUser } = useAuth();
 
     const stats = {
         completed: completedCount,
@@ -38,9 +40,7 @@ const Dashboard = () => {
             {/* Welcome Section */}
             <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-900 to-slate-900 p-8 shadow-2xl border border-white/10">
                 <div className="relative z-10">
-                    <h1 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-                        Welcome back, Trainee
-                    </h1>
+                    <h1 className="text-3xl lg:text-4xl font-bold text-white mb-4">Welcome back, {currentUser?.name}</h1>
                     <p className="text-indigo-200 max-w-xl mb-6">
                         Continue your journey to becoming a Certified GoHighLevel Technical Virtual Assistant.
                         Master the tools, build the systems, and verify your skills.
