@@ -102,3 +102,32 @@ Evidence:
 - screenshots of both workflow canvases
 - screenshot of settings tab showing quiet hours + stop-on-response
 Rubric: Pass if workflows match spec and include stop conditions.
+
+## Relatable metaphor — “Factory Robot Arm”
+Automation is the robot arm on the production line: it performs repeatable tasks consistently and stops when a safety sensor (conditions) is tripped.
+
+## Scenario walkthroughs with decision points
+- **New lead from form**
+  - Decision: start workflow instantly or delay? → Start instantly for confirmation, delay outreach if consent/timezone uncertain.
+  - Decision: what stops the workflow? → Stop on response or when opportunity stage changes.
+- **Workflow failing mid-run**
+  - Decision: is trigger correct? → Check enrollment history and filters first.
+  - Decision: retries vs manual fix? → Retry after correcting settings; if data missing, branch to human task creation.
+
+## UI callouts + screenshot placeholders
+- [Screenshot: Workflow canvas with trigger, conditions, and actions annotated]
+- [Screenshot: Execution log showing success/failure statuses]
+- [Screenshot: Stop-on-response/conditional branch configuration]
+
+## Stop and try (self-check)
+1. When should you enable “Stop on Response”? <details><summary>Answer</summary>Whenever continued messaging after a reply would feel spammy or duplicative.</details>
+2. How do you prevent loops? <details><summary>Answer</summary>Use entry filters, tags, and stage checks before re-enrolling contacts.</details>
+3. Where do you confirm if a trigger is firing? <details><summary>Answer</summary>Enrollment/execution logs and trigger history.</details>
+4. What should happen before updating pipeline stages automatically? <details><summary>Answer</summary>Ensure the stage move rules are documented and mirrored in Opportunities.</details>
+5. How do you handle missing data needed for an action? <details><summary>Answer</summary>Branch to a task creation or human review step instead of forcing the action.</details>
+
+## Practice labs + evidence rubric
+- **Lab: Safety-first workflow**
+  - Deliverable: Workflow with clear trigger, safety checks, and stop conditions.
+  - Evidence: Screenshots of the workflow, enrollment log, and a test contact timeline showing each action.
+  - Rubric: Pass if steps execute correctly, stop conditions work, and evidence shows mapping to pipeline/tags.

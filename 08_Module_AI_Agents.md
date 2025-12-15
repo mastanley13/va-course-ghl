@@ -83,3 +83,31 @@ Build bot: `AI - Advertiser Qualifier`
   - flow builder with actions visible
   - test conversation transcript (screenshot)
 Rubric: Pass if bot captures required fields and routes correctly.
+
+## Relatable metaphor — “Concierge with a Script”
+AI Agents are like a concierge who follows a vetted script. They can greet guests, answer common questions, and know exactly when to call a human manager.
+
+## Scenario walkthroughs with decision points
+- **Lead asks pricing through chat**
+  - Decision: let AI answer fully? → Yes, if pricing is standardized; otherwise provide ranges and tag for human follow-up.
+  - Decision: when to escalate? → If the lead asks for custom terms or signals purchase intent (e.g., “I’m ready to buy”).
+- **Agent off-brand responses**
+  - Decision: retrain or pause? → Pause, tighten prompt instructions, add example answers, then retest before re-enabling.
+  - Decision: logging evidence? → Save transcripts in the contact record for QA.
+
+## UI callouts + screenshot placeholders
+- [Screenshot: Agent configuration screen with prompt and guardrails annotated]
+- [Screenshot: Handoff/escalation settings showing triggers]
+- [Screenshot: Test chat transcript view highlighting tags/notes]
+
+## Stop and try (self-check)
+1. When should AI hand off to a human? <details><summary>Answer</summary>When questions go beyond the scripted scope or the lead shows strong buying intent.</details>
+2. What makes a good system prompt? <details><summary>Answer</summary>Clear tone, boundaries, and examples that mirror approved messaging.</details>
+3. Where do you store transcripts for QA? <details><summary>Answer</summary>Attach to the contact record or log in Conversations with tags.</details>
+4. How do you avoid hallucinated promises? <details><summary>Answer</summary>Provide explicit “never promise” statements and require confirmation before quoting custom terms.</details>
+
+## Practice labs + evidence rubric
+- **Lab: Guardrail an agent**
+  - Deliverable: Agent prompt with explicit scope, escalation rules, and a tested transcript.
+  - Evidence: Screenshots of prompt settings, escalation configuration, and at least one test conversation with tags/notes.
+  - Rubric: Pass if the agent answers within scope, escalates appropriately, and evidence shows the configured guardrails.

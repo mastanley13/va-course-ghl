@@ -59,3 +59,31 @@ A passing VA can:
 - Create widget: `WGT - Reviews - Homepage`
 - Embed on a funnel/website page
 - Screenshot on desktop and mobile view
+
+## Relatable metaphor — “Public Scoreboard”
+Reputation is the public scoreboard. Good plays (reviews) should be showcased, and bad plays need quick coaching and response.
+
+## Scenario walkthroughs with decision points
+- **New location onboarding**
+  - Decision: which sites to connect? → Connect Google and Facebook if policy allows; note login ownership.
+  - Decision: where to place widget? → On offer pages and thank-you pages near testimonials.
+- **Negative review arrives**
+  - Decision: respond or escalate? → Draft a calm reply and escalate to the account owner before posting if sensitive.
+  - Decision: automation for unhappy score? → Trigger a “save” workflow when rating ≤3.
+
+## UI callouts + screenshot placeholders
+- [Screenshot: Reputation connections screen showing linked profiles]
+- [Screenshot: Review request template with personalization fields highlighted]
+- [Screenshot: Reviews widget embedded on a page]
+
+## Stop and try (self-check)
+1. When should you avoid sending review requests? <details><summary>Answer</summary>When consent is unclear or the service experience is unresolved.</details>
+2. What triggers a save workflow? <details><summary>Answer</summary>Low-star feedback (e.g., 1–3 stars) or negative sentiment.</details>
+3. Where do you place trust badges on a page? <details><summary>Answer</summary>Near CTAs and social proof sections.</details>
+4. How do you prevent duplicate requests? <details><summary>Answer</summary>Use tags/stages to mark “review requested” and filter future sends.</details>
+
+## Practice labs + evidence rubric
+- **Lab: Review-ready page**
+  - Deliverable: Connected reputation sources, a review request template, and an embedded widget on a test page.
+  - Evidence: Screenshots of connections, template, sent test request, and live widget on page.
+  - Rubric: Pass if connections are live, widget renders, and low-score handling is documented.

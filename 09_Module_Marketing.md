@@ -68,3 +68,31 @@ A passing VA can:
 3) Create trigger link: `TL - Advertiser Offer Page`
 4) Send test email to yourself; click link; screenshot contact activity showing link click.
 Rubric: Pass if click is recorded and template content is clean and branded.
+
+## Relatable metaphor — “Broadcast Studio with Switchboard”
+Marketing is a studio with mics, cameras, and a switchboard. You pick the channel, queue the segment, and watch the meters to avoid dead air or feedback.
+
+## Scenario walkthroughs with decision points
+- **List warm-up**
+  - Decision: send SMS or email first? → Use email to warm, SMS only to consented contacts with quiet hours set.
+  - Decision: which link to track? → Use trigger links for each offer variant to segment responders.
+- **Ad hoc promo request**
+  - Decision: use campaign or workflow? → Use campaign for broadcast batch, workflow for behavior-driven sequences.
+  - Decision: low open rates? → Test subject line variation, resend to non-openers, and check domain reputation.
+
+## UI callouts + screenshot placeholders
+- [Screenshot: Campaign builder showing steps and timing]
+- [Screenshot: Trigger link configuration screen]
+- [Screenshot: Campaign analytics with opens/clicks annotated]
+
+## Stop and try (self-check)
+1. When should SMS be avoided? <details><summary>Answer</summary>When consent is not explicit or quiet hours would be violated.</details>
+2. What is a trigger link used for? <details><summary>Answer</summary>Tracking clicks and applying tags/automation when contacts engage.</details>
+3. Which module checks deliverability health? <details><summary>Answer</summary>Reporting/Email deliverability metrics or domain reputation tools.</details>
+4. How do you prevent sending duplicate promos? <details><summary>Answer</summary>Use exclusion filters/tags and test lists before broadcasting.</details>
+
+## Practice labs + evidence rubric
+- **Lab: Mini-campaign launch**
+  - Deliverable: Two-step email/SMS with trigger link and suppression rules.
+  - Evidence: Screenshots of campaign steps, trigger link, and analytics after a test send.
+  - Rubric: Pass if consent rules are followed, trigger link fires tags/metrics, and analytics screenshots show opens/clicks.

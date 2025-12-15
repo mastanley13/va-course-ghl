@@ -77,3 +77,30 @@ Evidence:
 - screenshot of mobile view
 - screenshot of form submission test creating a contact
 Rubric: Pass if funnel works end-to-end.
+
+## Relatable metaphor — “Storefront + Checkout”
+Sites/Funnels are the storefront windows and the checkout counter. If the doors are blocked or the cash register isn’t connected, traffic doesn’t turn into customers.
+
+## Scenario walkthroughs with decision points
+- **New offer landing page**
+  - Decision: use form or direct calendar? → Use form when qualification needed; direct calendar for warm traffic ready to book.
+  - Decision: where to place trust signals? → Above-the-fold for ads, near CTAs for organic visitors.
+- **Broken form submissions**
+  - Decision: is issue form or automation? → Submit a test; if submission appears in Contacts but no workflow, fix trigger; if not appearing, check form fields/consent settings and publish status.
+
+## UI callouts + screenshot placeholders
+- [Screenshot: Funnel builder with sections labeled (hero, form, CTA)]
+- [Screenshot: Form settings showing required fields and consent]
+- [Screenshot: Thank-you page with redirect/next steps annotated]
+
+## Stop and try (self-check)
+1. When should you add a consent checkbox? <details><summary>Answer</summary>Whenever collecting SMS/email for follow-up in regulated regions.</details>
+2. Why use a two-step funnel? <details><summary>Answer</summary>To capture contact info first, then present booking/payment on step two for higher completion.</details>
+3. What checks ensure the CTA works? <details><summary>Answer</summary>Test the button link/redirect, confirm form submission reaches Contacts, and validate automation trigger fires.</details>
+4. Where do you adjust mobile padding? <details><summary>Answer</summary>In the responsive settings of each section/element within the builder.</details>
+
+## Practice labs + evidence rubric
+- **Lab: Conversion-ready funnel**
+  - Deliverable: Single-offer funnel with form, CTA, and thank-you sequencing.
+  - Evidence: Screenshots of builder layout, form settings, live page, and a test submission trail in Contacts/Workflows.
+  - Rubric: Pass if form + CTA function, consent is captured, and the thank-you page presents clear next steps.

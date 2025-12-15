@@ -64,3 +64,32 @@ A passing VA can:
   2) drill-down into 2 metrics (appointments + conversations)
   3) note 3 signals you’d investigate and what module you would open next
 Rubric: Pass if screenshots and explanations match the expected module mapping.
+
+## Relatable metaphor — “Vitals Monitor in an ER”
+The dashboard is the patient monitor in an emergency room. It shows pulse, pressure, and alerts. You don’t diagnose everything there, but you use it to decide which room to rush into next.
+
+## Scenario walkthroughs with decision points
+- **Morning health check**
+  - Decision: unread messages spike? → Jump to Conversations and assign owners before moving on.
+  - Decision: bookings drop vs last week? → Drill into Calendars, then inspect Sites/Forms submissions.
+- **Post-launch QA after new workflow**
+  - Decision: revenue widget unchanged after promo? → Check Payments for failed attempts, then Opportunities for deal stage updates.
+  - Decision: workflow errors indicator lit? → Open Automation → specific workflow error logs before toggling anything off.
+
+## UI callouts + screenshot placeholders
+- [Screenshot: Dashboard home with arrows to Conversations, Calendars, and Payments widgets]
+- [Screenshot: Drill-down modal for Appointments showing filter options]
+- [Screenshot: Workflow error/alert tile with hover tooltip]
+
+## Stop and try (self-check)
+1. Which widget do you check first when inbox volume jumps? <details><summary>Answer</summary>Unread Conversations to confirm triage load.</details>
+2. How do you verify if revenue drops are real vs tracking? <details><summary>Answer</summary>Compare Payments → Transactions with Opportunities values to rule out attribution gaps.</details>
+3. What’s your next step if the timezone seems off? <details><summary>Answer</summary>Confirm sub-account timezone in Settings and re-run a spot check on the widget timestamps.</details>
+4. When should you document a dashboard anomaly? <details><summary>Answer</summary>Immediately after you observe it, with a screenshot and a note on which module you will inspect.</details>
+5. What drill-down behavior matters for KPIs? <details><summary>Answer</summary>Each widget should link to the source object list (conversations, appointments, payments) for root-cause review.</details>
+
+## Practice labs + evidence rubric
+- **Lab: Daily Ops snapshot**
+  - Deliverable: Screenshot of the dashboard plus a table listing 3 anomalies and the module you opened for each.
+  - Evidence: Links/screenshots from the drill-down pages and notes on resolutions.
+  - Rubric: Pass if anomalies are mapped to the correct modules, evidence shows drill-down views, and at least one corrective action is noted.

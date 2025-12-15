@@ -66,3 +66,31 @@ Every lab/capstone step must be verifiable by:
 ### Safety/Compliance
 - Do not automate SMS/calls to cold lists without documented consent.
 - All sequences must have stop conditions (“Stop on Response,” DND windows, max touches).
+
+## Relatable metaphor — “Airport Control Tower”
+Think of the course as an airport control tower: every module is a runway that must be cleared, lit, and sequenced so aircraft (client projects) can land safely. Orientation is the briefing, Dashboard is the radar screen, and the remaining modules are the ground crews that keep traffic moving.
+
+## Scenario walkthroughs with decision points
+- **New VA onboarding week**
+  - Decision: Start with Dashboard or Settings? → Start with Dashboard to see live signals, then Settings to stabilize connections.
+  - Decision: Where to log questions? → In the shared notebook linked from each module’s lab.
+- **First client import**
+  - Decision: proceed without naming conventions? → No; pause and apply the naming standards before importing.
+  - Decision: Missing consent records? → Do not automate until opt-in is verified and logged.
+
+## UI callouts + screenshot placeholders
+- [Screenshot: Curriculum map showing module order — highlight prerequisites]
+- [Screenshot: Dashboard preview with arrows to key widgets you will learn]
+- [Screenshot: Evidence submission example with annotations for what “good” looks like]
+
+## Stop and try (self-check)
+1. What is the “100% rule” and why is it enforced? <details><summary>Answer</summary>Every quiz must be passed at 100% to unlock the next module to ensure production-readiness.</details>
+2. Which two modules form the baseline for all others? <details><summary>Answer</summary>Dashboard (health signals) and Settings + Labs (system stability and toggles).</details>
+3. When should you pause automation work during onboarding? <details><summary>Answer</summary>Whenever consent status is unclear or naming conventions are not yet applied.</details>
+4. Where do you record evidence after each lab? <details><summary>Answer</summary>In the linked lab submission space with screenshots/exports noted in the rubric.</details>
+
+## Practice labs + evidence rubric
+- **Lab 0: Map your runway plan**
+  - Deliverable: A one-page sequence showing how you will complete modules (with dates and dependencies).
+  - Evidence: Screenshot of your plan plus notes on when you will gather sample data for testing.
+  - Rubric: Pass if dependencies are logical (Dashboard → Settings → Core modules), evidence is time-stamped, and next steps are clearly assigned.

@@ -52,3 +52,31 @@ A passing VA can:
 - Connect it inside the sub-account
 - Add one action to a test workflow
 Evidence: screenshots showing app connected + action available in workflow builder
+
+## Relatable metaphor — “Power Strip with Adapters”
+The App Marketplace is a power strip. You plug in adapters (apps) to extend what the system can do, but every plug must be labeled and safe.
+
+## Scenario walkthroughs with decision points
+- **Client requests a new integration**
+  - Decision: agency-level or sub-account? → Install at the right scope based on who owns the app and data.
+  - Decision: permissions? → Review requested scopes and confirm with client before enabling.
+- **Workflow needs an external action**
+  - Decision: app action or webhook? → Use app action if supported natively; otherwise, use webhook with clear payload mapping.
+  - Decision: failure handling? → Add fallback actions/alerts when app calls fail.
+
+## UI callouts + screenshot placeholders
+- [Screenshot: App listing page with permission scopes annotated]
+- [Screenshot: Install confirmation modal highlighting scope selection]
+- [Screenshot: Workflow action picker showing new app action]
+
+## Stop and try (self-check)
+1. Who should approve new app permissions? <details><summary>Answer</summary>The account/agency owner or designated admin.</details>
+2. When do you prefer native app actions over webhooks? <details><summary>Answer</summary>When the app provides supported actions that reduce maintenance.</details>
+3. What do you document after installing an app? <details><summary>Answer</summary>App purpose, permissions granted, and which workflows use it.</details>
+4. How do you handle an app outage? <details><summary>Answer</summary>Switch to backup steps (tasks/notifications) and pause dependent automations if needed.</details>
+
+## Practice labs + evidence rubric
+- **Lab: Integration handshake**
+  - Deliverable: Installed app with one workflow step demonstrating the connection.
+  - Evidence: Screenshots of install screens, permission scopes, and workflow action test logs.
+  - Rubric: Pass if app is visible, action executes (or test log shows attempt), and fallback/ownership notes are documented.

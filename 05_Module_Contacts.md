@@ -75,3 +75,32 @@ Evidence:
 - screenshots of each Smart List filters
 - screenshot of import summary
 Rubric: Pass if lists are correct and tags applied without errors.
+
+## Relatable metaphor — “Library Card Catalog”
+Contacts are the card catalog for the business. If the cards are misfiled or mislabeled, nobody can find the right book (lead) when it’s needed.
+
+## Scenario walkthroughs with decision points
+- **CSV import with missing consent**
+  - Decision: import now or pause? → Pause and request proof of consent; tag records appropriately once verified.
+  - Decision: mapping unclear for phone? → Standardize to E.164 and map primary phone only once.
+- **Duplicate detection**
+  - Decision: merge or keep separate? → Merge when identifiers match (email/phone) and notes show same person; otherwise tag for review.
+  - Decision: which custom fields to keep? → Retain the most recent verified data and log changes in notes.
+
+## UI callouts + screenshot placeholders
+- [Screenshot: Import mapping screen highlighting required fields and tags]
+- [Screenshot: Contact record with custom fields and activity timeline annotated]
+- [Screenshot: Duplicate management/merge confirmation dialog]
+
+## Stop and try (self-check)
+1. Which two identifiers drive deduplication? <details><summary>Answer</summary>Email and phone.</details>
+2. Why use standardized phone formatting? <details><summary>Answer</summary>To prevent duplicate creation and improve deliverability/routing.</details>
+3. What tag prefix should you use for source? <details><summary>Answer</summary>`src:` per the naming convention.</details>
+4. How do you document consent status? <details><summary>Answer</summary>Apply a consent field/tag and note the proof location in the record.</details>
+5. Which module should be checked after a bulk import? <details><summary>Answer</summary>Automation/Workflows to ensure sequences are paused until QA is complete.</details>
+
+## Practice labs + evidence rubric
+- **Lab: Clean import**
+  - Deliverable: Import sample contacts with tags and at least three custom fields populated.
+  - Evidence: Screenshots of mapping, one merged duplicate example, and a before/after contact timeline.
+  - Rubric: Pass if mappings follow standards, deduplication is demonstrated, and consent + source tagging are visible.
