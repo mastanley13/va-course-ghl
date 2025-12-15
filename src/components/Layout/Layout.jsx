@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { Menu } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Layout = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const { currentUser, logout } = useAuth();
+    const navigate = useNavigate();
 
     return (
         <div className="flex h-screen bg-background text-text overflow-hidden">
@@ -26,7 +30,33 @@ const Layout = () => {
                         <div className="absolute top-[40%] -right-[10%] w-[40%] h-[40%] rounded-full bg-accent/5 blur-[120px]" />
                     </div>
 
-                    <div className="max-w-5xl mx-auto">
+                    <div className="max-w-5xl mx-auto space-y-6">
+                        <div className="hidden lg:flex justify-between items-center">
+                            <div>
+                                <p className="text-xs uppercase tracking-widest text-primary font-semibold">Cohort Access</p>
+                                <h2 className="text-xl font-bold text-white">{currentUser?.name}</h2>
+                                <p className="text-sm text-slate-400">{currentUser?.email}</p>
+                            </div>
+                            <div className="flex items-center gap-3">
+                                {currentUser?.role === 'admin' && (
+                                    <Link
+                                        to="/admin"
+                                        className="text-sm font-semibold text-amber-300 hover:text-amber-200 underline"
+                                    >
+                                        Admin dashboard
+                                    </Link>
+                                )}
+                                <button
+                                    onClick={() => {
+                                        logout();
+                                        navigate('/login');
+                                    }}
+                                    className="rounded-lg border border-slate-700 px-4 py-2 text-sm text-slate-200 hover:border-primary hover:text-white"
+                                >
+                                    Switch profile
+                                </button>
+                            </div>
+                        </div>
                         <Outlet />
                     </div>
                 </main>
