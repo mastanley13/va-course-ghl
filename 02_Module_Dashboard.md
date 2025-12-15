@@ -1,5 +1,7 @@
 # Module 02 — Dashboard (Sub-Account)
 
+🔗 **Appendix:** [Plain Language + Glossary (A–Z with screenshots)](Appendix_Plain_Language_Glossary.md) — includes navigation verbs quick-reference (EN/ES/PH).
+
 ## Why it matters
 The Dashboard is where VAs confirm account health, quickly access key areas, and spot “red flags” (failed workflows, missing integrations, unread messages).
 
@@ -11,9 +13,13 @@ A passing VA can:
 
 ## Vocabulary
 - **Widget**: dashboard block (e.g., appointments, conversations, revenue).
+  - *What this means:* Each widget is a live tile you can click to open the underlying list or report.
 - **Drill-down**: clicking into the relevant module/details behind a widget.
+  - *What this means:* Use drill-down to jump straight from the summary number to the exact records causing it.
 - **KPI**: key performance indicator (appointments booked, leads, revenue, etc.).
+  - *What this means:* KPIs are the few numbers leaders watch to judge health; you should know where each one comes from.
 - **Account health check**: quick checks to validate systems are running.
+  - *What this means:* Run a short daily review to catch errors or outages before customers feel them.
 
 ## Course sections and pages
 ### Section A — Orientation

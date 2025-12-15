@@ -1,5 +1,7 @@
 # Module 07 — Payments (Stripe, Products, Payment Links, Invoices)
 
+🔗 **Appendix:** [Plain Language + Glossary (A–Z with screenshots)](Appendix_Plain_Language_Glossary.md) — includes navigation verbs quick-reference (EN/ES/PH).
+
 ## Why it matters
 Payments is where intent turns into revenue. For the capstone, the VA must collect payments for ad placements and trigger fulfillment automations.
 
@@ -18,12 +20,19 @@ A passing VA can:
 
 ## Vocabulary
 - **Integration**: payment provider connection (e.g., Stripe)
+  - *What this means:* This is the handshake that lets HighLevel process payments through the provider.
 - **Product**: what you sell
+  - *What this means:* Define each offer as a product so pricing, tax, and reporting stay organized.
 - **Price**: one-time or recurring amount attached to product
+  - *What this means:* Prices hold the actual charge amount and billing frequency your checkout will use.
 - **Payment Link**: shareable checkout page link
+  - *What this means:* Send this URL to let someone pay without building a full page or form.
 - **Invoice**: bill sent to a specific contact
+  - *What this means:* Use invoices when you need manual payment options or a named recipient.
 - **Subscription**: recurring billing relationship
+  - *What this means:* A subscription automatically bills on a schedule until canceled.
 - **Transaction**: recorded payment event
+  - *What this means:* Every successful or failed charge logs as a transaction for reconciliation and follow-up.
 
 ## Course sections and pages
 ### Section A — Orientation

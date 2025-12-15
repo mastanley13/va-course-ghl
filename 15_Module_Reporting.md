@@ -1,5 +1,7 @@
 # Module 15 — Reporting (Dashboards + Custom Reports + Attribution)
 
+🔗 **Appendix:** [Plain Language + Glossary (A–Z with screenshots)](Appendix_Plain_Language_Glossary.md) — includes navigation verbs quick-reference (EN/ES/PH).
+
 ## Why it matters
 Reporting proves the system works and tells you where to improve. For capstone, reporting must answer:
 - Are we generating new advertiser leads?

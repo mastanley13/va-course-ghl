@@ -1,5 +1,7 @@
 # Module 11 — Sites (Funnels, Websites, Forms, Surveys, Chat Widget)
 
+🔗 **Appendix:** [Plain Language + Glossary (A–Z with screenshots)](Appendix_Plain_Language_Glossary.md) — includes navigation verbs quick-reference (EN/ES/PH).
+
 ## Why it matters
 Sites is where the conversion happens: landing pages, booking pages, proposal pages, and form/survey capture. For capstone: an advertiser offer page + optional PDF download + booking page and/or payment step.
 

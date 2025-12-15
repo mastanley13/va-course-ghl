@@ -1,5 +1,7 @@
 # Module 12 — Memberships & Communities (Optional/Advanced)
 
+🔗 **Appendix:** [Plain Language + Glossary (A–Z with screenshots)](Appendix_Plain_Language_Glossary.md) — includes navigation verbs quick-reference (EN/ES/PH).
+
 ## Why it matters
 Memberships/Communities are optional for the capstone, but they are common in client builds. They matter when the advertiser offer includes training, onboarding, or a partner portal.
 

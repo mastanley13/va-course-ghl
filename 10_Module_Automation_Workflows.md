@@ -1,5 +1,7 @@
 # Module 10 — Automation (Workflows)
 
+🔗 **Appendix:** [Plain Language + Glossary (A–Z with screenshots)](Appendix_Plain_Language_Glossary.md) — includes navigation verbs quick-reference (EN/ES/PH).
+
 ## Why it matters
 Workflows are the system’s engine. The capstone is fundamentally a set of workflows that:
 - runs daily recurring list operations (Scheduler Trigger)
@@ -19,14 +21,23 @@ A passing VA can:
 
 ## Vocabulary
 - **Trigger**: event that starts workflow (contact event, webhook, scheduler, etc.)
+  - *What this means:* Triggers decide when a workflow runs—no trigger, no automation.
 - **Action**: step in workflow (send SMS, add tag, webhook, create task, voicemail)
+  - *What this means:* Actions are the tasks the workflow performs after it starts.
 - **Wait**: delays next steps; can be time-based or condition-based
+  - *What this means:* Wait steps space out actions so contacts aren’t overwhelmed and logic can check for updates.
 - **Stop on response**: pauses/stops messaging when contact replies
+  - *What this means:* This prevents double-messaging once someone responds.
 - **Scheduler Trigger**: contactless scheduled workflow trigger (hourly/daily/cron)
+  - *What this means:* Use Scheduler when you need automations to run on a time basis instead of per contact.
 - **Webhook (Outbound)**: send data from GHL to external system
+  - *What this means:* Outbound webhooks push HighLevel data to another app via URL.
 - **Webhook (Inbound)**: external system triggers a workflow in GHL
+  - *What this means:* Inbound webhooks start a workflow when another system sends data into HighLevel.
 - **Voicemail (drop)**: send pre-recorded voicemail message
+  - *What this means:* The system leaves a recorded voicemail without ringing the phone like a normal call.
 - **AI Decision Maker / GPT action**: AI-powered workflow actions (often premium)
+  - *What this means:* These steps use AI to classify or generate text, so monitor cost and accuracy.
 
 ## Course sections and pages
 ### Section A — Orientation

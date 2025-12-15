@@ -1,5 +1,7 @@
 # Course Overview — Curriculum Map + Standards (December 2025)
 
+🔗 **Appendix:** [Plain Language + Glossary (A–Z with screenshots)](Appendix_Plain_Language_Glossary.md) — includes navigation verbs quick-reference (EN/ES/PH).
+
 ## Course Goal
 Train and certify Technical VAs to build and operate **production-grade GoHighLevel sub-accounts**, with emphasis on:
 - accurate navigation + configuration
@@ -7,6 +9,18 @@ Train and certify Technical VAs to build and operate **production-grade GoHighLe
 - AI-assisted personalization and qualification
 - payment + fulfillment workflows
 - measurable reporting
+
+## Vocabulary
+- **100% rule**: every quiz must be passed perfectly to unlock the next module
+  - *What this means:* You cannot progress until you demonstrate full mastery, ensuring production-ready builds.
+- **Production-grade**: naming standards, clean data, tested automations, and safe messaging
+  - *What this means:* Each deliverable should be reliable enough for a live client without “we’ll fix it later” caveats.
+- **Evidence**: screenshots, exports, or live links that prove a step was completed
+  - *What this means:* You should save visual or file-based proof for every lab step so reviewers can verify the work.
+- **Sub-account**: the client workspace inside HighLevel where all assets live
+  - *What this means:* Treat each sub-account as its own environment with isolated settings, assets, and integrations.
+- **Curriculum map**: ordered list of modules and dependencies
+  - *What this means:* Follow the sequence shown so you don’t build automation before the prerequisites (settings, data) are ready.
 
 ## Phases
 ### Phase 0 — Orientation (no quiz)

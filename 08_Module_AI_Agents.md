@@ -1,5 +1,7 @@
 # Module 08 — AI Agents (Conversation AI + Agent Studio)
 
+🔗 **Appendix:** [Plain Language + Glossary (A–Z with screenshots)](Appendix_Plain_Language_Glossary.md) — includes navigation verbs quick-reference (EN/ES/PH).
+
 ## Why it matters
 AI Agents enable personalized, scalable engagement. For the capstone, AI must:
 - personalize outreach (based on business profile)
@@ -17,13 +19,21 @@ A passing VA can:
 
 ## Vocabulary
 - **Conversation AI**: AI bot that communicates with contacts across channels
+  - *What this means:* A single bot can answer on SMS, email, chat, or social DMs without rebuilding logic.
 - **Flow Builder**: visual builder for conversation logic (similar UI to workflows)
+  - *What this means:* Drag-and-drop nodes control how the bot greets, asks questions, and routes replies.
 - **Bot Goals**: global prompt / personality / intent
+  - *What this means:* Bot Goals set the tone and boundaries so every response aligns with the business rules.
 - **Auto Pilot**: bot status enabling autonomous responses
+  - *What this means:* Turning on Auto Pilot lets the bot answer immediately without human approval.
 - **AI Actions**: nodes like capture info, book appointment, transfer bot
+  - *What this means:* Each action is a building block that collects data, books meetings, or hands off to workflows.
 - **Human handover**: escalation to a human
+  - *What this means:* Define when to stop the bot and assign a user so contacts aren’t stuck with automation.
 - **Agent Studio**: drag-and-drop platform to build AI agents with tool nodes (API, knowledge base, web search, etc.)
+  - *What this means:* Agent Studio adds advanced tools so the bot can read files, call APIs, or search before responding.
 - **Premium actions**: some AI actions incur per-execution charges (must be used intentionally)
+  - *What this means:* Monitor usage because these steps can increase costs if left unchecked.
 
 ## Course sections and pages
 ### Section A — Orientation + safety

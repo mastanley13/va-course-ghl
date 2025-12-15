@@ -1,5 +1,7 @@
 # Module 16 — App Marketplace (Integrations)
 
+🔗 **Appendix:** [Plain Language + Glossary (A–Z with screenshots)](Appendix_Plain_Language_Glossary.md) — includes navigation verbs quick-reference (EN/ES/PH).
+
 ## Why it matters
 Marketplace apps extend GHL: enrichment, sheets sync, vendor notifications, ad integrations, etc. For capstone: at minimum, one integration path to support list building or vendor notification.
 
