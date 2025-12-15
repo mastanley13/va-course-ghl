@@ -4,6 +4,20 @@ import { useProgress } from '../../context/ProgressContext';
 import { CheckCircle2, Circle } from 'lucide-react';
 import clsx from 'clsx';
 
+const shuffleQuestionOptions = (question) => {
+    const order = question.options.map((_, index) => index);
+
+    for (let i = order.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [order[i], order[j]] = [order[j], order[i]];
+    }
+
+    const shuffledOptions = order.map((originalIndex) => question.options[originalIndex]);
+    const correctIndex = order.indexOf(question.correctIndex);
+
+    return { ...question, options: shuffledOptions, correctIndex };
+};
+
 const ModuleQuiz = ({ moduleId, moduleTitle }) => {
     const { markQuizResult, getModuleProgress } = useProgress();
     const moduleProgress = getModuleProgress(moduleId);
@@ -11,11 +25,19 @@ const ModuleQuiz = ({ moduleId, moduleTitle }) => {
     const [feedback, setFeedback] = useState('');
 
     const quiz = useMemo(() => quizBank[moduleId] || quizBank.default, [moduleId]);
+    const [randomizedQuiz, setRandomizedQuiz] = useState(() => ({
+        ...quiz,
+        questions: quiz.questions.map(shuffleQuestionOptions),
+    }));
 
     useEffect(() => {
         setSelectedAnswers({});
         setFeedback('');
-    }, [moduleId]);
+        setRandomizedQuiz({
+            ...quiz,
+            questions: quiz.questions.map(shuffleQuestionOptions),
+        });
+    }, [moduleId, quiz]);
 
     const handleOptionClick = (questionId, optionIndex) => {
         setSelectedAnswers((prev) => ({ ...prev, [questionId]: optionIndex }));
@@ -23,15 +45,15 @@ const ModuleQuiz = ({ moduleId, moduleTitle }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const correctCount = quiz.questions.reduce((total, question) => {
+        const correctCount = randomizedQuiz.questions.reduce((total, question) => {
             const answer = selectedAnswers[question.id];
             return answer === question.correctIndex ? total + 1 : total;
         }, 0);
 
-        const score = Math.round((correctCount / quiz.questions.length) * 100);
-        const passed = score >= quiz.passingScore;
+        const score = Math.round((correctCount / randomizedQuiz.questions.length) * 100);
+        const passed = score >= randomizedQuiz.passingScore;
         setFeedback(passed ? 'Great job! Quiz passed.' : 'Keep practicing and try again.');
-        markQuizResult(moduleId, score, quiz.passingScore);
+        markQuizResult(moduleId, score, randomizedQuiz.passingScore);
     };
 
     return (
@@ -40,7 +62,7 @@ const ModuleQuiz = ({ moduleId, moduleTitle }) => {
                 <div>
                     <p className="text-xs uppercase tracking-wide text-primary font-semibold">Knowledge Check</p>
                     <h3 className="text-lg font-semibold text-white">{moduleTitle} Quiz</h3>
-                    <p className="text-sm text-slate-400">Pass with {quiz.passingScore}% to unlock completion.</p>
+                    <p className="text-sm text-slate-400">Pass with {randomizedQuiz.passingScore}% to unlock completion.</p>
                 </div>
                 {moduleProgress.quizPassed && (
                     <div className="flex items-center gap-2 text-emerald-400 text-sm">
@@ -51,7 +73,7 @@ const ModuleQuiz = ({ moduleId, moduleTitle }) => {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-                {quiz.questions.map((question) => (
+                {randomizedQuiz.questions.map((question) => (
                     <div key={question.id} className="space-y-3">
                         <p className="text-sm font-semibold text-white">{question.question}</p>
                         <div className="grid gap-3">
