@@ -13,6 +13,19 @@ Train and certify Technical VAs to build and operate **production-grade GoHighLe
 - How the course works (100% rule, evidence requirements)
 - What “production grade” means: naming conventions, clean data, testing
 
+## Video walkthrough library (quick refreshers)
+- **Dashboard:** https://storage.googleapis.com/msgsndr/aGKC79OUZdaIrRUbo7ic/media/694084bff4c8e9e72460d82f.mp4
+- **Conversations:** https://storage.googleapis.com/msgsndr/aGKC79OUZdaIrRUbo7ic/media/6940884c0212342134ef7f08.mp4
+- **Contacts:** https://storage.googleapis.com/msgsndr/aGKC79OUZdaIrRUbo7ic/media/6940883297c0232eaf4e0ac8.mp4
+- **Opportunities (audio walkthrough):** https://storage.googleapis.com/msgsndr/aGKC79OUZdaIrRUbo7ic/media/69409b64f4c8e9254e63d045.m4a
+- **Payments:** https://storage.googleapis.com/msgsndr/aGKC79OUZdaIrRUbo7ic/media/6940b6b0ca729878d81fe1d9.mp4
+- **AI Agents:** https://storage.googleapis.com/msgsndr/aGKC79OUZdaIrRUbo7ic/media/6940b65eb4f42070077616bd.mp4
+- **Marketing:** https://storage.googleapis.com/msgsndr/aGKC79OUZdaIrRUbo7ic/media/6940b64897c0236f1b52eb83.mp4
+- **Automations:** https://storage.googleapis.com/msgsndr/aGKC79OUZdaIrRUbo7ic/media/6940b6dd02123466f5f48b3f.mp4
+- **Sites:** https://storage.googleapis.com/msgsndr/aGKC79OUZdaIrRUbo7ic/media/6940b6d10212342af1f48a4a.mp4
+- **Memberships:** https://storage.googleapis.com/msgsndr/aGKC79OUZdaIrRUbo7ic/media/6940b6f0f4c8e913786659d9.mp4
+- **Media Storage:** https://storage.googleapis.com/msgsndr/aGKC79OUZdaIrRUbo7ic/media/6940b6c1f4c8e91f1d665560.mp4
+
 ### Phase 1 — Foundations (core setup)
 1) **Settings + Labs**
 2) **Dashboard** (orientation + shortcuts)
