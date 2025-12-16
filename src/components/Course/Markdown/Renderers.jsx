@@ -4,6 +4,30 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { CheckCircle2, AlertTriangle, Info, Copy, ClipboardCheck, Terminal } from 'lucide-react';
 import clsx from 'clsx';
 import { motion, AnimatePresence } from 'framer-motion';
+import { AudioPlayer, VideoPlayer } from '../../ui/VideoPlayer';
+
+const MEDIA_EXTENSIONS = {
+    video: ['.mp4', '.webm', '.mov', '.m4v'],
+    audio: ['.m4a', '.mp3', '.ogg', '.wav'],
+};
+
+const getMediaType = (href = '') => {
+    const normalized = href.toLowerCase();
+    const isVideo = MEDIA_EXTENSIONS.video.some((ext) => normalized.endsWith(ext));
+    if (isVideo) return 'video';
+    const isAudio = MEDIA_EXTENSIONS.audio.some((ext) => normalized.endsWith(ext));
+    if (isAudio) return 'audio';
+    return null;
+};
+
+const renderChildrenToText = (children) =>
+    React.Children.toArray(children)
+        .map((child) => {
+            if (typeof child === 'string') return child;
+            if (typeof child?.props?.children === 'string') return child.props.children;
+            return React.Children.toArray(child?.props?.children).join(' ');
+        })
+        .join(' ');
 
 // --- Helper Components ---
 
@@ -73,8 +97,16 @@ const CodeBlock = ({ node, inline, className, children, ...props }) => {
 };
 
 const CustomLink = ({ href, children }) => {
-    const isAnchor = href.startsWith('#');
     const isExternal = href.startsWith('http');
+    const mediaType = getMediaType(href);
+
+    if (mediaType === 'video') {
+        return <VideoPlayer src={href} title={renderChildrenToText(children)} />;
+    }
+
+    if (mediaType === 'audio') {
+        return <AudioPlayer src={href} title={renderChildrenToText(children)} />;
+    }
 
     return (
         <a
@@ -85,8 +117,8 @@ const CustomLink = ({ href, children }) => {
         >
             {children}
         </a>
-    )
-}
+    );
+};
 
 const Blockquote = ({ children }) => {
     // Logic to detect alert types from content (naive implementation, can be enhanced)
