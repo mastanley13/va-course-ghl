@@ -4,6 +4,8 @@ import { useAuth } from '../context/AuthContext';
 import { courseModules } from '../data/courseData';
 import { ShieldCheck, RefreshCcw } from 'lucide-react';
 import clsx from 'clsx';
+import Section from '../components/ui/Section';
+import Card from '../components/ui/Card';
 
 const AdminDashboard = () => {
     const { getCohortProgress, resetUserProgress, getModuleProgressPercent } = useProgress();
@@ -12,25 +14,21 @@ const AdminDashboard = () => {
 
     if (currentUser?.role !== 'admin') {
         return (
-            <div className="rounded-xl border border-slate-800 bg-surface p-6 text-slate-200">
+            <Card>
                 <p className="text-sm font-semibold">Admin access only</p>
                 <p className="text-sm text-slate-400">Use the admin invite code to unlock cohort reporting and reset tooling.</p>
-            </div>
+            </Card>
         );
     }
 
     return (
         <div className="space-y-6 animate-fade-in">
-            <div className="flex items-center gap-3">
-                <ShieldCheck className="text-amber-400" />
-                <div>
-                    <p className="text-xs uppercase tracking-widest text-amber-400 font-semibold">Cohort Control</p>
-                    <h1 className="text-2xl font-bold text-white">Admin Dashboard</h1>
-                    <p className="text-sm text-slate-400">Monitor learner progress and reset modules without redeploying.</p>
-                </div>
-            </div>
-
-            <div className="rounded-xl border border-slate-800 bg-surface/70 p-4 space-y-4">
+            <Section
+                title="Admin Dashboard"
+                description="Cohort control"
+                icon={ShieldCheck}
+                padded
+            >
                 <div className="grid grid-cols-4 gap-2 text-xs text-slate-500 font-semibold uppercase tracking-widest">
                     <span>Member</span>
                     <span>Progress</span>
@@ -66,7 +64,7 @@ const AdminDashboard = () => {
                                                     'w-full text-left text-xs px-3 py-2 rounded-md hover:bg-primary/10 hover:text-white flex justify-between',
                                                     getModuleProgressPercent(module.id, user.email) > 0
                                                         ? 'text-slate-200'
-                                                        : 'text-slate-500'
+                                                        : 'text-slate-500',
                                                 )}
                                             >
                                                 <span className="truncate">{module.title}</span>
@@ -81,7 +79,7 @@ const AdminDashboard = () => {
                         </div>
                     ))}
                 </div>
-            </div>
+            </Section>
         </div>
     );
 };
