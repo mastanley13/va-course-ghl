@@ -1,49 +1,56 @@
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { Menu } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Layout = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const { currentUser, logout } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
 
     return (
-        <div className="flex h-screen bg-background text-text overflow-hidden">
+        <div className="flex h-screen overflow-hidden bg-background text-text">
+            {/* Mobile Sidebar Backdrop */}
+            {isSidebarOpen && (
+                <div
+                    className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden animate-fade-in"
+                    onClick={() => setIsSidebarOpen(false)}
+                />
+            )}
+
             <Sidebar isOpen={isSidebarOpen} toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
 
-            <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+            <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative z-0">
                 {/* Mobile Header */}
-                <header className="lg:hidden flex items-center justify-between px-4 py-3 bg-surface border-b border-slate-700">
-                    <span className="font-bold text-white">GHL VA Course</span>
-                    <button onClick={() => setIsSidebarOpen(true)} className="text-muted hover:text-white">
+                <header className="lg:hidden flex items-center justify-between px-4 py-3 bg-surface/80 backdrop-blur-md border-b border-white/5 sticky top-0 z-30">
+                    <span className="font-bold text-white tracking-tight">VA Master Class</span>
+                    <button onClick={() => setIsSidebarOpen(true)} className="text-slate-300 hover:text-white transition-colors p-1">
                         <Menu size={24} />
                     </button>
                 </header>
 
                 <main className="flex-1 overflow-y-auto p-4 lg:p-8 custom-scrollbar relative">
-                    {/* Background Gradient Blob */}
-                    <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
-                        <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-[120px]" />
-                        <div className="absolute top-[40%] -right-[10%] w-[40%] h-[40%] rounded-full bg-accent/5 blur-[120px]" />
-                    </div>
-
-                    <div className="max-w-5xl mx-auto space-y-6">
-                        <div className="hidden lg:flex justify-between items-center">
+                    <div className="max-w-7xl mx-auto space-y-8">
+                        {/* Top Bar (Desktop) */}
+                        <div className="hidden lg:flex justify-between items-center bg-surface/40 backdrop-blur-sm p-4 rounded-2xl border border-white/5 shadow-sm">
                             <div>
-                                <p className="text-xs uppercase tracking-widest text-primary font-semibold">Cohort Access</p>
-                                <h2 className="text-xl font-bold text-white">{currentUser?.name}</h2>
-                                <p className="text-sm text-slate-400">{currentUser?.email}</p>
+                                <p className="text-[10px] uppercase tracking-[0.2em] text-primary font-bold mb-1">Authenticated Session</p>
+                                <div className="flex items-center gap-2">
+                                    <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+                                    <h2 className="text-sm font-medium text-slate-200">{currentUser?.name} <span className="text-slate-500 mx-1">|</span> {currentUser?.email}</h2>
+                                </div>
                             </div>
-                            <div className="flex items-center gap-3">
+                            <div className="flex items-center gap-4">
                                 {currentUser?.role === 'admin' && (
                                     <Link
                                         to="/admin"
-                                        className="text-sm font-semibold text-amber-300 hover:text-amber-200 underline"
+                                        className="text-xs font-semibold text-amber-300 hover:text-amber-200 transition-colors bg-amber-500/10 px-3 py-1.5 rounded-full border border-amber-500/20"
                                     >
-                                        Admin dashboard
+                                        Admin Panel
                                     </Link>
                                 )}
                                 <button
@@ -51,13 +58,26 @@ const Layout = () => {
                                         logout();
                                         navigate('/login');
                                     }}
-                                    className="rounded-lg border border-slate-700 px-4 py-2 text-sm text-slate-200 hover:border-primary hover:text-white"
+                                    className="text-xs font-medium text-slate-400 hover:text-white transition-colors hover:underline decoration-slate-600 underline-offset-4"
                                 >
-                                    Switch profile
+                                    Sign out
                                 </button>
                             </div>
                         </div>
-                        <Outlet />
+
+                        {/* Page Content */}
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={location.pathname}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{ duration: 0.3, ease: 'easeOut' }}
+                                className="w-full"
+                            >
+                                <Outlet />
+                            </motion.div>
+                        </AnimatePresence>
                     </div>
                 </main>
             </div>

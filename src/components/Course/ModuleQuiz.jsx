@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { quizBank } from '../../data/quizData';
 import { useProgress } from '../../context/ProgressContext';
 import { CheckCircle2, Circle } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 
 const shuffleQuestionOptions = (question) => {
@@ -57,7 +58,11 @@ const ModuleQuiz = ({ moduleId, moduleTitle }) => {
     };
 
     return (
-        <div className="mt-12 space-y-4 rounded-xl border border-slate-800 bg-surface/50 p-6 shadow-lg">
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-12 space-y-4 rounded-xl border border-slate-800 bg-surface/50 p-6 shadow-lg"
+        >
             <div className="flex items-center justify-between">
                 <div>
                     <p className="text-xs uppercase tracking-wide text-primary font-semibold">Knowledge Check</p>
@@ -65,10 +70,14 @@ const ModuleQuiz = ({ moduleId, moduleTitle }) => {
                     <p className="text-sm text-slate-400">Pass with {randomizedQuiz.passingScore}% to unlock completion.</p>
                 </div>
                 {moduleProgress.quizPassed && (
-                    <div className="flex items-center gap-2 text-emerald-400 text-sm">
+                    <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        className="flex items-center gap-2 text-emerald-400 text-sm"
+                    >
                         <CheckCircle2 size={18} />
                         <span>Passed ({moduleProgress.quizScore}%)</span>
-                    </div>
+                    </motion.div>
                 )}
             </div>
 
@@ -89,13 +98,17 @@ const ModuleQuiz = ({ moduleId, moduleTitle }) => {
                                             : 'border-slate-700'
                                     : 'border-slate-700 hover:border-primary/60 hover:bg-primary/5';
                                 return (
-                                    <button
+                                    <motion.button
                                         type="button"
                                         key={option}
+                                        whileTap={{ scale: 0.98 }}
+                                        animate={{
+                                            backgroundColor: isSelected && !showCorrect ? 'rgba(99, 102, 241, 0.05)' : undefined,
+                                            borderColor: isSelected && !showCorrect ? 'rgba(99, 102, 241, 0.8)' : undefined
+                                        }}
                                         className={clsx(
                                             'flex items-center gap-3 rounded-lg border px-3 py-2 text-left text-sm transition-all',
-                                            statusClass,
-                                            isSelected && !showCorrect && 'border-primary/80 bg-primary/5'
+                                            statusClass
                                         )}
                                         onClick={() => handleOptionClick(question.id, optionIndex)}
                                     >
@@ -112,7 +125,7 @@ const ModuleQuiz = ({ moduleId, moduleTitle }) => {
                                             fill={isSelected && !showCorrect ? 'currentColor' : 'none'}
                                         />
                                         <span className="text-slate-200">{option}</span>
-                                    </button>
+                                    </motion.button>
                                 );
                             })}
                         </div>
@@ -120,22 +133,39 @@ const ModuleQuiz = ({ moduleId, moduleTitle }) => {
                 ))}
 
                 <div className="flex items-center justify-between gap-4">
-                    <button
+                    <motion.button
                         type="submit"
-                        className="rounded-lg bg-gradient-to-r from-primary to-accent px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-primary/20 transition-transform hover:scale-105"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="rounded-lg bg-gradient-to-r from-primary to-accent px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-primary/20"
                     >
                         Submit Quiz
-                    </button>
+                    </motion.button>
                     {moduleProgress.quizScore !== null && (
-                        <p className={clsx('text-sm font-semibold', moduleProgress.quizPassed ? 'text-emerald-400' : 'text-rose-400')}>
+                        <motion.p
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            className={clsx('text-sm font-semibold', moduleProgress.quizPassed ? 'text-emerald-400' : 'text-rose-400')}
+                        >
                             Score: {moduleProgress.quizScore}%
-                        </p>
+                        </motion.p>
                     )}
                 </div>
 
-                {feedback && <p className="text-sm text-slate-300">{feedback}</p>}
+                <AnimatePresence>
+                    {feedback && (
+                        <motion.p
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="text-sm text-slate-300"
+                        >
+                            {feedback}
+                        </motion.p>
+                    )}
+                </AnimatePresence>
             </form>
-        </div>
+        </motion.div>
     );
 };
 

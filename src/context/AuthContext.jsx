@@ -1,118 +1,184 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useMemo } from 'react';
+import { supabase } from '../lib/supabaseClient';
 
-const STORAGE_KEY = 'ghl-va-auth';
 const DEFAULT_INVITE_CODE = 'VA-COHORT-2025';
 const ADMIN_INVITE_CODE = 'VA-ADMIN-ACCESS';
 
 const AuthContext = createContext();
 
-const loadAuthState = () => {
-    if (typeof window === 'undefined') return { currentUserEmail: null, users: {} };
-    try {
-        const stored = window.localStorage.getItem(STORAGE_KEY);
-        if (stored) return JSON.parse(stored);
-    } catch (error) {
-        console.error('Failed to load auth data', error);
-    }
-    return { currentUserEmail: null, users: {} };
-};
-
-const persistAuthState = (state) => {
-    if (typeof window === 'undefined') return;
-    try {
-        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    } catch (error) {
-        console.error('Failed to persist auth data', error);
-    }
-};
-
 export const AuthProvider = ({ children }) => {
-    const [authState, setAuthState] = useState(loadAuthState);
+    const [user, setUser] = useState(null);
+    const [profile, setProfile] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [availableProfiles, setAvailableProfiles] = useState([]);
 
+    // 1. Initialize from LocalStorage
     useEffect(() => {
-        persistAuthState(authState);
-    }, [authState]);
+        const storedUsers = localStorage.getItem('ghl_known_users');
+        if (storedUsers) {
+            try {
+                setAvailableProfiles(JSON.parse(storedUsers));
+            } catch (e) {
+                console.error('Failed to parse known users', e);
+            }
+        }
 
-    const currentUser = authState.currentUserEmail ? authState.users[authState.currentUserEmail] : null;
-
-    const login = ({ email, name, passcode, inviteCode }) => {
-        const normalizedEmail = email.trim().toLowerCase();
-        const resolvedInvite = inviteCode?.trim() || DEFAULT_INVITE_CODE;
-        const isAdmin = resolvedInvite === ADMIN_INVITE_CODE;
-
-        setAuthState((prev) => {
-            const existingUser = prev.users[normalizedEmail];
-            if (existingUser && existingUser.passcode && existingUser.passcode !== passcode) {
-                throw new Error('Passcode does not match existing profile.');
+        const fetchProfile = async (sessionUser) => {
+            if (!sessionUser) {
+                setProfile(null);
+                setUser(null);
+                return;
             }
 
-            if (!existingUser && resolvedInvite !== DEFAULT_INVITE_CODE && resolvedInvite !== ADMIN_INVITE_CODE) {
+            try {
+                const { data, error } = await supabase
+                    .from('profiles')
+                    .select('*')
+                    .eq('id', sessionUser.id)
+                    .single();
+
+                if (error) {
+                    console.error('Error fetching profile:', error);
+                } else {
+                    setProfile(data);
+                    setUser(sessionUser);
+                }
+            } catch (err) {
+                console.error('Unexpected error fetching profile:', err);
+            }
+        };
+
+        // Auth Listener
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            fetchProfile(session?.user ?? null).finally(() => setLoading(false));
+        });
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            fetchProfile(session?.user ?? null);
+        });
+
+        return () => subscription.unsubscribe();
+    }, []);
+
+    // Helper: Save user to local history
+    const saveToLocalHistory = (newUserProfile) => {
+        const currentHistory = JSON.parse(localStorage.getItem('ghl_known_users') || '[]');
+        // Remove existing entry for this email if exists (to update it)
+        const output = currentHistory.filter(u => u.email !== newUserProfile.email);
+        // Add to top
+        output.unshift({
+            email: newUserProfile.email,
+            name: newUserProfile.full_name || newUserProfile.name,
+            role: newUserProfile.role,
+            lastActive: new Date().toISOString()
+        });
+        // Limit to 5
+        const trimmed = output.slice(0, 5);
+        localStorage.setItem('ghl_known_users', JSON.stringify(trimmed));
+        setAvailableProfiles(trimmed);
+    };
+
+    // 2. Login / Signup Logic
+    const login = async ({ email, password, name, inviteCode, isSignUp }) => {
+        const normalizedEmail = email.trim().toLowerCase();
+
+        if (isSignUp) {
+            // Validate Invite Code first
+            const resolvedInvite = inviteCode?.trim() || DEFAULT_INVITE_CODE;
+            const isAdmin = resolvedInvite === ADMIN_INVITE_CODE;
+
+            if (resolvedInvite !== DEFAULT_INVITE_CODE && resolvedInvite !== ADMIN_INVITE_CODE) {
                 throw new Error('Invalid invite code.');
             }
 
-            const updatedUser = {
-                email: normalizedEmail,
-                name: name?.trim() || normalizedEmail,
-                passcode: passcode?.trim() || existingUser?.passcode || '',
-                role: isAdmin ? 'admin' : existingUser?.role || 'learner',
-                createdAt: existingUser?.createdAt || new Date().toISOString(),
-            };
+            try {
+                const { data, error } = await supabase.auth.signUp({
+                    email: normalizedEmail,
+                    password: password,
+                    options: {
+                        data: {
+                            full_name: name,
+                            role: isAdmin ? 'admin' : 'learner',
+                        }
+                    }
+                });
 
-            return {
-                ...prev,
-                currentUserEmail: normalizedEmail,
-                users: { ...prev.users, [normalizedEmail]: updatedUser },
-            };
-        });
+                if (error) throw error;
+
+                // Create Profile Record manually if trigger is missing (safety net)
+                const newProfile = {
+                    id: data.user.id,
+                    email: normalizedEmail,
+                    full_name: name,
+                    role: isAdmin ? 'admin' : 'learner'
+                };
+
+                const { error: profileError } = await supabase
+                    .from('profiles')
+                    .insert([newProfile]);
+
+                if (profileError) {
+                    if (!profileError.message.includes('duplicate key value')) throw profileError;
+                }
+
+                saveToLocalHistory(newProfile); // <--- Save to local history
+                return data;
+            } catch (error) {
+                throw new Error(error.message);
+            }
+        } else {
+            // Sign In
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: normalizedEmail,
+                password: password,
+            });
+
+            if (error) throw new Error(error.message);
+
+            // Fetch profile to save name/role to history
+            const { data: profileData } = await supabase
+                .from('profiles')
+                .select('*')
+                .eq('id', data.user.id)
+                .single();
+
+            if (profileData) {
+                saveToLocalHistory(profileData); // <--- Save to local history
+            }
+
+            return data;
+        }
     };
 
+    const logout = async () => {
+        await supabase.auth.signOut();
+        setUser(null);
+        setProfile(null);
+    };
+
+    // Legacy support for "switchProfile" (not really applicable in strict Auth, but kept for interface compatibility)
     const switchProfile = (email) => {
-        setAuthState((prev) => ({ ...prev, currentUserEmail: email }));
+        console.warn("Profile switching is disabled in Secure Mode. Please logout and login.");
     };
 
     const validatePasscode = (email, passcode) => {
-        const normalizedEmail = email.trim().toLowerCase();
-        const user = authState.users[normalizedEmail];
-
-        if (!user) {
-            throw new Error('Profile not found.');
-        }
-
-        if (user.passcode && user.passcode !== (passcode?.trim() || '')) {
-            throw new Error('Passcode does not match existing profile.');
-        }
+        // No-op in Supabase version as auth handles validation
+        return true;
     };
 
-    const logout = () => setAuthState((prev) => ({ ...prev, currentUserEmail: null }));
+    const value = {
+        currentUser: profile ? { ...profile, email: user?.email } : null,
+        loading,
+        login,
+        logout,
+        switchProfile,
+        validatePasscode,
+        availableProfiles,
+        DEFAULT_INVITE_CODE,
+        ADMIN_INVITE_CODE,
+    };
 
-    const availableProfiles = useMemo(
-        () =>
-            Object.values(authState.users)
-                .sort((a, b) => a.name.localeCompare(b.name))
-                .map((user) => ({
-                    email: user.email,
-                    name: user.name,
-                    role: user.role,
-                    hasPasscode: Boolean(user.passcode),
-                })),
-        [authState.users]
-    );
-
-    const value = useMemo(
-        () => ({
-            currentUser,
-            login,
-            logout,
-            switchProfile,
-            validatePasscode,
-            availableProfiles,
-            DEFAULT_INVITE_CODE,
-            ADMIN_INVITE_CODE,
-        }),
-        [currentUser, availableProfiles, authState.users, validatePasscode]
-    );
-
-    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+    return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {

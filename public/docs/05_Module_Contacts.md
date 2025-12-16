@@ -7,64 +7,37 @@ Contacts are the database. If contact data is messy, every workflow, report, and
 A passing VA can:
 - Create and manage Smart Lists (dynamic filters).
 - Import contacts safely via CSV.
-- Use bulk actions responsibly (tags, deletes, exports).
-- Create and maintain clean contact records for automation and reporting.
+# Module 05 — Contacts (The Central Nervous System)
 
-## Compliance note (critical)
-Bulk importing contacts without proper consent can damage deliverability and increase spam/bounce rates. Purchased/rented lists are risky and often unsuitable for marketing tools.
+## 1. Why it matters
+Most beginners think of the "Contacts" tab as just a list of names. They are wrong.
+This is the **Central Nervous System** of the entire platform.
+Every Automation (Muscle), Campaign (Voice), and Pipeline (Movement) relies on the *Data* stored here.
+*   If the Data is dirty, the Automation misfires.
+*   If the Data is clean, the System performs magic.
+You are not just a Data Entry clerk; you are the **Brain Surgeon**.
 
-## Vocabulary
+---
+
+## 2. Learning Outcomes
+By the end of this module, you will be able to:
+- **Architect "Smart Lists"** that update in real-time (Dynamic SQL Logic) vs. "Static Lists" (Snapshots).
+- **Execute Bulk Actions Safely** using "Drip Mode" to prevent server crashes and carrier bans.
+- **Perform Data Surgery**: Restore deleted contacts (within 60 days) and trace "who deleted what" using Audit Logs.
+- **Manage "DND" (Do Not Disturb)**: Understand the difference between a permanent hard bounce and a temporary opt-out.
+
+---
+
+## 3. Vocabulary
 - **Contact record**: the CRM profile for a person/business
-- **Smart List**: dynamic list that updates automatically based on filters
+- **Smart List**: A saved search query (e.g., "People who joined last week AND have email"). It is *alive*. If a new contact matches the rule, they *automatically* appear in this list.
+- **Static List**: A fixed group of people (e.g., "Event Attendees"). It never changes unless you manually add/remove someone.
 - **Custom fields**: structured fields for additional data
 - **Tags**: labels for segmentation and automation triggers
-- **Bulk actions**: batch operations (tag, delete, export)
+- **Bulk Action**: Doing one thing (SMS, Email, Tag) to 1,000 people at once.
+- **Drip Mode**: Processing a Bulk Action in small batches (e.g., 50 people every hour) to avoid spam filters.
 - **Dedupe**: preventing duplicate contacts (email/phone matching)
 - **Consent**: permission flags for outreach (especially SMS)
-
-## Course sections and pages
-### Section A — Orientation
-- Page 1: Contacts as the “source of truth”
-- Page 2: Contact object vs Company/Business data
-
-### Section B — Smart Lists and segmentation
-- Page 3: Building Smart Lists (filters, columns, saved views)
-- Page 4: Standard segmentation patterns (source/industry/intent)
-
-### Section C — Imports and bulk actions
-- Page 5: CSV import (contacts and opportunities)
-- Page 6: Bulk actions (tags, export, delete, restore)
-
-### Section D — Production SOP
-- Page 7: “Clean contact” SOP (required fields + formatting)
-- Page 8: Consent + deliverability SOP (do not spam)
-
-### Section E — Quiz
-- Page 9: Quiz (10 questions)
-
-### Section F — Lab
-- Page 10: Build 3 Smart Lists + import a test CSV
-
-## Production SOP — Clean contact minimum standard
-- Required fields: Name, business name (if B2B), email OR phone, source, owner
-- Normalize phone to E.164 format if possible
-- Apply tags consistently (e.g., `src:leadlist`, `seg:real-estate`, `status:new`)
-- Add notes for context
-- Assign owner if a rep is responsible
-
-## Quiz (sample bank)
-1) Smart Lists are: **dynamic lists based on filters** ✅  
-2) True/False: Smart Lists update automatically when contacts match filters. **True** ✅  
-3) CSV import should only be done with: **proper consent and clean data** ✅  
-4) A tag is used for: **segmentation and workflow triggers** ✅  
-5) Best practice for duplicates: **dedupe on email/phone; avoid double imports** ✅  
-6) Bulk delete is safe because: **you can restore if supported; still risky—use carefully** ✅  
-7) A “source” tag helps with: **reporting and attribution sanity** ✅  
-8) If you want a list of businesses in a city, you’d create: **a Smart List with location filter** ✅  
-9) Purchased lists can cause: **spam complaints/bounces and deliverability damage** ✅  
-10) A custom field should be used when: **you need structured data reused in automations/reports** ✅
-
-## Lab assignment (evidence required)
 1) Create Smart Lists:
    - `SL - New Prospects (No Owner)`
    - `SL - Advertiser Leads (Interested)`

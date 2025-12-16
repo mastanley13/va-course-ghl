@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BookOpen, CheckCircle, Lock, PlayCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { courseModules, ORIENTATION_MODULE_ID } from '../data/courseData';
 import { useProgress } from '../context/ProgressContext';
 import { useAuth } from '../context/AuthContext';
@@ -62,70 +63,103 @@ const Dashboard = () => {
         if (target) navigate(`/module/${target.id}`);
     };
 
+    const container = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1
+            }
+        }
+    };
+
+    const item = {
+        hidden: { opacity: 0, y: 20 },
+        show: { opacity: 1, y: 0 }
+    };
+
     return (
-        <div className="animate-fade-in space-y-8">
-            <HeroPanel
-                kicker="GoHighLevel VA Certification"
-                title={`Welcome back, ${currentUser?.name}`}
-                subtitle="A modern React-first learning experience. Build skills, validate mastery, and unlock modules through quizzes and labs."
-                actions={[
-                    { label: 'Resume course', onClick: resumeModule },
-                    {
-                        label: 'View admin',
-                        variant: 'ghost',
-                        onClick: () => navigate('/admin'),
-                        icon: Lock,
-                    },
-                ]}
-                meta={
-                    <div className="min-w-[220px] rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-indigo-100">
-                        <p className="text-xs uppercase tracking-widest text-indigo-200 font-semibold">Cohort status</p>
-                        <div className="mt-2 text-3xl font-bold">{Math.round(averageProgress)}%</div>
-                        <p className="text-sm text-indigo-100/80">Avg. completion rate across unlocked modules.</p>
-                    </div>
-                }
-            />
+        <motion.div
+            className="space-y-8"
+            initial="hidden"
+            animate="show"
+            variants={container}
+        >
+            <motion.div variants={item}>
+                <HeroPanel
+                    kicker="GoHighLevel VA Certification"
+                    title={`Welcome back, ${currentUser?.name}`}
+                    subtitle="A modern React-first learning experience. Build skills, validate mastery, and unlock modules through quizzes and labs."
+                    actions={[
+                        { label: 'Resume course', onClick: resumeModule },
+                        {
+                            label: 'View admin',
+                            variant: 'ghost',
+                            onClick: () => navigate('/admin'),
+                            icon: Lock,
+                        },
+                    ]}
+                    meta={
+                        <div className="min-w-[220px] rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-indigo-100">
+                            <p className="text-xs uppercase tracking-widest text-indigo-200 font-semibold">Cohort status</p>
+                            <div className="mt-2 text-3xl font-bold">{Math.round(averageProgress)}%</div>
+                            <p className="text-sm text-indigo-100/80">Avg. completion rate across unlocked modules.</p>
+                        </div>
+                    }
+                />
+            </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {stats.map((stat) => (
-                    <StatCard key={stat.label} {...stat} />
-                ))}
-            </div>
-
-            <Section
-                title="Course Curriculum"
-                description="Component-driven"
-                icon={BookOpen}
-                action={
-                    <Link
-                        to={`/module/${ORIENTATION_MODULE_ID}`}
-                        className="text-sm font-semibold text-primary hover:text-white underline"
-                    >
-                        Jump to orientation
-                    </Link>
-                }
+            <motion.div
+                className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                variants={container}
             >
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {courseModules.map((module) => {
-                        const locked = !isModuleUnlocked(module.id);
-                        const progress = Math.round(getModuleProgressPercent(module.id));
-                        const moduleProgress = getModuleProgress(module.id);
-                        const label = moduleProgress.quizPassed ? 'Quiz passed' : 'Quiz pending';
+                {stats.map((stat) => (
+                    <motion.div key={stat.label} variants={item}>
+                        <StatCard {...stat} />
+                    </motion.div>
+                ))}
+            </motion.div>
 
-                        return (
-                            <ModuleCard
-                                key={module.id}
-                                module={{ ...module, description: moduleDescription(module) }}
-                                locked={locked}
-                                progress={progress}
-                                progressLabel={label}
-                                to={`/module/${module.id}`}
-                            />
-                        );
-                    })}
-                </div>
-            </Section>
-        </div>
+            <motion.div variants={item}>
+                <Section
+                    title="Course Curriculum"
+                    description="Component-driven"
+                    icon={BookOpen}
+                    action={
+                        <Link
+                            to={`/module/${ORIENTATION_MODULE_ID}`}
+                            className="text-sm font-semibold text-primary hover:text-white underline"
+                        >
+                            Jump to orientation
+                        </Link>
+                    }
+                >
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                        variants={container}
+                    >
+                        {courseModules.map((module) => {
+                            const locked = !isModuleUnlocked(module.id);
+                            const progress = Math.round(getModuleProgressPercent(module.id));
+                            const moduleProgress = getModuleProgress(module.id);
+                            const label = moduleProgress.quizPassed ? 'Quiz passed' : 'Quiz pending';
+
+                            return (
+                                <motion.div key={module.id} variants={item}>
+                                    <ModuleCard
+                                        module={{ ...module, description: moduleDescription(module) }}
+                                        locked={locked}
+                                        progress={progress}
+                                        progressLabel={label}
+                                        to={`/module/${module.id}`}
+                                    />
+                                </motion.div>
+                            );
+                        })}
+                    </motion.div>
+                </Section>
+            </motion.div>
+        </motion.div>
     );
 };
 

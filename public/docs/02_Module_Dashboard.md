@@ -1,66 +1,73 @@
-# Module 02 — Dashboard (Sub-Account)
+# Module 02 — Dashboard & Launchpad (Sub-Account)
 
 ## Why it matters
-The Dashboard is where VAs confirm account health, quickly access key areas, and spot “red flags” (failed workflows, missing integrations, unread messages).
+The Dashboard is the "Command Center" for the sub-account. It is the first screen a business owner sees. **If the Dashboard looks broken, the client thinks the system is broken.**
+VAs must master this view to perform "Health Checks" in under 60 seconds.
 
 ## Learning outcomes
 A passing VA can:
-- Navigate key dashboard widgets and understand what each means.
-- Identify the 5 most common “account is broken” symptoms from the dashboard.
-- Use dashboard → drill-down behavior to find the source module (Conversations, Payments, Calendars, etc.).
+- **Distinguish** between the "Launchpad" (setup only) and "Dashboard" (daily ops).
+- **Configure Widgets**: Customize the view to show *only* relevant KPIs (e.g., hiding "Calls" for clients who don't call).
+- **Analyze Pipeline Value**: Interpret "Open," "Won," and "Lost" values to spot sales bottlenecks.
+- **Drill Down**: Click through visual charts to find the specific leads stuck in a pipeline stage.
 
 ## Vocabulary
-- **Widget**: dashboard block (e.g., appointments, conversations, revenue).
-- **Drill-down**: clicking into the relevant module/details behind a widget.
-- **KPI**: key performance indicator (appointments booked, leads, revenue, etc.).
-- **Account health check**: quick checks to validate systems are running.
+- **Launchpad**: The onboarding checklist screen (Connect GMB, Stripe, Chat Widget). Used *once* during setup, then ignored.
+- **Widgets**: Individual data blocks on the Dashboard (e.g., "Opportunity Status," "Conversion Rate," "Manual Actions").
+- **Pipeline Value**: A projected dollar amount based on leads currently in the funnel. (Requires `Lead Value` to be set in pipeline settings).
+- **Conversion Rate**: The percentage of leads moving to "Won" status.
 
 ## Course sections and pages
 ### Section A — Orientation
-- Page 1: What the Dashboard is used for (VA perspective)
-- Page 2: “Daily Checklist” mindset: how to scan in <5 minutes
+- Page 1: **Dashboard vs. Launchpad**: When to use which?
+- Page 2: The "Owner's View": Why valid data here builds trust.
 
-### Section B — Practical Navigation
-- Page 3: Where dashboard data comes from (Contacts / Opportunities / Calendars / Payments / Conversations)
-- Page 4: How to drill down into each metric
+### Section B — Deep Dive: The Widgets
+- Page 3: **Opportunity Status & Value**: Visualizing the flow of money.
+- Page 4: **Conversation & Activity**: "Unread Message" counts and "Manual Actions" (calls/SMS tasks).
+- Page 5: **Customization**: How to use the "Edit" button to hide irrelevant widgets (reducing client anxiety).
 
 ### Section C — Production SOP
-- Page 5: Daily Dashboard SOP checklist
-- Page 6: Weekly “Build QA” dashboard checklist (after shipping new automation/site)
+- Page 6: The "60-Second Health Check" protocol.
+  - *Are unread messages > 0?* (Triage needed)
+  - *Is "Manual Actions" piling up?* (VA blocked)
+  - *Is Pipeline Value $0?* (Pipeline settings broken)
 
-### Section D — Pitfalls & troubleshooting
-- Page 7: Common dashboard inconsistencies (timezone, attribution, incomplete integrations)
+### Section D — Quiz (100% required)
+- Page 7: Quiz (8 questions)
 
-### Section E — Quiz (100% required)
-- Page 8: Quiz (8 questions)
+### Section E — Lab: "The Red Flag Hunt"
+- Page 8: Practical Exercise using the provided "Broken Dashboard" screenshot.
 
-### Section F — Lab
-- Page 9: Hands-on: create a “Daily Ops” dashboard snapshot (screenshots)
+## Quiz (Verified Bank)
+1) What is the primary difference between **Launchpad** and **Dashboard**?  
+   (A) Launchpad is for setup/integrations; Dashboard is for daily metrics. ✅  
+   (B) They are the same thing.  
+   (C) Dashboard is for billing only.
 
-## Production SOP — Daily Dashboard Checklist
-1) Unread conversations count is not ignored (triage)
-2) Appointment volume and no-show rate (spot issues)
-3) Payment failures/refunds (spot revenue leakage)
-4) Workflow errors/failed steps (if surfaced)
-5) Lead volume vs historical baseline (if visible)
+2) If a client says "My Dashboard shows $0 Pipeline Value," what is the most likely technical cause?  
+   (A) They have no leads.  
+   (B) **Lead Status** is "Lost".  
+   (C) **Lead Value** is not defined in the Pipeline Settings. ✅
 
-## Pitfalls
-- Numbers don’t match other reports due to timezone differences.
-- Revenue widgets may show opportunity value, not payments received (validate in Payments/Transactions).
+3) Which widget would you check to see if the AI Booking Bot is failing to close deals?  
+   (A) Google Verify  
+   (B) **Funnel / Stages Distribution** (Leads stacking in "New Lead" vs "Booked"). ✅  
+   (C) Manual Actions.
 
-## Quiz (sample bank)
-1) Dashboard is primarily used to: (A) build funnels (B) manage company settings (C) **monitor account health + KPIs** ✅  
-2) True/False: All dashboard numbers are always payments collected. **False** ✅  
-3) If unread messages spike, which module do you check? **Conversations** ✅  
-4) If bookings drop suddenly, which modules are likely involved? **Calendars + Sites/Forms + Workflows** ✅  
-5) A “health check” should be done: (A) once a month (B) **daily** ✅  
-6) What is drill-down? **Clicking a widget to see underlying details** ✅  
-7) A dashboard anomaly you must investigate immediately: **payment failures** ✅  
-8) If metrics look “off by a day,” what root cause is common? **Timezone mismatch** ✅
+4) True/False: You can hide the "Google Analytics" widget if the client doesn't use it. **True** ✅
 
-## Lab assignment (evidence required)
-- Take screenshots of:
-  1) dashboard overview
-  2) drill-down into 2 metrics (appointments + conversations)
-  3) note 3 signals you’d investigate and what module you would open next
-Rubric: Pass if screenshots and explanations match the expected module mapping.
+## Lab Assignment: "The Red Flag Hunt"
+**Scenario:** You log into a client account on Monday morning.
+**Task:** Review the Dashboard and identify 3 critical issues.
+
+**Cues provided:**
+1. "Unread Conversations" widget shows **42**.
+2. "Manual Actions" widget shows **15** pending calls.
+3. "Opportunity Status" shows 100% "Open" (0 Won, 0 Lost) over 6 months.
+
+**Deliverable:**
+Write a 3-bullet slack update to the client explaining **what is wrong** and **what specific module** you are going to fix next.
+*Example:*
+*   *Issue 1: 42 Unread messages. Action: Going to **Conversations** tab to triage immediately.*
+*   *Issue 2: 0 Won/Lost deals. Action: Checking **Opportunities** pipeline to see if automation is failing to update status.*

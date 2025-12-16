@@ -5,52 +5,62 @@ import { ShieldCheck, Users } from 'lucide-react';
 import clsx from 'clsx';
 
 const AuthPage = () => {
-    const { login, switchProfile, validatePasscode, availableProfiles, DEFAULT_INVITE_CODE, ADMIN_INVITE_CODE } = useAuth();
-    const [formState, setFormState] = useState({ email: '', name: '', passcode: '', inviteCode: DEFAULT_INVITE_CODE });
+    const { login, availableProfiles, DEFAULT_INVITE_CODE, ADMIN_INVITE_CODE } = useAuth();
+    const [formState, setFormState] = useState({ email: '', name: '', password: '', inviteCode: DEFAULT_INVITE_CODE });
     const [error, setError] = useState('');
     const [selectedProfile, setSelectedProfile] = useState(null);
-    const [passcodeInput, setPasscodeInput] = useState('');
+    const [passwordInput, setPasswordInput] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const [isLoginMode, setIsLoginMode] = useState(false); // New Toggle
     const navigate = useNavigate();
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         setError('');
+        setIsLoading(true);
+
         try {
-            login(formState);
+            await login({
+                email: formState.email,
+                password: formState.password,
+                name: formState.name,
+                inviteCode: formState.inviteCode,
+                isSignUp: !isLoginMode // Use toggle
+            });
             navigate('/');
         } catch (err) {
+            console.error('Auth error:', err);
             setError(err.message);
+        } finally {
+            setIsLoading(false);
         }
     };
 
     const handleProfileSelect = (profile) => {
         setError('');
-        if (profile.hasPasscode) {
-            setSelectedProfile(profile);
-            setPasscodeInput('');
-            return;
-        }
-
-        try {
-            switchProfile(profile.email);
-            navigate('/');
-        } catch (err) {
-            setError(err.message);
-        }
+        setSelectedProfile(profile);
+        setPasswordInput('');
     };
 
-    const handlePasscodeSubmit = (event) => {
+    const handleLoginSubmit = async (event) => {
         event.preventDefault();
         if (!selectedProfile) return;
+        setError('');
+        setIsLoading(true);
 
         try {
-            validatePasscode(selectedProfile.email, passcodeInput);
-            switchProfile(selectedProfile.email);
+            await login({
+                email: selectedProfile.email,
+                password: passwordInput,
+                isSignUp: false
+            });
             navigate('/');
             setSelectedProfile(null);
-            setPasscodeInput('');
+            setPasswordInput('');
         } catch (err) {
             setError(err.message);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -62,7 +72,7 @@ const AuthPage = () => {
                         <ShieldCheck className="text-primary" />
                         <div>
                             <p className="text-xs uppercase tracking-widest text-primary font-semibold">Secure Access</p>
-                            <h1 className="text-2xl font-bold text-white">Join your cohort</h1>
+                            <h1 className="text-2xl font-bold text-white">{isLoginMode ? 'Welcome Back' : 'Join your cohort'}</h1>
                         </div>
                     </div>
 
@@ -79,57 +89,74 @@ const AuthPage = () => {
                                     placeholder="you@company.com"
                                 />
                             </label>
-                            <label className="space-y-2 text-sm text-slate-300">
-                                <span>Name</span>
-                                <input
-                                    type="text"
-                                    value={formState.name}
-                                    onChange={(e) => setFormState((prev) => ({ ...prev, name: e.target.value }))}
-                                    className="w-full rounded-lg border border-slate-700 bg-slate-900/60 px-3 py-2 text-white focus:border-primary focus:outline-none"
-                                    placeholder="Your display name"
-                                />
-                            </label>
+
+                            {!isLoginMode && ( // Hide Name in Login Mode
+                                <label className="space-y-2 text-sm text-slate-300">
+                                    <span>Name</span>
+                                    <input
+                                        type="text"
+                                        required
+                                        value={formState.name}
+                                        onChange={(e) => setFormState((prev) => ({ ...prev, name: e.target.value }))}
+                                        className="w-full rounded-lg border border-slate-700 bg-slate-900/60 px-3 py-2 text-white focus:border-primary focus:outline-none"
+                                        placeholder="Your display name"
+                                    />
+                                </label>
+                            )}
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <label className="space-y-2 text-sm text-slate-300">
-                                <span>Personal passcode</span>
+                                <span>Password</span>
                                 <input
                                     type="password"
-                                    value={formState.passcode}
-                                    onChange={(e) => setFormState((prev) => ({ ...prev, passcode: e.target.value }))}
+                                    required
+                                    minLength={6}
+                                    value={formState.password}
+                                    onChange={(e) => setFormState((prev) => ({ ...prev, password: e.target.value }))}
                                     className="w-full rounded-lg border border-slate-700 bg-slate-900/60 px-3 py-2 text-white focus:border-primary focus:outline-none"
-                                    placeholder="Create or reuse your passcode"
+                                    placeholder="Min 6 characters"
                                 />
-                                <p className="text-xs text-slate-500">Used to protect your profile on shared devices.</p>
+                                <p className="text-xs text-slate-500">Used to secure your account.</p>
                             </label>
-                            <label className="space-y-2 text-sm text-slate-300">
-                                <span>Invite code</span>
-                                <input
-                                    type="text"
-                                    value={formState.inviteCode}
-                                    onChange={(e) => setFormState((prev) => ({ ...prev, inviteCode: e.target.value }))}
-                                    className="w-full rounded-lg border border-slate-700 bg-slate-900/60 px-3 py-2 text-white focus:border-primary focus:outline-none"
-                                    placeholder={DEFAULT_INVITE_CODE}
-                                />
-                                <p className="text-xs text-slate-500">
-                                    Learners use <span className="text-white font-semibold">{DEFAULT_INVITE_CODE}</span>.
-                                    Admins use <span className="text-white font-semibold">{ADMIN_INVITE_CODE}</span>.
-                                </p>
-                            </label>
+
+                            {!isLoginMode && ( // Hide Invite Code in Login Mode
+                                <label className="space-y-2 text-sm text-slate-300">
+                                    <span>Invite code</span>
+                                    <input
+                                        type="text"
+                                        value={formState.inviteCode}
+                                        onChange={(e) => setFormState((prev) => ({ ...prev, inviteCode: e.target.value }))}
+                                        className="w-full rounded-lg border border-slate-700 bg-slate-900/60 px-3 py-2 text-white focus:border-primary focus:outline-none"
+                                        placeholder={DEFAULT_INVITE_CODE}
+                                    />
+                                    <p className="text-xs text-slate-500">
+                                        Learners use <span className="text-white font-semibold">{DEFAULT_INVITE_CODE}</span>.
+                                        Admins use <span className="text-white font-semibold">{ADMIN_INVITE_CODE}</span>.
+                                    </p>
+                                </label>
+                            )}
                         </div>
 
                         {error && <p className="text-sm text-rose-400">{error}</p>}
 
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <p className="text-xs uppercase tracking-widest text-slate-500 font-semibold">Deployment friendly</p>
-                                <p className="text-sm text-slate-400">Profiles are stored in a small local store that can be swapped for Supabase or SQLite.</p>
-                            </div>
+                        <div className="flex items-center justify-between pt-4">
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setIsLoginMode(!isLoginMode);
+                                    setError('');
+                                }}
+                                className="text-sm text-slate-400 hover:text-white underline underline-offset-4"
+                            >
+                                {isLoginMode ? "Need an account? Join" : "Already have an account? Login"}
+                            </button>
+
                             <button
                                 type="submit"
-                                className="rounded-lg bg-gradient-to-r from-primary to-accent px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-primary/20 transition-transform hover:scale-105"
+                                disabled={isLoading}
+                                className="rounded-lg bg-gradient-to-r from-primary to-accent px-6 py-2 text-sm font-semibold text-white shadow-lg shadow-primary/20 transition-transform hover:scale-105 disabled:opacity-50 border border-transparent focus:border-white"
                             >
-                                Enter workspace
+                                {isLoading ? 'Processing...' : (isLoginMode ? 'Login' : 'Join Cohort')}
                             </button>
                         </div>
                     </form>
@@ -145,9 +172,9 @@ const AuthPage = () => {
                     </div>
 
                     {availableProfiles.length === 0 ? (
-                        <p className="text-sm text-slate-400">No profiles yet. Create one with your invite code.</p>
+                        <p className="text-sm text-slate-400">No profiles found in directory. Create one to get started.</p>
                     ) : (
-                        <div className="space-y-2">
+                        <div className="space-y-2 max-h-[400px] overflow-y-auto custom-scrollbar">
                             {availableProfiles.map((profile) => (
                                 <button
                                     key={profile.email}
@@ -166,9 +193,6 @@ const AuthPage = () => {
                                         </div>
                                         <div className="text-right">
                                             <span className="block text-[10px] uppercase tracking-widest text-slate-500">{profile.role}</span>
-                                            {profile.hasPasscode && (
-                                                <span className="text-[10px] text-primary">Passcode protected</span>
-                                            )}
                                         </div>
                                     </div>
                                 </button>
@@ -182,8 +206,8 @@ const AuthPage = () => {
                         <div className="w-full max-w-md bg-surface border border-slate-800 rounded-2xl p-6 shadow-2xl shadow-primary/10 space-y-4">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-xs uppercase tracking-widest text-primary font-semibold">Passcode Required</p>
-                                    <h3 className="text-lg font-semibold text-white">Unlock {selectedProfile.name}'s profile</h3>
+                                    <p className="text-xs uppercase tracking-widest text-primary font-semibold">Authentication Required</p>
+                                    <h3 className="text-lg font-semibold text-white">Login as {selectedProfile.name}</h3>
                                 </div>
                                 <button
                                     type="button"
@@ -193,16 +217,16 @@ const AuthPage = () => {
                                     Close
                                 </button>
                             </div>
-                            <form onSubmit={handlePasscodeSubmit} className="space-y-3">
+                            <form onSubmit={handleLoginSubmit} className="space-y-3">
                                 <label className="space-y-2 text-sm text-slate-300">
-                                    <span>Enter passcode</span>
+                                    <span>Enter password</span>
                                     <input
                                         type="password"
-                                        value={passcodeInput}
+                                        value={passwordInput}
                                         autoFocus
-                                        onChange={(e) => setPasscodeInput(e.target.value)}
+                                        onChange={(e) => setPasswordInput(e.target.value)}
                                         className="w-full rounded-lg border border-slate-700 bg-slate-900/60 px-3 py-2 text-white focus:border-primary focus:outline-none"
-                                        placeholder="Required to switch"
+                                        placeholder="Your password"
                                     />
                                 </label>
                                 <div className="flex items-center justify-end gap-3">
@@ -215,9 +239,10 @@ const AuthPage = () => {
                                     </button>
                                     <button
                                         type="submit"
-                                        className="px-4 py-2 rounded-lg bg-gradient-to-r from-primary to-accent text-sm font-semibold text-white shadow-lg shadow-primary/20"
+                                        disabled={isLoading}
+                                        className="px-4 py-2 rounded-lg bg-gradient-to-r from-primary to-accent text-sm font-semibold text-white shadow-lg shadow-primary/20 disabled:opacity-50"
                                     >
-                                        Unlock & Continue
+                                        {isLoading ? 'Verifying...' : 'Login'}
                                     </button>
                                 </div>
                             </form>

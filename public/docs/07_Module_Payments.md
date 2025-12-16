@@ -13,62 +13,92 @@ A passing VA can:
 
 ## Key platform notes (Dec 2025)
 - Payment links require a Product first.
-- Payment links support URL parameters to pre-fill buyer details and redirect after purchase.
-- Manual payment methods are not supported on single Payment Link checkouts; use invoices/order forms for manual methods.
+# Module 07 — Payments (The Digital Cash Register)
 
-## Vocabulary
-- **Integration**: payment provider connection (e.g., Stripe)
-- **Product**: what you sell
-- **Price**: one-time or recurring amount attached to product
-- **Payment Link**: shareable checkout page link
-- **Invoice**: bill sent to a specific contact
-- **Subscription**: recurring billing relationship
-- **Transaction**: recorded payment event
+## 1. Why it matters
+The "Payments" tab is your **Digital Cash Register**.
+If this is broken, the business works for free.
+As a VA, you aren't just sending invoices; you are the **Chief Financial Officer (CFO)** of the account.
+You must understand how to collect money (invoices/text-to-pay), how to chase money (dunning), and how to return money (refunds) without breaking the books.
 
-## Course sections and pages
-### Section A — Orientation
-- Page 1: Payments vs Opportunities (value vs cash)
-- Page 2: Where payments appear in the platform (contact profile + payments dashboards)
+---
 
-### Section B — Setup
-- Page 3: Connect Stripe and confirm integration
-- Page 4: Create products + prices
+## 2. Learning Outcomes
+By the end of this module, you will be able to:
+- **Configure Text-to-Pay**: Enable the "Magical Payment Link" via SMS (and stay A2P compliant).
+- **Manage "Dunning"**: The automated system that chases failed credit cards so you don't have to.
+- **Differentiate Invoices vs. Subscriptions**: When to use a One-Time Bill vs. a Recurring Membership.
+- **Process Refunds Correctly**: Finding the hidden button and ensuring the "Opportunity" status updates automatically.
 
-### Section C — Payment links & checkout
-- Page 5: Create Payment Link
-- Page 6: Pre-fill fields + redirect parameters (use cases)
-- Page 7: When to use Invoice instead of Payment Link
+---
 
-### Section D — Production SOP
-- Page 8: Standard “collect payment” flow for advertisers
-- Page 9: Post-payment automations and receipts
+## 3. Vocabulary
+- **Text-to-Pay**: Sending a payment link via SMS. (Requires A2P 10DLC registration).
+- **Product**: An item in your library (e.g., "Gold Consultation - $100").
+- **Invoice**: A one-time bill sent to a client for specific products.
+- **Subscription**: A recurring bill (e.g., $97/month).
+- **Dunning**: The process of retrying a failed payment (e.g., "Card declined -> Wait 1 day -> Retry").
+- **Payment Gateway**: The bank processor (Stripe, PayPal) connected to the system.
 
-### Section E — Quiz
-- Page 10: Quiz (12 questions)
+---
 
-### Section F — Lab
-- Page 11: Create 1 product + 1 payment link + test purchase flow
+## 4. Deep Dive: The Digital Cash Register
 
-## Production SOP — Advertiser payment flow (capstone-aligned)
-1) Create product: “Ad Slot — Monthly Sponsorship” (recurring) OR “Ad Slot — One-Time” (one-time)
-2) Create payment link for chosen product
-3) Ensure post-purchase redirect goes to “Thank You / Next Steps” page
-4) Workflow triggers on successful payment:
-   - mark opportunity Won
-   - create fulfillment opportunity
-   - notify sign vendor
+### Text-to-Pay (The "Magic Link")
+Imagine asking a client for a check. They have to find a pen, write it, stamp it, and mail it. Friction = 100%.
+**Text-to-Pay** is the opposite. You send a link via SMS. They click, Apple Pay faces scans, and you get paid. Friction = 0%.
+*   **The Compliance Trap:** You CANNOT send these texts unless the business is A2P 10DLC Registered. If you try, the carrier will block it as "Spam".
+*   *SME Tip:* Always check the "Trust Center" in settings before promising this feature to a client.
 
-## Quiz (sample bank)
-1) Before creating a Payment Link you must create a: **Product** ✅  
-2) True/False: Payment links can collect manual bank transfer payments. **False** ✅  
-3) Payment links are best for: **fast checkout without a full website** ✅  
-4) Invoices are best for: **manual/negotiated billing or manual payment options** ✅  
-5) A subscription is: **recurring billing** ✅  
-6) Product images: **can display on payment links** ✅  
-7) A post-purchase redirect is used to: **send buyers to next steps page** ✅  
-8) Payments should trigger: **fulfillment automation** ✅  
-9) If revenue appears “wrong,” check: **opportunity value vs payments** ✅  
-10) Payment links can pre-fill: **name/email/phone via URL parameters** ✅  
+### Subscriptions & Dunning (The "Utility Company" Model)
+If a client is on a $300/month plan, what happens when their card expires?
+*   **Rookie VA:** Manually emails the client "Hey, your card failed." (Awkward, slow).
+*   **Pro VA:** Configures **Dunning Settings** (Payments > Settings).
+    *   *Logic:* "If payment fails, retry in 24 hours. If it fails 3 times, cancel subscription + send 'Update Card' email."
+    *   *Result:* The system chases the money while you sleep.
+
+### Refunds: The Hidden "Returns Counter"
+Where is the refund button? It is NOT on the dashboard.
+*   **The Path:** Payments > Transactions > Find the Charge > Click the "Three Dots" > Refund.
+*   **The Workflow:** Just giving money back is not enough. You must update the *Sales Pipeline*.
+    *   *Automation:* Create a workflow: Trigger = "Payment Refunded". Action = "Update Opportunity Status to Lost".
+    *   *Why?* If you don't, the Dashboard will still say you "Won" that deal, but your bank account will show a loss. Your data is lying to you.
+
+---
+
+## 5. Lab Assignment: "The Refund Request"
+
+**Scenario:**
+A client, "John Doe", bought a $100 consultation but is unhappy.
+He demands a refund.
+Your boss says: "Refund him, but make sure we track it as a loss."
+
+**Your Mission:**
+1.  **Simulate the Refund:** (In a Sandbox, describe the clicks).
+    *   Go to Payments > Transactions.
+    *   Find John Doe ($100).
+    *   Action: Full Refund.
+2.  **The Automation Fix:**
+    *   Create a Workflow named "Refund Processor".
+    *   Trigger: "Payment Refunded".
+    *   Action: "Update Opportunity" -> Pricing Pipeline -> Stage: Refunded / Status: Lost.
+    *   Action: "Remove Tag" -> "Customer".
+
+**Deliverable:**
+A Loom video or Screenshot series showing the "Payment Refunded" workflow setup.
+
+---
+
+## 6. Production SOP (Financial Hygiene)
+1.  **Daily Transaction Check:** Scan the "Transactions" tab. Are there any "Failed" payments?
+2.  **Product Library:** Never create "Custom Items" on an invoice if you can avoid it. create official "Products" so reporting is clean.
+3.  **Test Mode:** Always toggle "Live Mode" on before sending a real invoice. Sending a "Test Invoice" to a real client is unprofessional.
+
+## 7. Quiz (Verified Bank)
+1) To send a "Text-to-Pay" link, the business must be: (A) Nice (B) **A2P 10DLC Registered** ✅.
+2) What is "Dunning"? (A) Bullying clients (B) **Automated payment retries for failed cards** ✅.
+3) Where do you find the Refund button? (A) Dashboard (B) **Payments > Transactions > Three Dots** ✅.
+4) If you refund a client, does the Opportunity Status update automatically? (A) Yes (B) **No, you need a Workflow** ✅.
 11) Stripe integration is connected via: **Payments > Integrations** ✅  
 12) A failed payment should: **trigger internal alert and follow-up** ✅
 
