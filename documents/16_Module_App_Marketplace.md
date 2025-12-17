@@ -50,10 +50,12 @@ A passing VA can:
 8) If actions are chargeable, you must: **limit tests and document expected volume** ✅
 
 ## Lab assignment (evidence required)
-- Install one app (e.g., Sheets/Airtable/Slack-like integration)
-- Connect it inside the sub-account
-- Add one action to a test workflow
-Evidence: screenshots showing app connected + action available in workflow builder
+**Goal:** Explore one Marketplace integration.
+1) Open App Marketplace and search for an app (e.g., QuickBooks, Zoom, Facebook Ads, Mailgun, Shopify—pick one relevant to Ace Web Agency).
+2) Open the app detail page, read the description/permissions, and note what it does and why you’d use it.
+3) (Do not install unless authorized.) If a free/demo install is safe, you may proceed; otherwise, skip installation and just document.
+4) Reflection: In one sentence, state which app you chose and how Ace Web Agency could use it.
+Evidence: Screenshot of the Marketplace listing/detail page and the reflection sentence. Rubric: Pass if the app page is captured and the use-case summary is provided.
 
 ## Relatable metaphor — “Power Strip with Adapters”
 The App Marketplace is a power strip. You plug in adapters (apps) to extend what the system can do, but every plug must be labeled and safe.
@@ -78,7 +80,7 @@ The App Marketplace is a power strip. You plug in adapters (apps) to extend what
 4. How do you handle an app outage? <details><summary>Answer</summary>Switch to backup steps (tasks/notifications) and pause dependent automations if needed.</details>
 
 ## Practice labs + evidence rubric
-- **Lab: Integration handshake**
-  - Deliverable: Installed app with one workflow step demonstrating the connection.
-  - Evidence: Screenshots of install screens, permission scopes, and workflow action test logs.
-  - Rubric: Pass if app is visible, action executes (or test log shows attempt), and fallback/ownership notes are documented.
+- **Lab: Integration reconnaissance**
+  - Deliverable: Marketplace app detail reviewed with a use-case statement.
+  - Evidence: Listing/detail screenshot and one-sentence use-case for Ace Web Agency.
+  - Rubric: Pass if the app purpose is summarized accurately and the screenshot shows the chosen integration.

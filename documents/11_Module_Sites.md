@@ -69,16 +69,13 @@ A passing VA can:
 12) A strong offer page must include: **CTA and next step** ✅
 
 ## Lab assignment (evidence required)
-Create funnel: `FNL - Advertiser Offer`
-Steps:
-1) Landing: offer + form
-2) Thank-you: next steps + booking link
-
-Evidence:
-- public preview links
-- screenshot of mobile view
-- screenshot of form submission test creating a contact
-Rubric: Pass if funnel works end-to-end.
+**Goal:** Launch a simple funnel page for Ace Web Agency.
+1) Create funnel `FNL - Agency Lead Funnel` → add step `Landing Page`.
+2) Build the page (template or blank): add headline (“Grow Your Business with a Stunning Website”), subheadline, image, and a Form (name/email/phone) or CTA button linking to your consultation calendar.
+3) Create/use a form if needed (`Lead Form`) and embed it on the page. Ensure the CTA or form clearly captures leads.
+4) Preview mobile view and adjust any spacing if needed.
+5) Publish/Preview the page URL (default HL domain is fine). Optionally submit a test to create a contact.
+Evidence: Screenshot of the funnel editor showing your page content, and a screenshot of the live/preview page with the form or CTA visible (mobile view acceptable). Rubric: Pass if the page contains a lead-capture element tied to the scenario and loads in preview.
 
 ## Relatable metaphor — “Storefront + Checkout”
 Sites/Funnels are the storefront windows and the checkout counter. If the doors are blocked or the cash register isn’t connected, traffic doesn’t turn into customers.
@@ -102,7 +99,7 @@ Sites/Funnels are the storefront windows and the checkout counter. If the doors 
 4. Where do you adjust mobile padding? <details><summary>Answer</summary>In the responsive settings of each section/element within the builder.</details>
 
 ## Practice labs + evidence rubric
-- **Lab: Conversion-ready funnel**
-  - Deliverable: Single-offer funnel with form, CTA, and thank-you sequencing.
-  - Evidence: Screenshots of builder layout, form settings, live page, and a test submission trail in Contacts/Workflows.
-  - Rubric: Pass if form + CTA function, consent is captured, and the thank-you page presents clear next steps.
+- **Lab: Lead-gen landing page**
+  - Deliverable: Single-step funnel with hero copy, image, and form or CTA to the consultation calendar.
+  - Evidence: Builder canvas screenshot, live/preview screenshot (mobile view acceptable), and optional test submission showing in Contacts.
+  - Rubric: Pass if the page loads, contains a lead capture tied to the scenario, and the CTA/form routes to the intended next step.

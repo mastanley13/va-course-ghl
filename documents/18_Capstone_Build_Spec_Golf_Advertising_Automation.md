@@ -1,47 +1,40 @@
-# Capstone Build Spec — Golf Facility Advertising Partner Acquisition + Fulfillment System (Dec 2025)
+# Capstone Build Spec — Ace Web Agency Implementation (Golf Advertising variant optional) (Dec 2025)
 
 🔗 **Appendix:** [Plain Language + Glossary (A–Z with screenshots)](Appendix_Plain_Language_Glossary.md) — includes navigation verbs quick-reference (EN/ES/PH).
 
 ## 1) Scenario
-You are building a GoHighLevel sub-account for a golf facility (“Golf Place”) that sells **advertising placements** (e.g., signage, scorecards, tee-box signs) to local businesses:
-- mortgage brokers
-- real estate agents
-- car dealerships
-- restaurants
-- local service providers
+Default track (recommended for all new cohorts): **Ace Web Agency** — a small web design agency using GoHighLevel to capture leads, book consultations, close projects, collect deposits, and deliver sites. All labs build toward this capstone, so your sub-account should already contain the calendars, forms, and assets from earlier modules.
+
+Legacy/alternate track: If your cohort started with the Golf Advertising scenario, you may continue using it. Wherever this spec names web-agency assets, you can substitute the Golf equivalents (e.g., pipelines/products/calendars) and keep the same structure.
 
 The system must be **as automated as possible** using:
 - GHL UI modules (Contacts, Conversations, Opportunities, Sites, Payments)
 - Workflows (including Scheduler Trigger)
 - AI Agents (Conversation AI + optional Agent Studio / GPT actions)
-- Vendor fulfillment notifications and scheduling
+- Project fulfillment notifications and scheduling
 - Reporting dashboards for weekly KPIs
 
 ## 2) Goals (what “success” looks like)
 ### Acquisition
-- Generate a daily list of target businesses to contact (or ingest/enrich one automatically).
-- Engage prospects across multiple channels in a **respectful, compliant** sequence.
-- Build a profile for each business before messaging (industry, size proxy, website, last-touch summary).
-- Qualify interest and move opportunities through sales stages.
+- Generate or import a daily list of prospects (Option A: webhook/enrichment; Option B: manual CSV) with website/industry captured.
+- Engage prospects across compliant channels (email first, SMS only with consent).
+- Qualify interest (services needed, budget range, website URL) and move opportunities through sales stages.
 
 ### Conversion
 - When a lead commits:
-  - send them to a landing page OR send a PDF
-  - collect payment via Stripe (Payment Link, Invoice, or Order Form)
-  - optionally book an appointment to finalize details in person
+  - send them to a landing page or PDF
+  - collect a deposit or full payment via Stripe (Payment Link/Invoice/Order Form)
+  - book a consultation to finalize scope if needed
 
 ### Fulfillment
 - Upon payment:
-  - notify sign vendor of order details automatically
-  - create fulfillment opportunity and track stages
-  - schedule pickup/dropoff date and place it on connected Google Calendar
-  - notify internal team and vendor of schedule and reminders
+  - create/update fulfillment opportunity
+  - schedule project milestones or review calls on the calendar
+  - notify internal team and (if applicable) external contractors
 
 ### Financial ops (practical requirement)
-- System must calculate and record vendor cost vs margin.
-- “Pay vendor automatically” is ideal; if not natively feasible, system must:
-  - create a payable task + send vendor payment request automatically
-  - capture proof of payment step (manual but tracked)
+- Track project value vs. fulfillment cost.
+- If contractor/vendor payments are used, create payable tasks or payment requests and capture proof once paid.
 
 ## 3) Constraints & compliance requirements (non-negotiable)
 - **SMS and phone outreach must be consent-based** where required. If consent is unknown:
@@ -58,136 +51,108 @@ The system must be **as automated as possible** using:
 - Contacts (Smart Lists + consent flags)
 - Conversations (multi-channel inbox + triage)
 - Opportunities (2 pipelines: Sales + Fulfillment)
-- Calendars (Sales appointments + Vendor pickup/dropoff)
-- Sites (Offer landing page + thank-you page)
+- Calendars (Consultations + Project Reviews)
+- Sites (Lead capture funnel + thank-you page)
 - Payments (Stripe + product + payment link/invoice)
 - Automation (Workflows + Scheduler Trigger)
 - AI Agents (Qualifier bot + personalization support)
 - Reporting (weekly KPIs)
-- App Marketplace (optional but recommended for enrichment or vendor notification)
+- App Marketplace (optional but recommended for enrichment or contractor notification)
 
 ## 5) Data model (must implement)
 ### 5.1 Custom fields (Contacts)
-Minimum required:
+Minimum required (Ace Web Agency):
+- `website_url`
 - `biz_name`
-- `biz_type` (e.g., mortgage broker, restaurant)
 - `biz_industry`
-- `biz_city`
-- `biz_state`
-- `biz_website`
-- `ad_interest_level` (cold/warm/hot)
-- `ad_package_selected`
-- `ad_budget_range`
+- `project_type` (e.g., new build, redesign)
+- `project_budget_range`
+- `project_timeline` (optional)
 - `consent_email` (yes/no/unknown)
 - `consent_sms` (yes/no/unknown)
 - `lead_source` (manual/import/integration)
 - `last_ai_summary` (short)
 - `assigned_owner`
 
+*(Golf Advertising variant: keep `ad_interest_level`, `ad_package_selected`, `ad_budget_range`, `biz_type`, etc., matching earlier labs.)*
+
 ### 5.2 Tags (Contacts)
 Required taxonomy:
 - `stage:new`, `stage:contacted`, `stage:interested`, `stage:proposal-sent`, `stage:won`, `stage:lost`
 - `seg:<industry>` (e.g., `seg:real-estate`)
-- `intent:pricing`, `intent:callback`, `intent:not-interested`
+- `intent:consultation`, `intent:quote`, `intent:not-interested`
 - `status:do-not-contact` (if STOP/opt-out)
 
 ### 5.3 Pipelines
-1) **Sales - Advertisers**
-2) **Fulfillment - Sign Orders**
+1) **Sales - Web Projects** (or **Sales - Advertisers** for golf)
+2) **Fulfillment - Projects** (or **Fulfillment - Sign Orders** for golf)
 
 Each stage must have a “move rule” written in plain English.
 
 ### 5.4 Calendars
-- `Sales - Advertiser Meeting`
-- `Vendor - Pickup Scheduling` (or Dropoff Scheduling)
+- `Website Consultation Calendar` (or `Sales - Advertiser Meeting`)
+- `Project Review/Delivery` (or `Vendor - Pickup Scheduling`)
 
 ## 6) System architecture (what must happen)
 ### 6.1 Daily list-building
 Two acceptable implementations:
 
 **Option A (Preferred, if you have integration tools):**
-- Scheduler Trigger (daily, weekdays) runs an ops workflow that triggers an external integration (webhook or marketplace action) to:
-  - pull a list of local businesses meeting the target criteria
-  - enrich each record (website, category, email)
-  - create/update contacts in GHL with tags `stage:new` and segmentation tags
+- Scheduler Trigger (weekday) → webhook/marketplace action to pull/enrich prospects (website/industry/email) and create/update contacts tagged `stage:new` + segmentation tags.
 
 **Option B (If external integration is not available):**
-- Scheduler Trigger creates an internal “Ops Task” daily:
-  - “Build today’s prospect list”
-  - VA manually imports the list (small CSV) and applies `stage:new`
+- Scheduler Trigger creates an “Ops Task” daily: “Build today’s prospect list” and VA imports a small CSV tagged `stage:new`.
 
 ### 6.2 Profiling before outreach
-Before sending the first message, the system must populate:
-- industry + website
-- a short “business profile summary” field (`last_ai_summary`)
-This can be:
-- AI workflow step (GPT action) summarizing provided data, OR
-- manual VA note (minimum acceptable)
+Before messaging, populate:
+- industry + website + project type/budget
+- short “business profile summary” (`last_ai_summary`)
+Use AI summary (GPT action) or a concise VA note.
 
 ### 6.3 Multi-channel outreach sequence
-A standard outreach workflow must:
-- start when contact is tagged `stage:new`
-- send an email intro
-- wait 1–2 business days
-- if no response:
-  - send follow-up email
-  - if `consent_sms = yes`, send SMS follow-up
-  - optionally send voicemail drop (if phone consent policy allows)
-- stop immediately if:
-  - contact replies
-  - contact opts out (STOP / do-not-contact tag)
-- route “interested” responses to:
-  - send PDF or landing page link
-  - offer booking link
-  - offer payment link once commitment is confirmed
+Standard outreach workflow:
+- Trigger: contact tagged `stage:new`
+- Email intro → wait 1–2 business days → follow-up email → SMS follow-up only if `consent_sms = yes`
+- Stop on response or opt-out
+- Interested responses: send landing page/PDF, booking link, or payment link when scoped
 
 ### 6.4 Qualification & handoff using AI
-A Conversation AI bot must:
-- detect intent: pricing / book / not interested / ask questions
-- capture at least: interest level, budget range, package interest
-- trigger a workflow (handoff) when:
-  - lead is interested → move pipeline stage + send next step link
-  - lead asks for appointment → send booking link or book appointment
-  - lead opts out → tag + stop
+Conversation AI bot should:
+- detect intent: quote/consult/book/not interested
+- capture: project type, budget range, website URL
+- handoff: move pipeline stage + send booking link; tag/stop on opt-out
 
 ### 6.5 Checkout + conversion
 At minimum:
-- Create a product and a payment link for the advertising package(s).
-- When payment succeeds:
-  - mark Sales opportunity as Won
+- Create a product and payment link for a design package/deposit.
+- On successful payment:
+  - mark Sales opportunity Won
   - create Fulfillment opportunity
-  - notify vendor and internal team
+  - notify internal team (and contractor if used)
   - send confirmation email with next steps
 
-### 6.6 Vendor fulfillment coordination
+### 6.6 Project fulfillment coordination
 Upon payment:
-- Notify vendor via email/SMS (and optional webhook integration).
-- Create or update a fulfillment record:
-  - package type, dimensions, artwork, due date
-- Schedule pickup/dropoff:
-  - send vendor a booking link to pick a date
-  - booking creates event on Google calendar through calendar integration
-- Reminders:
-  - 24–48h reminders for pickup/dropoff
+- Create/update fulfillment record with scope, assets, and due dates.
+- Schedule project milestones/review calls on the `Project Review/Delivery` calendar (or vendor scheduling in golf variant).
+- Send reminders 24–48h before reviews/milestones.
 
-### 6.7 Vendor payment handling (pragmatic)
-System must:
-- record vendor cost on the fulfillment opportunity
-- create a payable task for finance:
-  - “Pay vendor $X for Order #Y”
-- optional: send vendor payment link/request and track completion
+### 6.7 Contractor/vendor payment handling (pragmatic)
+- Record fulfillment cost on the opportunity.
+- Create a payable task: “Pay contractor $X for Project #Y.”
+- Optional: send payment request/link and track completion.
 
 ## 7) Required assets to build (Sites)
-- Landing page: “Advertise at Golf Place”
+- Landing page: “Ace Web Agency – Website Consultation”
   - benefits + packages + social proof
-  - CTA: “Request info” and “Book a call” and/or “Buy now”
+  - CTA: “Request info” (form) and “Book a call” (calendar link) and/or “Pay deposit”
 - Thank-you page:
-  - next steps + calendar link
-- Optional: PDF “Advertiser One-Pager”
+  - next steps + calendar link + resource link (PDF)
+- Optional: PDF “Website Project One-Pager”
   - offer summary + pricing + contact info + QR to payment/booking
 
 ## 8) Reporting requirements
-Create dashboard: `RPT - Advertiser Weekly KPIs` including:
+Create dashboard: `RPT - Agency Weekly KPIs` including:
 - new leads created this week
 - leads contacted
 - appointments booked
@@ -205,13 +170,14 @@ Schedule report weekly and send to internal team.
 - Screenshots:
   - custom fields list
   - tags taxonomy evidence (smart list filters or contact record)
-  - workflows (scheduler + outreach + post-payment + vendor coordination)
+  - workflows (scheduler + outreach + post-payment + fulfillment coordination)
   - AI bot flow builder
   - pipelines showing at least 1 test opportunity in each pipeline
   - reporting dashboard + scheduled report
 - Test proofs:
-  - a test contact moving through: new → contacted → interested → payment link sent
+  - a test contact moving through: new → contacted → interested → payment link sent/booked
   - a test payment (in test mode if needed) triggering fulfillment workflow
+  - if using golf variant, note the substituted asset names
 
 ## 10) Grading rubric (100% required)
 See `19_Grading_Rubrics_and_Checklists.md`.

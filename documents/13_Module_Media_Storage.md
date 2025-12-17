@@ -58,10 +58,12 @@ A passing VA can:
 8) A “brand kit” should contain: **logos, icons, core images** ✅
 
 ## Lab assignment (evidence required)
-- Create folder tree
-- Upload 5 assets and rename consistently
-- Delete 1 asset and restore it
-- Provide screenshots: folder tree, trash, restored file
+**Goal:** Upload and share a file via Media Library.
+1) Open Media: Marketing/Settings → Media Library.
+2) Upload at least one sample file (image or PDF). Rename it with a clean, consistent filename (e.g., `ace-web-pricing.pdf`).
+3) Copy the public/share link for the file.
+4) Optional: Use the file in an email template or funnel (link or image insert).
+Evidence: Screenshot of the Media Library with the uploaded file visible, plus the copied link pasted in your submission (or shown in the screenshot). Optional extra screenshot if you inserted it in an email/page. Rubric: Pass if a file is uploaded, named cleanly, and the share link is captured.
 
 ## Relatable metaphor — “Warehouse Shelving”
 Media Storage is the warehouse shelving system. If every box is labeled and shelved, pickers (workflows/pages) can grab assets fast; if not, orders get delayed.
@@ -85,7 +87,7 @@ Media Storage is the warehouse shelving system. If every box is labeled and shel
 4. When should you archive vs delete? <details><summary>Answer</summary>Archive old versions to retain history unless there is a compliance reason to delete.</details>
 
 ## Practice labs + evidence rubric
-- **Lab: Asset kit build**
-  - Deliverable: Organized asset pack for the advertiser offer (hero image, logo, PDF, video if available).
-  - Evidence: Screenshots of folder structure, file details with copy links, and at least one page or workflow referencing the asset.
-  - Rubric: Pass if assets follow naming conventions, links function, and references are documented.
+- **Lab: Media upload + link**
+  - Deliverable: Uploaded asset with clean filename and share URL (optionally placed in an email/page).
+  - Evidence: Media Library screenshot and copied URL; optional screenshot where the asset is used.
+  - Rubric: Pass if the asset is visible, named cleanly, and the link is captured.

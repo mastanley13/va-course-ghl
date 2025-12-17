@@ -49,24 +49,20 @@ A passing VA can:
 - Page 11: Build two pipelines + move test opportunities
 
 ## Recommended pipeline patterns (for capstone)
-### Sales - Advertisers
+### Sales - Web Projects (default) / Sales - Advertisers (variant)
 Stages (example):
 1) New Lead
-2) Contacted
-3) Interested
-4) Proposal Sent
-5) Payment Link Sent
-6) Won (Ad Sold)
-7) Lost
+2) Demo Scheduled
+3) Proposal Sent
+4) Closed Won
+5) Closed Lost
 
-### Fulfillment - Sign Orders
+### Fulfillment - Projects (default) / Fulfillment - Sign Orders (variant)
 Stages (example):
-1) New Order
-2) Design Approved
-3) Sent to Vendor
-4) Ready for Pickup / Scheduled Dropoff
-5) Installed / Completed
-6) Closed
+1) Onboarded
+2) Work In Progress
+3) Completed
+4) Closed Won/Lost (outcomes via status)
 
 ## Quiz (sample bank)
 1) Opportunities represent: **deals tied to contacts** ✅  
@@ -81,13 +77,13 @@ Stages (example):
 10) Opportunities help reporting by: **tracking deal progress and values** ✅
 
 ## Lab assignment (evidence required)
-1) Create pipeline `Sales - Advertisers`
-2) Create pipeline `Fulfillment - Sign Orders`
-3) Create 2 test opportunities and move them through 3 stages.
-Evidence:
-- screenshots of both pipelines with stage names visible
-- screenshot of an opportunity card showing value + assigned owner
-Rubric: Pass if pipelines exist and stages match spec.
+**Goal:** Build Sales + Fulfillment pipelines for the Ace Web Agency scenario.
+1) Create pipelines: `Sales - Web Projects` and `Fulfillment - Projects` (use Advertisers/Sign Orders variant if keeping golf context).
+2) Add stages: Sales → New Lead, Demo Scheduled, Proposal Sent, Closed Won/Lost (via status). Fulfillment → Onboarded, Work In Progress, Completed (outcome via status).
+3) Enter test opportunities: Add at least one card per pipeline with value and contact (e.g., John Doe). Place one Sales card in New Lead and one directly in Proposal Sent.
+4) Move stages: Drag the Sales card through Demo Scheduled → Proposal Sent; set status Won or Lost. Move the Fulfillment card from Onboarded → Work In Progress and mark Completed.
+5) Stale trigger write-up: Identify one stage to watch (e.g., Proposal Sent > 7 days) and describe the Stale Opportunity trigger you would configure.
+Evidence: Screenshots of both pipeline boards with stages visible, one opportunity detail showing value/contact/status, and the written stale-trigger note. Rubric: Pass if pipelines/stages follow the scenario names, test cards exist in both, and the stale-trigger plan is present.
 
 ## Relatable metaphor — “Factory Assembly Line”
 Opportunities are the assembly line for deals. Each stage is a workstation; if parts pile up at one station, the whole line slows.
@@ -113,7 +109,7 @@ Opportunities are the assembly line for deals. Each stage is a workstation; if p
 5. What should happen after marking Lost? <details><summary>Answer</summary>Apply a lost reason, tag for reactivation sequence, and update reporting.</details>
 
 ## Practice labs + evidence rubric
-- **Lab: Unclog a pipeline**
-  - Deliverable: Clean pipeline with stage WIP limits and updated lost reasons.
-  - Evidence: Before/after screenshots of the board, plus one opportunity record showing tasks and notes.
-  - Rubric: Pass if stages are defined, cards are redistributed or closed appropriately, and evidence shows notes/tasks per SOP.
+- **Lab: Dual pipelines + stage movement**
+  - Deliverable: Sales + Fulfillment pipelines with test cards moved through stages and a documented stale-stage trigger.
+  - Evidence: Pipeline board screenshots, one opportunity detail with value/contact/status, and the stale-trigger description.
+  - Rubric: Pass if both pipelines exist with scenario names, cards are moved, and stale-stage monitoring is defined.

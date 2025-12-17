@@ -139,12 +139,13 @@ If you miss multiple questions in one area, revisit that section’s callouts an
 - Page 11: Setup “new sub-account baseline”
 
 ## Production SOP — New sub-account baseline
-1. [ ] Business Profile complete and correct — confirm identity, address, and sender details before anything else. ![Expected screenshot placeholder](./images/expected-screenshot.png)
-2. [ ] Timezone set correctly to prevent calendar and reporting confusion for every user. ![Expected screenshot placeholder](./images/expected-screenshot.png)
-3. [ ] Custom values created for business name, main phone/email, booking link, and website link so templates stay reusable. ![Expected screenshot placeholder](./images/expected-screenshot.png)
-4. [ ] Custom fields created for the capstone (`biz_type`, `biz_industry`, `ad_interest_level`, `consent_sms`, `lead_source`) before importing or building forms. ![Expected screenshot placeholder](./images/expected-screenshot.png)
-5. [ ] Staff user added with restricted permissions aligned to least privilege and onboarding standards. ![Expected screenshot placeholder](./images/expected-screenshot.png)
-6. [ ] Labs toggles enabled as required and documented with date/owner for future audits. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+1. [ ] Business Profile complete — business name (Ace Web Agency or scenario variant), address, main phone/email, and timezone visible in one screenshot. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+2. [ ] Timezone verified — confirm sub-account timezone (and note if calendar overrides are needed) to avoid reporting/booking drift. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+3. [ ] Custom Values created — `{{company.name}}`, `{{company.email}}`, `{{company.phone}}`, `{{booking_link}}`, `{{website_url}}` populated for reuse in pages/emails. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+4. [ ] Custom Fields created — contact fields such as `website_url`, `project_type`, `consent_sms`, and other scenario needs before forms/imports. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+5. [ ] Staff added with least privilege — add a test/non-admin staff account to demonstrate role assignment and permission scoping. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+6. [ ] Labs toggles reviewed — enable required UI/AI features, document what’s on/off, and capture the Labs screen. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+7. [ ] Data hygiene verified — note dedupe/duplicate-opportunity settings (Settings → Opportunities/Data Management) so imports and pipelines behave as expected. ![Expected screenshot placeholder](./images/expected-screenshot.png)
 
 > **You should see…** Each checklist item marked off with screenshots confirming the baseline is ready for builds.
 
@@ -163,14 +164,17 @@ If you miss multiple questions in one area, revisit that section’s callouts an
 12) The baseline should be done: **before building workflows/pages** ✅
 
 ## Lab assignment (evidence required)
-1. [ ] Complete the baseline SOP in a test sub-account, mirroring production-ready settings. ![Expected screenshot placeholder](./images/expected-screenshot.png)
-2. [ ] Capture Business Profile and timezone proof to verify reporting will align. ![Expected screenshot placeholder](./images/expected-screenshot.png)
-3. [ ] Capture Custom Values and Custom Fields lists to demonstrate reusable data scaffolding. ![Expected screenshot placeholder](./images/expected-screenshot.png)
-4. [ ] Capture Staff permissions and Labs toggles screens to validate access control and feature availability. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+Complete the baseline checklist in your trainee sub-account and attach proof for each item:
+1) Business Profile + Timezone: Screenshot showing business name/address/phone/email + timezone set.
+2) Custom Values: Screenshot of `{{company.name}}`, `{{company.email}}`, `{{company.phone}}`, `{{booking_link}}`, `{{website_url}}` (or scenario equivalents) filled in.
+3) Custom Fields: Screenshot of contact fields created for the scenario (`website_url`, `project_type`, `consent_sms`, etc.).
+4) Team: Screenshot of Settings → My Staff with at least one non-admin/test user showing limited role/permissions.
+5) Labs: Screenshot of Settings → Labs with required toggles ON/OFF documented.
+6) Data hygiene: Note dedupe/duplicate-opportunity settings (screenshot if available).
 
-> **You should see…** A complete set of screenshots mapped to each checklist item, showing the test sub-account matches the baseline standard.
+> **You should see…** One cohesive checklist with screenshots covering profile/timezone, values/fields, staff permissions, Labs toggles, and dedupe settings.
 
-Rubric: Pass if baseline matches checklist exactly.
+Rubric: Pass if every checklist item has evidence and the settings match the scenario naming + least-privilege standards.
 
 ## Relatable metaphor — “Engine Room and Circuit Breakers”
 Settings + Labs are the engine room. You flip breakers to power features and tune the machinery so the rest of the ship runs without sparks.
@@ -195,9 +199,9 @@ Settings + Labs are the engine room. You flip breakers to power features and tun
 4. What should be captured after toggling a Lab on? <details><summary>Answer</summary>Screenshot, date/time, who enabled it, and a rollback note.</details>
 
 ## Practice labs + evidence rubric
-1. [ ] Lab: Settings stabilization — work through the checklist to confirm each critical area is configured and documented. ![Expected screenshot placeholder](./images/expected-screenshot.png)
-2. [ ] Deliverable: Submit the completed settings checklist with proof for each area, including Labs toggles and who enabled them. ![Expected screenshot placeholder](./images/expected-screenshot.png)
-3. [ ] Evidence: Capture screenshots for timezone, domains/senders, phone/SMS, integrations, and the Labs page, noting any deviations. ![Expected screenshot placeholder](./images/expected-screenshot.png)
-4. [ ] Rubric confirmation: Ensure all critical settings meet the standard, Labs toggles are recorded, and evidence is time-stamped. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+1. [ ] Lab: Settings stabilization — complete and submit the six-item checklist (profile/timezone, values, fields, staff, Labs, dedupe) with screenshots. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+2. [ ] Deliverable: Annotated checklist showing who enabled Labs, what toggles are on/off, and any deviations from standards. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+3. [ ] Evidence: Screenshots for profile/timezone, custom values/fields, staff permissions, Labs, and dedupe/duplicate-opportunity settings. ![Expected screenshot placeholder](./images/expected-screenshot.png)
+4. [ ] Rubric confirmation: Pass if every item has proof, least-privilege is demonstrated, and Labs/toggles are documented for rollback. ![Expected screenshot placeholder](./images/expected-screenshot.png)
 
-> **You should see…** A fully documented lab package with screenshots and timestamps that align to the stabilization rubric.
+> **You should see…** A fully documented baseline package ready for the Capstone handoff.

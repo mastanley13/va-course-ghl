@@ -71,12 +71,14 @@ HighLevel requires a HighLevel Booking Calendar as the foundation for scheduling
 8) Calendar links should be tested in: **incognito / logged-out view** ✅
 
 ## Lab assignment (evidence required)
-- Create a calendar named: `Vendor - Pickup Scheduling`
-- Provide:
-  - booking link
-  - screenshot of availability settings
-  - screenshot of reminder configuration
-Rubric: Pass if calendar exists, settings match instructions, and link works.
+**Goal:** Build the **Website Consultation Calendar** for Ace Web Agency.
+1) Navigate to Calendars → Calendar Settings → **Create New Calendar** (Single User).
+2) Configure basics: Name `Website Consultation Calendar`, 15-minute duration, slot interval 30 minutes, description “15-minute Zoom call to discuss your website needs.”
+3) Availability: Set sample hours (e.g., Mon/Wed 9am–12pm), add buffer (e.g., 5 min) and minimum notice (e.g., 1 hour).
+4) Assign owner: Ensure your user is the calendar owner; set location to Zoom/Phone/Meet as available.
+5) Save + share: Save the calendar, copy the booking link, and open it in a new tab; optionally book a test slot.
+6) Evidence: (a) Calendar Settings list showing the new calendar, (b) booking page screenshot with available slots, (c) if booked, the appointment visible in Calendar/Appointments.
+Rubric: Pass if the calendar exists with availability/buffers set, booking link works/preview is shown, and owner is assigned.
 
 ## Relatable metaphor — “Restaurant Reservation Book”
 Calendars are the reservation book and seating chart for the business. If the book is sloppy, guests double-book or wait forever; if it’s clean, service runs smooth and the kitchen (teams) stay in sync.
@@ -102,7 +104,7 @@ Calendars are the reservation book and seating chart for the business. If the bo
 5. What’s the first place to check if times look off by a day? <details><summary>Answer</summary>Sub-account timezone and then the calendar-specific timezone override.</details>
 
 ## Practice labs + evidence rubric
-- **Lab: Build + test a calendar**
-  - Deliverable: New calendar configured with buffers, min notice, and pipeline mapping.
-  - Evidence: Screenshot of settings, plus a test booking record and resulting pipeline stage update.
-  - Rubric: Pass if booking honors buffer/min notice, lands in the correct pipeline stage, and reminders are demonstrated or documented.
+- **Lab: Build + test a consultation calendar**
+  - Deliverable: `Website Consultation Calendar` with availability, buffers, min notice, and owner assignment.
+  - Evidence: Calendar settings screenshot, booking page view with slots, and (optional) a test appointment record.
+  - Rubric: Pass if the booking page is reachable, settings show buffers/min notice, and ownership/timezone are correct.

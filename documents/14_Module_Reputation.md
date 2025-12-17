@@ -58,9 +58,12 @@ A passing VA can:
 10) Widget QA requires: **desktop + mobile checks** ✅
 
 ## Lab assignment (evidence required)
-- Create widget: `WGT - Reviews - Homepage`
-- Embed on a funnel/website page
-- Screenshot on desktop and mobile view
+**Goal:** Simulate a review request.
+1) Reputation → Requests: send a review request to a test contact (yourself). If sending isn’t possible, fill out the request form and capture the configured message. Screenshot the sent request/list entry.
+2) Reviews view: If manual review entry is available, add a dummy 5-star review (John Doe, “Great service!”); if not available, note the limitation and screenshot the empty Reviews dashboard to show location.
+3) (Optional) Review widget: Locate the widget/embed code and note where you’d place it on a page; screenshot the widget settings if visible.
+4) Reflection: Answer “Why respond to reviews promptly?” in one sentence (expected: engagement/SEO/trust).
+Evidence: Screenshot of the request initiation/list, Reviews dashboard or dummy review, optional widget settings, and the reflection sentence. Rubric: Pass if a request flow is demonstrated and the reflection is present; optional widget is a bonus.
 
 ## Relatable metaphor — “Public Scoreboard”
 Reputation is the public scoreboard. Good plays (reviews) should be showcased, and bad plays need quick coaching and response.
@@ -85,7 +88,7 @@ Reputation is the public scoreboard. Good plays (reviews) should be showcased, a
 4. How do you prevent duplicate requests? <details><summary>Answer</summary>Use tags/stages to mark “review requested” and filter future sends.</details>
 
 ## Practice labs + evidence rubric
-- **Lab: Review-ready page**
-  - Deliverable: Connected reputation sources, a review request template, and an embedded widget on a test page.
-  - Evidence: Screenshots of connections, template, sent test request, and live widget on page.
-  - Rubric: Pass if connections are live, widget renders, and low-score handling is documented.
+- **Lab: Review request simulation**
+  - Deliverable: Sent (or configured) review request with Reviews dashboard/widget location noted.
+  - Evidence: Request screenshot, Reviews page or dummy review, optional widget settings, and the prompt-response reflection.
+  - Rubric: Pass if the request flow is shown and the reflection explains why fast responses matter; widget evidence is optional but encouraged.

@@ -56,10 +56,12 @@ A passing VA can:
 10) A strong report is: **actionable, not just numbers** ✅
 
 ## Lab assignment (evidence required)
-- Create a dashboard: `RPT - Advertiser Weekly KPIs`
-- Include at least: leads created, appointments booked, won deals, payments collected (if available)
-- Schedule a report (weekly)
-Evidence: screenshots of dashboard widgets and report schedule settings
+**Goal:** Navigate and interpret at least one report.
+1) Open Reporting: Choose one subsection (e.g., Funnel/Site Analytics for your landing page, Appointment Report, or Pipeline Performance).
+2) Apply a filter or date range change to see how the view updates (even if data is sparse).
+3) Capture one insight: e.g., “1 appointment booked in last 7 days” or “2 visits / 1 conversion = 50% on the funnel.”
+4) Optional: Note which report you’d use to assess sales team performance (e.g., Agent Report/Pipeline).
+Evidence: Screenshot of the Reporting screen you viewed (graph/table visible) and a short written insight. Rubric: Pass if a report view is shown and an insight is articulated, even with test data.
 
 ## Relatable metaphor — “Flight Instruments”
 Reporting is the cockpit instrument panel. It tells you altitude, speed, and heading so you can correct course before turbulence becomes a crisis.
@@ -84,7 +86,7 @@ Reporting is the cockpit instrument panel. It tells you altitude, speed, and hea
 4. Which tags help with source-level reporting? <details><summary>Answer</summary>`src:` and `utm_` fields on contacts/opportunities.</details>
 
 ## Practice labs + evidence rubric
-- **Lab: Signal-trace report**
-  - Deliverable: Dashboard with three widgets (appointments, pipeline value, payments) plus a saved report filtered by source and date.
-  - Evidence: Screenshots of widget settings, saved report filters, and a drill-down record view.
-  - Rubric: Pass if metrics align (no timezone errors), filters are documented, and drill-down matches the top-level numbers.
+- **Lab: Report exploration**
+  - Deliverable: One reporting view explored with a meaningful observation.
+  - Evidence: Reporting screenshot (chart/table) and a written insight; optional note on which report measures sales team performance.
+  - Rubric: Pass if a valid report screen is captured and the observation aligns with the view shown.
