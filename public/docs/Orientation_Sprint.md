@@ -1,27 +1,38 @@
-# Orientation Sprint
+# Orientation Sprint (Getting Comfortable)
 
-Welcome to the Orientation Sprint. Complete these three micro-lessons and pass the 5-question quiz with a perfect score to unlock every core module.
+Welcome! Before we dive into the deep end, let's just get comfortable in the pool.
+Your goal right now is simple: **Log in and look around.**
 
-## Micro-lesson: Navigation map
-- Trace the fastest path to common destinations (e.g., Workflows > Triggers, Sites > Forms, Payments > Products).
-- Bookmark the platform map you build during this sprint; reuse it for client handoffs.
-- Use the search bar and breadcrumb trails to validate you are in the correct sub-account before making changes.
+---
 
-## Micro-lesson: Evidence rules
-- Capture evidence as you work, not afterward.
-- Pair each configuration change with a proof artifact: annotated screenshot, short Loom clip, or exported setting.
-- Name evidence files with the pattern `client-feature-step#-result` so reviewers can audit quickly.
+## 1. The Map (finding your way)
+GHL has a sidebar on the left. Think of it like a smartphone menu.
+*   **Conversations:** Your text/email inbox.
+*   **Calendars:** Your appointment book.
+*   **Contacts:** Your address book.
+*   **Sites:** Your website builder.
+*   **Automation:** Your robot builders.
 
-## Micro-lesson: Safe automation defaults
-- Import or clone workflows in a paused state and label the launch criteria in the description.
-- Add safety checks: owner notifications, volume caps, and “stop after conversion” rules.
-- Log every schedule change (who, what, when) inside the workflow notes before activation.
+**Action:** Click each one just to see what it looks like. Don't worry about breaking anything.
 
-## Orientation deliverables
-- Score 100% on the Orientation Sprint quiz to unlock Modules 1-16.
-- Add at least one navigation path, one evidence example, and one safety rule to your lab notes.
-- Download the printable runbook with the first 10 required screenshots from the resources below.
+---
 
-## Resources
-- [Orientation Sprint Runbook (PDF)](/docs/orientation-sprint-runbook.pdf)
-- Course overview, lab notes, and quiz appear directly beneath this page in the course player.
+## 2. Show Your Work (Evidence)
+As a VA, trust is everything. The best way to build trust is to **show your work**.
+When you finish a task, take a quick screenshot.
+*   *Bad Report:* "I fixed the calendar."
+*   *Good Report:* "I fixed the calendar. Here is a screenshot of the new settings."
+
+---
+
+## 3. Think Before You Automate
+Automation is powerful, but it can be dangerous if we aren't careful.
+*   **Rule #1:** Always send a "test email" to yourself before sending it to 1,000 people.
+*   **Rule #2:** If you are confused, ask! It is better to ask and get it right than to guess and send a broken link.
+
+---
+
+## 4. Your First Mission
+You are ready to start.
+Click the **"Complete & Continue"** button below to officially start Module 1: The Dashboard.
+We are glad you are here!

@@ -1,68 +1,44 @@
-# Course Overview — Curriculum Map + Standards (December 2025)
+# Course Overview (Welcome to the Team)
 
-## Course Goal
-Train and certify Technical VAs to build and operate **production-grade GoHighLevel sub-accounts**, with emphasis on:
-- accurate navigation + configuration
-- automation reliability
-- AI-assisted personalization and qualification
-- payment + fulfillment workflows
-- measurable reporting
+## 1. What the heck is "HighLevel"?
+Imagine if **Salesforce**, **Mailchimp**, **Calendly**, **WordPress**, and **Zapier** all had a baby. That is HighLevel (GHL).
+It is an "All-In-One" Operating System for businesses.
+*   **Old Way:** A business pays for 10 different tools and tries to glue them together.
+*   **New Way:** They use HighLevel. One login. One bill. Everything connects.
 
-## Phases
-### Phase 0 — Orientation (no quiz)
-- How the course works (100% rule, evidence requirements)
-- What “production grade” means: naming conventions, clean data, testing
+## 2. Your Role as a "Technical VA"
+You are not just a data entry clerk. You are the **Engine Mechanic**.
+Business owners are busy selling. They need YOU to:
+1.  **Build the Machine:** Set up the calendars, funnels, and automations.
+2.  **Keep it Running:** Fix broken links, reply to support tickets, and manage leads.
+3.  **Make it Better:** Suggest new automations to save time.
 
-### Phase 1 — Foundations (core setup)
-1) **Settings + Labs**
-2) **Dashboard** (orientation + shortcuts)
-3) **Media Storage** (assets organization standard)
+---
 
-### Phase 2 — Core CRM + Operations
-4) **Contacts**
-5) **Conversations**
-6) **Calendars**
-7) **Opportunities**
+## 3. The Roadmap (How we will learn)
+We don't just watch videos here. We **build**.
+The course is broken down into simple phases to take you from "Newbie" to "Architect".
 
-### Phase 3 — Revenue + Growth
-8) **Payments**
-9) **Sites** (Funnels/Websites/Forms/Surveys/Chat Widget)
-10) **Reputation** (widgets + review requests)
+### Phase 1: The Basics (Setting up the Shop)
+*   **Media Storage:** Where do we put images?
+*   **Contacts:** Who are we talking to?
+*   **Conversations:** How do we text/email them?
 
-### Phase 4 — Automation + AI (the “power layer”)
-11) **Automation (Workflows)** (including Scheduler Trigger)
-12) **AI Agents** (Conversation AI + Agent Studio)
-13) **Marketing** (Campaigns/Templates/Trigger Links/Ad Manager entry points)
-14) **Reporting** (dashboards + custom reports + attribution)
+### Phase 2: Operations (Making Money)
+*   **Calendars:** Booking appointments.
+*   **Payments:** Getting paid (Invoices/Products).
+*   **Opportunities:** Tracking the sales deals.
 
-### Phase 5 — Extensibility
-15) **App Marketplace** (install/connect apps; workflow triggers/actions; permissions)
+### Phase 3: The "Wow" Stuff (Automation & Sites)
+*   **Sites:** Building Funnels and Websites.
+*   **Automations:** The "Magic" engine that communicates while you sleep.
+*   **AI Agents:** Setting up bots to talk for you.
 
-### Phase 6 — Capstone
-16) **Capstone Build**: Golf Advertising Partner Acquisition + Fulfillment System
+---
 
-## Standard Module Format (for the IDE)
-Each module becomes a linear sequence:
-- Section A: What it is + why it matters
-- Section B: UI map + objects (what data exists)
-- Section C: Production SOP (exact build actions)
-- Section D: QA + troubleshooting
-- Section E: Quiz (100% to pass)
-- Section F: Lab assignment + evidence submission (optional graded)
-- Completion: auto-unlock next module
+## 4. How to Succeed
+*   **Don't Panic:** GHL is huge. Nobody knows 100% of it. Just focus on the module in front of you.
+*   **Click Everything:** You can't break the "Lab" account. Try things out!
+*   **Ask Questions:** If an automation doesn't work, that's good! Figuring out *why* is how you learn.
 
-## Global Standards (must be consistent across all builds)
-### Naming Conventions
-- Workflows: `[DEPT] - [Purpose] - [Trigger] - v#` (e.g., `ACQ - Outbound Prospecting - Scheduler Daily - v1`)
-- Tags: `stage:`, `src:`, `seg:`, `intent:`, `offer:`, `status:`
-- Custom fields: prefix by object and purpose (`biz_industry`, `ad_budget`, `consent_sms`, etc.)
-- Calendars: `[Team/Use] - [Type]` (e.g., `Vendor - Pickup Scheduling`)
-- Pipelines: `Sales - Advertisers`, `Fulfillment - Sign Orders`
-
-### Evidence Rules
-Every lab/capstone step must be verifiable by:
-- screenshot OR export OR link to live asset in the sub-account (test environment)
-
-### Safety/Compliance
-- Do not automate SMS/calls to cold lists without documented consent.
-- All sequences must have stop conditions (“Stop on Response,” DND windows, max touches).
+Let's get started with your Orientation.

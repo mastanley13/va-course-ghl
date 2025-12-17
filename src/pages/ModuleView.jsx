@@ -46,10 +46,11 @@ const ModuleView = () => {
     const prevModule = courseModules[moduleIndex - 1];
     const moduleProgress = getModuleProgress(moduleId);
     const modulePercent = getModuleProgressPercent(moduleId);
-    const canComplete = moduleProgress.quizPassed;
+    // Allow completion if quiz passed OR if it's an intro/orientation module (no quiz required)
+    const canComplete = moduleProgress.quizPassed || module.type === 'intro' || module.type === 'orientation';
     const orientationProgress = getModuleProgress(ORIENTATION_MODULE_ID);
-    const orientationCleared =
-        orientationProgress.quizScore === 100 && orientationProgress.quizPassed;
+    // Orientation is cleared if it is marked completed (manual or quiz)
+    const orientationCleared = orientationProgress.completed || (orientationProgress.quizScore === 100 && orientationProgress.quizPassed);
     const blockedByOrientation =
         module &&
         module.id !== ORIENTATION_MODULE_ID &&
