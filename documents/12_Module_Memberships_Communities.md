@@ -53,10 +53,13 @@ A passing VA can:
 8) Best practice for onboarding: **welcome email + clear next steps** ✅
 
 ## Lab assignment (evidence required)
-Create:
-- Course: `Partner Onboarding - Advertisers`
-- 2 categories, 3 lessons placeholders
-Evidence: screenshots of course structure and an offer setup screen.
+**Goal:** Create a sample course/offer (and optional community) for Ace Web Agency.
+1) Course: Sites → Memberships → Products → Create Product `Web Design Basics Course`; add at least one lesson (e.g., Welcome) with text or a video link; publish the lesson. Screenshot the course/lesson list.
+2) Offer: Memberships → Offers → New Offer `Web Design Basics (Free)` (or set a price) and attach the course. Screenshot the offer detail showing the attached product/price.
+3) Community (optional if available): Create `Web Agency Students` community and add a welcome post. Screenshot the community view.
+4) Member preview: Copy the offer signup link, open it in an incognito tab, and preview the student view of the course. Screenshot the learner view if possible.
+5) Reflection: List two use-cases for Memberships in GHL (e.g., selling courses, client onboarding portal, community hub).
+Evidence: Course/lesson screenshot, offer screenshot, optional community/post, and the use-case note. Rubric: Pass if the course and offer exist with a published lesson and the use-case list is provided.
 
 ## Relatable metaphor — “Private Clubhouse”
 Memberships and Communities are the clubhouse: members get keys, see curated rooms, and follow house rules to keep the vibe strong.
@@ -81,7 +84,7 @@ Memberships and Communities are the clubhouse: members get keys, see curated roo
 4. What tag could you add to community-only members? <details><summary>Answer</summary>`seg:community-only` to separate from paying students.</details>
 
 ## Practice labs + evidence rubric
-- **Lab: Member onboarding path**
-  - Deliverable: Course + offer + welcome automation that shares login and community link.
-  - Evidence: Screenshots of course structure, offer access, community post, and a test member login preview.
-  - Rubric: Pass if access works, welcome path is documented, and community permissions reflect the intended roles.
+- **Lab: Course + offer preview**
+  - Deliverable: Published sample course with offer (free or paid) and optional community welcome post.
+  - Evidence: Course/lesson list, offer attachment screenshot, community screenshot (if created), and learner preview if possible.
+  - Rubric: Pass if the course is published with an offer attached and the member experience is demonstrated or explained.

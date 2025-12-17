@@ -83,13 +83,13 @@ Every inbound conversation must end with ONE of:
 10) If messages are sending at 2am, what should you check? **Workflow timing / quiet hours** ✅
 
 ## Lab assignment (evidence required)
-- Create a triage board (your own rubric):
-  - label 5 conversation outcomes
-- Provide screenshots of:
-  1) inbox filters/tags
-  2) a conversation thread with an internal comment
-  3) a snippet/template edit screen (if available)
-Rubric: Pass if the VA demonstrates filter use, internal notes, and correct outcome mapping.
+**Goal:** Inbox Zero + Templates for the Ace Web Agency scenario.
+1) Unified inbox tour: Open Conversations, show filters (Unread/Recents) and channel icons in one screenshot.
+2) Create a template: Navigate to Templates, click **Add Template** → choose Text or Email → name it `FAQs – Directions` (or similar), include merge fields like `{{contact.first_name}}`, and save. Screenshot the Templates list showing the new entry.
+3) Simulate a conversation: Add yourself as a contact (“Test Lead”), send a test SMS/email, and mark the thread unread/starred; screenshot the inbox with an Unread filter applied.
+4) Use the template: Reply in the test thread using the template you created (show the sent message or selection). If SMS/email sending isn’t available, capture the template insertion step in the composer.
+5) Triage drill write-up: In your submission, list the triage sequence for the module’s scenario (3 mixed-channel unread messages) in your own words, prioritizing SMS first, then others.
+Evidence: Template list screenshot, inbox screenshot with filter, conversation showing template use/internal note if applicable, and the written triage plan. Rubric: Pass if template exists with merge field, filtering/unread handling is demonstrated, and the triage order matches best practices.
 
 ## Relatable metaphor — “Hotel Front Desk”
 Conversations is the hotel front desk: every guest question, complaint, or booking request lands here first. The goal is to route each guest to the right service quickly without losing their luggage (context).
@@ -114,7 +114,7 @@ Conversations is the hotel front desk: every guest question, complaint, or booki
 4. Which module do you update after confirming an appointment by SMS? <details><summary>Answer</summary>Calendars for the booking and Opportunities for the stage change.</details>
 
 ## Practice labs + evidence rubric
-- **Lab: Triage drill**
-  - Deliverable: Clear five mixed-channel messages to defined outcomes using filters, tags, and assignments.
-  - Evidence: Screenshots of filters used, one conversation with an internal note, and the final outcome tags/stages applied.
-  - Rubric: Pass if every thread has a documented outcome, internal notes are present for escalations, and channel-appropriate replies are shown.
+- **Lab: Inbox Zero + Template practice**
+  - Deliverable: Template created, test thread triaged with unread/star, and written triage order for the provided scenario.
+  - Evidence: Screenshots of template list entry, inbox with filter applied, and the reply showing template use (or composer with template inserted), plus the triage write-up.
+  - Rubric: Pass if the template uses personalization, inbox filters are shown, and the triage ordering aligns to SMS-first prioritization.

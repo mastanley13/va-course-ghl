@@ -82,13 +82,13 @@ A passing VA can:
 12) A failed payment should: **trigger internal alert and follow-up** ✅
 
 ## Lab assignment (evidence required)
-1) Create product + price
-2) Create payment link
-3) Provide:
-  - screenshot of product setup
-  - screenshot of payment link settings
-  - test checkout screenshot (use test mode if available)
-Rubric: Pass if link works and configuration matches spec.
+**Goal:** Payments setup for Ace Web Agency (test mode allowed).
+1) Connect Stripe if possible (Payments → Integrations). If unavailable, note “Gateway not connected – using test instructions.”
+2) Create a product: Payments → Products → `Website Design Package` (one-time ~$500) with a short description. Screenshot the Products list showing name/price.
+3) Generate a payment link: Payments → Payment Links → Create New → select the product → save. Screenshot the Payment Links list/settings and open the checkout page for a screenshot (test card OK).
+4) Optional invoice: Payments → Invoices → New Invoice → add the product and a test contact; save/send; screenshot the invoice preview/list entry.
+5) Refund readiness: In notes, state where the Refund button lives (Payments → Transactions, three-dot menu) and how you’d pair it with a workflow trigger `Payment Refunded` → update opportunity to Lost.
+Evidence: Product screenshot, payment link + checkout screenshot, optional invoice, and the refund workflow note. Rubric: Pass if product and link align, checkout is shown, and the refund handling note is present.
 
 ## Relatable metaphor — “Cashier + Safe”
 Payments is both the cashier collecting money and the safe keeping records. If the drawer doesn’t balance, everything else in the business feels off.
@@ -114,7 +114,7 @@ Payments is both the cashier collecting money and the safe keeping records. If t
 5. When should you issue a refund vs a credit? <details><summary>Answer</summary>Refund when reversing a charge; credit when applying balance to future service with accounting approval.</details>
 
 ## Practice labs + evidence rubric
-- **Lab: Payment flow QA**
-  - Deliverable: Product + payment link + successful sandbox transaction.
-  - Evidence: Screenshots of product setup, link page, and transaction record showing success; note any error handling tested.
-  - Rubric: Pass if the payment posts correctly, the receipt/notifications are demonstrated, and opportunity/pipeline updates are noted.
+- **Lab: Product + payment link + refund plan**
+  - Deliverable: Product, payment link, checkout preview, and refund workflow note (optional invoice).
+  - Evidence: Product and payment link screenshots, checkout page capture, optional invoice, and written refund-handling plan.
+  - Rubric: Pass if the product/link pairing is clear, checkout is reachable (test mode acceptable), and refund steps are documented.

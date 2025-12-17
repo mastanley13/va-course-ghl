@@ -26,6 +26,12 @@ Train and certify Technical VAs to build and operate **production-grade GoHighLe
 ### Phase 0 — Orientation (no quiz)
 - How the course works (100% rule, evidence requirements)
 - What “production grade” means: naming conventions, clean data, testing
+- **Sub-account onboarding (step-by-step):**
+  1) Check your inbox for the GoHighLevel invite to your named sub-account and click the link.
+  2) Activate and log in by setting your password (use “Forgot password” if needed).
+  3) Confirm you are inside your sub-account (your name/sub-account shows in the top menu); reference the included dashboard screenshot for what “logged in” looks like.
+  4) Understand purpose: every lab will be performed in this sandbox sub-account, and you must capture screenshots as evidence.
+  5) Quick FAQ: If you don’t see the invite, check spam/filters or ask to resend; if you use an existing GHL account, switch to the trainee sub-account from the top menu before proceeding.
 
 
 
@@ -55,7 +61,13 @@ Train and certify Technical VAs to build and operate **production-grade GoHighLe
 15) **App Marketplace** (install/connect apps; workflow triggers/actions; permissions)
 
 ### Phase 6 — Capstone
-16) **Capstone Build**: Golf Advertising Partner Acquisition + Fulfillment System
+16) **Capstone Build**: Ace Web Agency Implementation (default) — Golf Advertising variant available if cohort started that track
+
+## Unified scenario for all labs
+- Default training scenario: **Ace Web Agency** (a small web design agency building a full HighLevel account for lead capture, consultations, projects, and payments). All lab naming, assets, and examples use this scenario for consistency.
+- Alternative (advanced/optional): Keep the original Golf Advertising context for cohorts that already started it; instructions note how to swap names/labels if sticking with golf signage.
+- Rationale: One scenario keeps labs cumulative—Contacts feed Opportunities, Calendars tie to Sites/Forms, Payments connect to Offers and Workflows, and Reporting reads the same business signals end-to-end.
+- Capstone alignment: The final build is the completed version of the same scenario; by the end of Module 16, the sub-account is a working instance ready for the Capstone review.
 
 ## Standard Module Format (for the IDE)
 Each module becomes a linear sequence:
@@ -71,9 +83,9 @@ Each module becomes a linear sequence:
 ### Naming Conventions
 - Workflows: `[DEPT] - [Purpose] - [Trigger] - v#` (e.g., `ACQ - Outbound Prospecting - Scheduler Daily - v1`)
 - Tags: `stage:`, `src:`, `seg:`, `intent:`, `offer:`, `status:`
-- Custom fields: prefix by object and purpose (`biz_industry`, `ad_budget`, `consent_sms`, etc.)
-- Calendars: `[Team/Use] - [Type]` (e.g., `Vendor - Pickup Scheduling`)
-- Pipelines: `Sales - Advertisers`, `Fulfillment - Sign Orders`
+- Custom fields: prefix by object and purpose (`website_url`, `project_type`, `consent_sms`, etc.) — use golf-specific prefixes if on the legacy track.
+- Calendars: `[Team/Use] - [Type]` (e.g., `Sales - Website Consultation`; legacy: `Vendor - Pickup Scheduling`)
+- Pipelines: `Sales - Web Projects`, `Fulfillment - Projects` (legacy: `Sales - Advertisers`, `Fulfillment - Sign Orders`)
 
 ### Evidence Rules
 Every lab/capstone step must be verifiable by:

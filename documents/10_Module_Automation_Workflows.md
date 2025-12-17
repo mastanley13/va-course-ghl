@@ -152,18 +152,11 @@ A passing VA can:
    - Auto-feedback: Revisit [Section F — AI in workflows](#section-f--ai-in-workflows) for safe AI configuration patterns.
 
 ## Lab assignment (evidence required)
-Workflow A: `OPS - Daily Prospect Build - Scheduler - v1`
-- Trigger: Scheduler daily (weekday only)
-- Action: outbound webhook OR create task “Build today’s list” (if no integration)
-
-Workflow B: `ACQ - Outbound Prospecting - New Contact Tag - v1`
-- Trigger: contact tagged `stage:new`
-- Actions: email → wait → SMS (only if consent) → voicemail drop → stop on response
-
-Evidence:
-- screenshots of both workflow canvases
-- screenshot of settings tab showing quiet hours + stop-on-response
-Rubric: Pass if workflows match spec and include stop conditions.
+**Goal:** Build a nurture workflow (and optional stale-deal alert) for Ace Web Agency.
+1) Workflow A – Consultation Nurture: Create Workflow → Trigger = Appointment Status → Appointment Scheduled (filter Calendar = `Website Consultation Calendar`). Actions: send confirmation email (use your Welcome Email or write one), Wait 1 day, send follow-up SMS (if messaging enabled), Add tag `consultation_done`, and add a Manual Call/Task step if no reply after 2 days. Publish.
+2) Test/Enroll: Manually add a contact or book a test appointment to trigger it; if messaging isn’t available, still publish and note the limitation. Capture the workflow canvas and (if triggered) execution log or received email.
+3) Workflow B – Stale Opportunity alert (optional but recommended): Trigger = Stale Opportunity (Pipeline `Sales - Web Projects`, Stage `Proposal Sent`, Days = 7). Action: internal notification/email to owner: “{{contact.name}} stuck 7+ days in Proposal Sent.” Publish. Screenshot trigger config.
+Evidence: Workflow canvas for the nurture sequence (showing trigger + actions), any execution proof (log/email/SMS if available), and screenshot/description of the stale-opportunity trigger. Rubric: Pass if the nurture workflow follows the specified actions and is published, and the stale alert is documented (or clearly noted as pending if feature unavailable).
 
 ## Rubric evidence gallery (pass vs. common fail)
 | Learning objective focus | Pass example screenshot | Common fail screenshot |
@@ -196,7 +189,7 @@ Automation is the robot arm on the production line: it performs repeatable tasks
 5. How do you handle missing data needed for an action? <details><summary>Answer</summary>Branch to a task creation or human review step instead of forcing the action.</details>
 
 ## Practice labs + evidence rubric
-- **Lab: Safety-first workflow**
-  - Deliverable: Workflow with clear trigger, safety checks, and stop conditions.
-  - Evidence: Screenshots of the workflow, enrollment log, and a test contact timeline showing each action.
-  - Rubric: Pass if steps execute correctly, stop conditions work, and evidence shows mapping to pipeline/tags.
+- **Lab: Consultation nurture + stale alert**
+  - Deliverable: Published nurture workflow triggered by Appointment Scheduled with email/wait/SMS/tag/manual step, plus a documented stale-opportunity alert.
+  - Evidence: Canvas screenshots, execution/log or message proof if triggered, and the stale trigger configuration/description.
+  - Rubric: Pass if the nurture sequence matches steps, is published, and stale-stage monitoring is planned or configured.

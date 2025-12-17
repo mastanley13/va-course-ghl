@@ -83,16 +83,12 @@ A passing VA can:
 12) Premium AI steps should be used: **intentionally and measured** ✅
 
 ## Lab assignment (evidence required)
-Build bot: `AI - Advertiser Qualifier`
-- Captures: business type, interest level, budget range
-- Routes:
-  - Interested → send payment link or booking link
-  - Not interested → tag and stop
-- Provide screenshots:
-  - bot goals screen
-  - flow builder with actions visible
-  - test conversation transcript (screenshot)
-Rubric: Pass if bot captures required fields and routes correctly.
+**Goal:** Enable and test a simple AI Agent for Ace Web Agency.
+1) Enable Labs if needed: Settings → Labs → toggle on Conversation/AI features (screenshot the Labs page if you enable anything).
+2) Create agent: AI Agents → New Agent → name `Website FAQ Bot`; add 2–3 Q&A/knowledge items (services offered, consultation booking link) and save/activate.
+3) Test: Use the built-in test chat; ask “What services do you offer?” and capture the bot’s reply. If testing isn’t available, note the limitation and screenshot the agent summary page.
+4) Routing note: In your submission, answer “Where do you toggle AI features on/off?” (expected: Settings → Labs or Agency-level AI settings) and briefly describe how you would route incoming chats to the AI (e.g., enable Conversation AI or use a Workflow with Ask AI).
+Evidence: Labs toggle (if used), agent settings page, and a test conversation screenshot with the AI response; plus the routing/toggle note. Rubric: Pass if an agent exists, a response is shown/attempted, and the routing answer is provided.
 
 ## Relatable metaphor — “Concierge with a Script”
 AI Agents are like a concierge who follows a vetted script. They can greet guests, answer common questions, and know exactly when to call a human manager.
@@ -117,7 +113,7 @@ AI Agents are like a concierge who follows a vetted script. They can greet guest
 4. How do you avoid hallucinated promises? <details><summary>Answer</summary>Provide explicit “never promise” statements and require confirmation before quoting custom terms.</details>
 
 ## Practice labs + evidence rubric
-- **Lab: Guardrail an agent**
-  - Deliverable: Agent prompt with explicit scope, escalation rules, and a tested transcript.
-  - Evidence: Screenshots of prompt settings, escalation configuration, and at least one test conversation with tags/notes.
-  - Rubric: Pass if the agent answers within scope, escalates appropriately, and evidence shows the configured guardrails.
+- **Lab: Launch + test an AI bot**
+  - Deliverable: `Website FAQ Bot` created and tested with a sample question.
+  - Evidence: Agent settings screenshot, Labs toggle if applicable, and a test transcript showing the AI reply; plus a short routing/toggle note.
+  - Rubric: Pass if the agent is active, a response is captured or limitation noted, and routing/toggle awareness is documented.

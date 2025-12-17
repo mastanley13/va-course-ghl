@@ -70,11 +70,11 @@ A passing VA can:
 10) Campaigns are best for: **broadcast/batch marketing (use-case dependent)** ✅
 
 ## Lab assignment (evidence required)
-1) Create email template: `TPL - Advertiser Intro`
-2) Create email template: `TPL - Follow-Up #1`
-3) Create trigger link: `TL - Advertiser Offer Page`
-4) Send test email to yourself; click link; screenshot contact activity showing link click.
-Rubric: Pass if click is recorded and template content is clean and branded.
+**Goal:** Social post + email template for Ace Web Agency.
+1) Social Planner: Connect a social account if possible (or use draft mode). Create a scheduled post for tomorrow with caption like “Hello from Ace Web Agency! 🚀 …” and optional image. Screenshot the Social Planner calendar/list showing the scheduled post.
+2) Email template: Marketing → Emails/Templates → create `Welcome Email` using the builder; include greeting, brief services blurb, and CTA. Screenshot the template preview/editor.
+3) Quick reflection: In one sentence list at least two marketing features you would use for lead generation (e.g., Social Planner, Email Campaigns, Funnel builder, Ads integration).
+Evidence: Social post scheduled view, email template preview, and the feature list sentence. Rubric: Pass if a scheduled/drafted post is visible, the email template has real content, and the feature list mentions at least two correct tools.
 
 ## Relatable metaphor — “Broadcast Studio with Switchboard”
 Marketing is a studio with mics, cameras, and a switchboard. You pick the channel, queue the segment, and watch the meters to avoid dead air or feedback.
@@ -99,7 +99,7 @@ Marketing is a studio with mics, cameras, and a switchboard. You pick the channe
 4. How do you prevent sending duplicate promos? <details><summary>Answer</summary>Use exclusion filters/tags and test lists before broadcasting.</details>
 
 ## Practice labs + evidence rubric
-- **Lab: Mini-campaign launch**
-  - Deliverable: Two-step email/SMS with trigger link and suppression rules.
-  - Evidence: Screenshots of campaign steps, trigger link, and analytics after a test send.
-  - Rubric: Pass if consent rules are followed, trigger link fires tags/metrics, and analytics screenshots show opens/clicks.
+- **Lab: Social post + welcome email**
+  - Deliverable: Scheduled social post and a saved welcome email template.
+  - Evidence: Social Planner calendar/list screenshot and email template preview, plus a note listing two marketing tools for lead gen.
+  - Rubric: Pass if the post is scheduled/drafted with content, the email template is populated, and the tool list is accurate.

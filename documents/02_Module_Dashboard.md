@@ -65,11 +65,14 @@ A passing VA can:
 8) If metrics look “off by a day,” what root cause is common? **Timezone mismatch** ✅
 
 ## Lab assignment (evidence required)
-- Take screenshots of:
-  1) dashboard overview
-  2) drill-down into 2 metrics (appointments + conversations)
-  3) note 3 signals you’d investigate and what module you would open next
-Rubric: Pass if screenshots and explanations match the expected module mapping.
+Build the **Dashboard – Daily Health Check Snapshot** for the Ace Web Agency scenario (or your selected variant).
+1) Access + confirm sub-account: Log in via your invite link, confirm the sub-account name at top (screenshot the dashboard home to prove you’re inside the trainee sub-account).
+2) Identify widgets: Note the current values for Conversations, Opportunities/Pipeline value, Appointments, and any error tiles (failed payments/workflow errors). Record the numbers even if 0.
+3) Drill down: Click at least two widgets (Conversations and Appointments recommended) and capture screenshots of the resulting pages/lists.
+4) Screenshot set: Capture (a) full dashboard overview and (b) each drill-down view you opened (min two).
+5) Red-flag list: List three signals you’d investigate (e.g., “Unread conversations = 5 → open Conversations,” “Pipeline value dropped → open Opportunities,” “Appointments = 0 → open Calendars/Sites”). Include which module you’d open for each.
+6) Example action: Add one example narrative: “Appointments widget is red/0 this week → click it, open Calendar, confirm links and availability.”
+Evidence bundle: dashboard overview, two drill-down screenshots, and a short write-up with three signals + next modules. Rubric: Pass if screenshots show drill-down use and the follow-up mapping is correct.
 
 ## Relatable metaphor — “Vitals Monitor in an ER”
 The dashboard is the patient monitor in an emergency room. It shows pulse, pressure, and alerts. You don’t diagnose everything there, but you use it to decide which room to rush into next.
@@ -95,7 +98,7 @@ The dashboard is the patient monitor in an emergency room. It shows pulse, press
 5. What drill-down behavior matters for KPIs? <details><summary>Answer</summary>Each widget should link to the source object list (conversations, appointments, payments) for root-cause review.</details>
 
 ## Practice labs + evidence rubric
-- **Lab: Daily Ops snapshot**
-  - Deliverable: Screenshot of the dashboard plus a table listing 3 anomalies and the module you opened for each.
-  - Evidence: Links/screenshots from the drill-down pages and notes on resolutions.
-  - Rubric: Pass if anomalies are mapped to the correct modules, evidence shows drill-down views, and at least one corrective action is noted.
+- **Lab: Daily Ops snapshot (Ace Web Agency)**
+  - Deliverable: Dashboard overview + two drill-down screenshots, plus a written list of three “red flags” and which module you will open for each.
+  - Evidence: Dashboard screenshot proving you’re in the trainee sub-account, drill-down captures for at least two widgets, and the three-item action list.
+  - Rubric: Pass if drill-downs are shown, actions map to the right modules, and the sub-account context is visible.

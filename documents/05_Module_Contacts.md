@@ -74,16 +74,17 @@ Bulk importing contacts without proper consent can damage deliverability and inc
 10) A custom field should be used when: **you need structured data reused in automations/reports** ✅
 
 ## Lab assignment (evidence required)
-1) Create Smart Lists:
-   - `SL - New Prospects (No Owner)`
-   - `SL - Advertiser Leads (Interested)`
-   - `SL - Vendors (Sign Company)`
-2) Import a small CSV (5–10 contacts) into a test sub-account.
-3) Apply a bulk tag to imported contacts.
-Evidence:
-- screenshots of each Smart List filters
-- screenshot of import summary
-Rubric: Pass if lists are correct and tags applied without errors.
+**Goal:** Contacts import + Smart Lists for Ace Web Agency.
+1) Add a single contact manually (e.g., John Doe with email/phone) to confirm basics.
+2) Import a sample CSV (5 rows) with Name/Email/Phone (and one optional custom field). Map fields correctly; create a custom field if needed. Screenshot the import summary.
+3) Bulk tag the imported contacts (e.g., `seg:web-agency` or `import_test`). Screenshot the contacts list or detail showing the tag.
+4) Create Smart Lists:
+   - `SL - New Prospects (No Owner)` → filter Contact Assigned User is empty.
+   - `SL - Interested Leads` → filter by tag/custom field indicating interest.
+   - `SL - Vendors/Partners` → add a sample vendor contact, tag `vendor`, filter Tag contains vendor.
+5) Optional: Enable “Create Smart List for new contacts” if the import wizard offers it.
+6) Evidence: Import summary screenshot, one tagged contact/list view, and screenshots of the filter panel for at least two Smart Lists.
+Rubric: Pass if import mapping is correct, tags applied in bulk, and Smart Lists reflect the specified filters.
 
 ## Relatable metaphor — “Library Card Catalog”
 Contacts are the card catalog for the business. If the cards are misfiled or mislabeled, nobody can find the right book (lead) when it’s needed.
@@ -109,7 +110,7 @@ Contacts are the card catalog for the business. If the cards are misfiled or mis
 5. Which module should be checked after a bulk import? <details><summary>Answer</summary>Automation/Workflows to ensure sequences are paused until QA is complete.</details>
 
 ## Practice labs + evidence rubric
-- **Lab: Clean import**
-  - Deliverable: Import sample contacts with tags and at least three custom fields populated.
-  - Evidence: Screenshots of mapping, one merged duplicate example, and a before/after contact timeline.
-  - Rubric: Pass if mappings follow standards, deduplication is demonstrated, and consent + source tagging are visible.
+- **Lab: Import + segment**
+  - Deliverable: CSV import of 5 contacts, bulk tag applied, and three Smart Lists (`No Owner`, `Interested Leads`, `Vendors/Partners`).
+  - Evidence: Import summary, tagged contact/list view, and Smart List filter screenshots.
+  - Rubric: Pass if import is clean, tags are applied consistently, and Smart Lists match filter specs.
